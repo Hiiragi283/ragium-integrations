@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "id": "ragium_integrations",
+  "version": "${version}",
+  "name": "Ragium",
+  "description": "This is an example description! Tell everyone what your mod is about!",
+  "authors": [
+    "Hiiragi283"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+  "license": "MPL-2.0",
+  "icon": "assets/ragium/textures/item/refined_ragi_steel_ingot.png",
+  "environment": "*",
+  "entrypoints": {
+    "fabric-datagen": [
+      {
+        "value": "hiiragi283.ragium.data.RagiumDataGenerator",
+        "adapter": "kotlin"
+      }
+    ],
+    "jade": [
+      {
+        "value": "hiiragi283.ragium.client.integration.jade.RagiumJadePlugin",
+        "adapter": "kotlin"
+      }
+    ],
+    "rei_client": [
+      {
+        "value": "hiiragi283.ragium.client.integration.rei.RagiumREIClient",
+        "adapter": "kotlin"
+      }
+    ]
+  },
+  "mixins": [],
+  "depends": {
+    "fabricloader": ">=0.16.4",
+    "minecraft": ">=1.21- <1.22-",
+    "java": ">=21",
+    "fabric-api": "*",
+    "fabric-language-kotlin": "*"
+  },
+  "recommends": {
+    "accessories": "*",
+    "modmenu": "*",
+    "roughlyenoughitems": "*"
+  }
+}
