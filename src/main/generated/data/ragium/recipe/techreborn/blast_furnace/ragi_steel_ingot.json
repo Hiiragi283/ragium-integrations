@@ -1,0 +1,21 @@
+{
+  "type": "techreborn:blast_furnace",
+  "heat": 1000,
+  "ingredients": [
+    {
+      "tag": "c:ingots/iron"
+    },
+    {
+      "count": 4,
+      "item": "ragium:raginite_dust"
+    }
+  ],
+  "outputs": [
+    {
+      "count": 1,
+      "id": "ragium:ragi_steel_ingot"
+    }
+  ],
+  "power": 128,
+  "time": 100
+}

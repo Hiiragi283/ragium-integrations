@@ -40,8 +40,9 @@ repositories {
 loom {
     // accessWidenerPath = file("src/main/resources/ht_materials.accesswidener")
     splitEnvironmentSourceSets()
+    
     mods {
-        create("ragium") {
+        create("ragium_integrations") {
             sourceSet(sourceSets.main.get())
             sourceSet(sourceSets.getByName("client"))
         }
@@ -84,7 +85,6 @@ dependencies {
         exclude(module = "fabric-api")
         exclude(module = "fabric-loader")
     }
-    // modImplementation(libs.modonomicon) { isTransitive = false }
 
     modImplementation(libs.bundles.mods.include) {
         exclude(module = "fabric-api")
@@ -102,8 +102,8 @@ dependencies {
         exclude(module = "fabric-loader")
     }
 
-    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    implementation(project(":ragium")) { isTransitive = false }
+    // modImplementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+    modImplementation(project(path = ":ragium", configuration = "namedElements"))
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 }
 

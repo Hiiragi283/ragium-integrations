@@ -15,21 +15,33 @@
   "icon": "assets/ragium/textures/item/refined_ragi_steel_ingot.png",
   "environment": "*",
   "entrypoints": {
+    "main": [
+      {
+        "value": "hiiragi283.ragium.integration.RagiumIntegration",
+        "adapter": "kotlin"
+      }
+    ],
+    "client": [
+      {
+        "value": "hiiragi283.ragium.integration.RagiumClientIntegration",
+        "adapter": "kotlin"
+      }
+    ],
     "fabric-datagen": [
       {
-        "value": "hiiragi283.ragium.data.RagiumDataGenerator",
+        "value": "hiiragi283.ragium.integration.data.RIDataGenerator",
         "adapter": "kotlin"
       }
     ],
     "jade": [
       {
-        "value": "hiiragi283.ragium.client.integration.jade.RagiumJadePlugin",
+        "value": "hiiragi283.ragium.integration.jade.RagiumJadePlugin",
         "adapter": "kotlin"
       }
     ],
     "rei_client": [
       {
-        "value": "hiiragi283.ragium.client.integration.rei.RagiumREIClient",
+        "value": "hiiragi283.ragium.integration.rei.RagiumREIClient",
         "adapter": "kotlin"
       }
     ]
