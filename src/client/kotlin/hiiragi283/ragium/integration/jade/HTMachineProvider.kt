@@ -3,10 +3,10 @@ package hiiragi283.ragium.integration.jade
 import com.mojang.serialization.Codec
 import com.mojang.serialization.MapCodec
 import hiiragi283.ragium.api.inventory.HTSimpleInventory
-import hiiragi283.ragium.api.machine.HTMachineEntity
 import hiiragi283.ragium.api.machine.HTMachineTier
 import hiiragi283.ragium.api.machine.HTMachineType
 import hiiragi283.ragium.api.machine.HTMachineTypeRegistry
+import hiiragi283.ragium.api.machine.entity.HTMachineEntity
 import hiiragi283.ragium.api.machine.multiblock.HTMultiblockController
 import hiiragi283.ragium.common.init.RagiumTranslationKeys
 import net.minecraft.nbt.NbtCompound

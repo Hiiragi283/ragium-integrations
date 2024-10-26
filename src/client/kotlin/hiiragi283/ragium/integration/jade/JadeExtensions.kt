@@ -1,6 +1,6 @@
 package hiiragi283.ragium.integration.jade
 
-import hiiragi283.ragium.api.machine.HTMachineEntity
+import hiiragi283.ragium.api.machine.entity.HTMachineEntity
 import hiiragi283.ragium.common.block.entity.HTMetaMachineBlockEntity
 import net.minecraft.block.Block
 import snownee.jade.api.*

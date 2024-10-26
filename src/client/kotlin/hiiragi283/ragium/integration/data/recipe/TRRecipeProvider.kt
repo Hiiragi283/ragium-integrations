@@ -18,10 +18,8 @@ import techreborn.recipe.recipes.BlastFurnaceRecipe
 import java.util.concurrent.CompletableFuture
 
 @Suppress("UnstableApiUsage")
-class TRRecipeProvider(
-    output: FabricDataOutput,
-    completableFuture: CompletableFuture<RegistryWrapper.WrapperLookup>
-) : FabricRecipeProvider(output, completableFuture) {
+class TRRecipeProvider(output: FabricDataOutput, completableFuture: CompletableFuture<RegistryWrapper.WrapperLookup>) :
+    FabricRecipeProvider(output, completableFuture) {
     override fun getName(): String = "Recipes/Tech Reborn"
 
     override fun getRecipeIdentifier(identifier: Identifier): Identifier = RagiumAPI.id(identifier.splitWith('/'))
@@ -33,33 +31,33 @@ class TRRecipeProvider(
                 ModRecipes.BLAST_FURNACE,
                 listOf(
                     SizedIngredient(1, Ingredient.fromTag(ConventionalItemTags.IRON_INGOTS)),
-                    SizedIngredient(4, Ingredient.ofItems(RagiumContents.Dusts.RAGINITE))
+                    SizedIngredient(4, Ingredient.ofItems(RagiumContents.Dusts.RAGINITE)),
                 ),
                 listOf(
-                    ItemStack(RagiumContents.Ingots.RAGI_STEEL)
+                    ItemStack(RagiumContents.Ingots.RAGI_STEEL),
                 ),
                 128,
                 20 * 10,
-                1700
+                1700,
             ),
-            null
+            null,
         )
-        
+
         exporter.accept(
             id("alloy_smelter/ragi_alloy_ingot"),
             RebornRecipe.Default(
                 ModRecipes.ALLOY_SMELTER,
                 listOf(
                     SizedIngredient(1, Ingredient.fromTag(ConventionalItemTags.COPPER_INGOTS)),
-                    SizedIngredient(4, Ingredient.ofItems(RagiumContents.Dusts.CRUDE_RAGINITE))
+                    SizedIngredient(4, Ingredient.ofItems(RagiumContents.Dusts.CRUDE_RAGINITE)),
                 ),
                 listOf(
-                    ItemStack(RagiumContents.Ingots.RAGI_ALLOY)
+                    ItemStack(RagiumContents.Ingots.RAGI_ALLOY),
                 ),
                 6,
                 20 * 10,
             ),
-            null
+            null,
         )
     }
 

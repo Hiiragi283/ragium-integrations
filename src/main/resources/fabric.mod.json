@@ -2,17 +2,17 @@
   "schemaVersion": 1,
   "id": "ragium_integrations",
   "version": "${version}",
-  "name": "Ragium",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Ragium Integrations",
+  "description": "An official addon for Ragium and other mods",
   "authors": [
     "Hiiragi283"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "sources": "https://github.com/Hiiragi283/ragium-integrations",
+    "issues": "https://github.com/Hiiragi283/ragium-integrations/issues"
   },
   "license": "MPL-2.0",
-  "icon": "assets/ragium/textures/item/refined_ragi_steel_ingot.png",
+  "icon": "assets/ragium/textures/item/integrated_ragium.png",
   "environment": "*",
   "entrypoints": {
     "main": [
@@ -52,11 +52,7 @@
     "minecraft": ">=1.21- <1.22-",
     "java": ">=21",
     "fabric-api": "*",
-    "fabric-language-kotlin": "*"
-  },
-  "recommends": {
-    "accessories": "*",
-    "modmenu": "*",
-    "roughlyenoughitems": "*"
+    "fabric-language-kotlin": "*",
+    "ragium": "*"
   }
 }

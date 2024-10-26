@@ -40,7 +40,7 @@ repositories {
 loom {
     // accessWidenerPath = file("src/main/resources/ht_materials.accesswidener")
     splitEnvironmentSourceSets()
-    
+
     mods {
         create("ragium_integrations") {
             sourceSet(sourceSets.main.get())
@@ -103,7 +103,7 @@ dependencies {
     }
 
     // modImplementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    modImplementation(project(path = ":ragium", configuration = "namedElements"))
+    implementation(project(path = ":ragium", configuration = "namedElements"))
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 }
 
@@ -155,6 +155,11 @@ tasks {
             rename { "${it}_${project.base.archivesName.get()}" }
         }
         exclude("**/ragium/data/**")
+        exclude("**/integration/data/**")
         exclude("**/unused/**")
+    }
+
+    create("runIntegration") {
+        dependsOn(":runClient")
     }
 }

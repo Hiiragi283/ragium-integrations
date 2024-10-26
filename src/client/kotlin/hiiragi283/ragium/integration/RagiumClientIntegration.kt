@@ -13,7 +13,7 @@ import net.minecraft.client.MinecraftClient
 object RagiumClientIntegration : ClientModInitializer {
     override fun onInitializeClient() {
         RIKeyBinds
-        
+
         if (isModLoaded("accessories")) {
             ClientTickEvents.END_CLIENT_TICK.register { client: MinecraftClient ->
                 while (RIKeyBinds.OPEN_BACKPACK.wasPressed()) {

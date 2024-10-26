@@ -7,7 +7,6 @@ import net.minecraft.network.codec.PacketCodec
 import net.minecraft.network.packet.CustomPayload
 
 data object HTOpenBackpackPayload : CustomPayload {
-
     @JvmField
     val PACKET_CODEC: PacketCodec<RegistryByteBuf, HTOpenBackpackPayload> = PacketCodec.unit(HTOpenBackpackPayload)
 

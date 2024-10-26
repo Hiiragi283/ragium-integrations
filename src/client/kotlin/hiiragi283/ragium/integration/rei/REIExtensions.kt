@@ -33,8 +33,7 @@ val HTMachineConvertible.categoryId: CategoryIdentifier<HTMachineRecipeDisplay>
 
 //    EntryStack    //
 
-fun HTMachineConvertible.createEntryStack(tier: HTMachineTier): EntryStack<ItemStack> =
-    EntryStacks.of(createItemStack(tier))
+fun HTMachineConvertible.createEntryStack(tier: HTMachineTier): EntryStack<ItemStack> = EntryStacks.of(createItemStack(tier))
 
 fun createEnchantedBook(key: RegistryKey<Enchantment>): EntryStack<ItemStack> = dynamicRegistry()
     .get(RegistryKeys.ENCHANTMENT)
@@ -80,7 +79,7 @@ val HTIngredient<*, *, *>.entryStacks: List<EntryStack<*>>
         is HTIngredient.Fluid -> entryMap.map { (fluid: RegistryEntry<Fluid>, amount: Long) ->
             EntryStacks.of(
                 fluid.value(),
-                amount
+                amount,
             )
         }
 
@@ -100,4 +99,3 @@ val HTRecipeResult<*, *, *>.entryStack: EntryStack<*>
 
 val HTRecipeResult<*, *, *>.entryIngredient: EntryIngredient
     get() = EntryIngredient.of(entryStack)
-

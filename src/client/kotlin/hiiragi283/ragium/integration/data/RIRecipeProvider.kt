@@ -14,10 +14,8 @@ import net.minecraft.util.Identifier
 import vazkii.patchouli.common.item.ItemModBook
 import java.util.concurrent.CompletableFuture
 
-class RIRecipeProvider(
-    output: FabricDataOutput,
-    completableFuture: CompletableFuture<RegistryWrapper.WrapperLookup>
-) : FabricRecipeProvider(output, completableFuture) {
+class RIRecipeProvider(output: FabricDataOutput, completableFuture: CompletableFuture<RegistryWrapper.WrapperLookup>) :
+    FabricRecipeProvider(output, completableFuture) {
     override fun getRecipeIdentifier(identifier: Identifier): Identifier = RagiumAPI.id(identifier.path)
 
     override fun generate(exporter: RecipeExporter) {
