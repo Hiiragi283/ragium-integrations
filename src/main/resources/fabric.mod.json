@@ -15,12 +15,7 @@
   "icon": "assets/ragium/textures/item/integrated_ragium.png",
   "environment": "*",
   "entrypoints": {
-    "main": [
-      {
-        "value": "hiiragi283.ragium.integration.RagiumIntegration",
-        "adapter": "kotlin"
-      }
-    ],
+    "main": [],
     "client": [
       {
         "value": "hiiragi283.ragium.integration.RagiumClientIntegration",
@@ -42,6 +37,24 @@
     "rei_client": [
       {
         "value": "hiiragi283.ragium.integration.rei.RagiumREIClient",
+        "adapter": "kotlin"
+      }
+    ],
+    "ragium.plugin": [
+      {
+        "value": "hiiragi283.ragium.integration.RagiumAccessoriesPlugin",
+        "adapter": "kotlin"
+      },
+      {
+        "value": "hiiragi283.ragium.integration.RagiumClientAccessoriesPlugin",
+        "adapter": "kotlin"
+      },
+      {
+        "value": "hiiragi283.ragium.integration.RagiumEnergyPlugin",
+        "adapter": "kotlin"
+      },
+      {
+        "value": "hiiragi283.ragium.integration.RagiumPatchouliPlugin",
         "adapter": "kotlin"
       }
     ]

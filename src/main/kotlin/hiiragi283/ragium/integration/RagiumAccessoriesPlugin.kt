@@ -1,23 +1,38 @@
-package hiiragi283.ragium.integration.accessories
+package hiiragi283.ragium.integration
 
 import hiiragi283.ragium.api.RagiumAPI
+import hiiragi283.ragium.api.RagiumPlugin
 import hiiragi283.ragium.api.accessory.HTAccessoryRegistry
 import hiiragi283.ragium.api.accessory.HTAccessorySlotTypes
+import hiiragi283.ragium.api.extension.isModLoaded
+import hiiragi283.ragium.api.extension.openBackpackScreen
 import hiiragi283.ragium.common.RagiumContents
+import hiiragi283.ragium.common.init.RagiumComponentTypes
+import hiiragi283.ragium.integration.accessories.HTEmptyAccessory
+import hiiragi283.ragium.integration.accessories.HTOpenBackpackPayload
+import hiiragi283.ragium.integration.accessories.HTWrappedAccessory
 import io.wispforest.accessories.api.AccessoriesAPI
+import io.wispforest.accessories.api.AccessoriesCapability
 import io.wispforest.accessories.api.Accessory
 import io.wispforest.accessories.api.components.AccessoriesDataComponents
 import io.wispforest.accessories.api.components.AccessorySlotValidationComponent
 import net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking
 import net.minecraft.component.ComponentMap
 import net.minecraft.item.Item
 import net.minecraft.item.ItemConvertible
+import net.minecraft.item.ItemStack
+import net.minecraft.server.network.ServerPlayerEntity
+import net.minecraft.world.World
 
-object RagiumAccessoriesInit {
+object RagiumAccessoriesPlugin : RagiumPlugin {
+    override val priority: Int = 0
+
+    override fun shouldLoad(): Boolean = isModLoaded("accessories")
+
     private val slotCache: MutableMap<Item, Set<String>> = mutableMapOf()
 
-    @JvmStatic
-    fun init() {
+    override fun afterRagiumInit() {
         HTAccessoryRegistry.slotTypes.forEach { (item: ItemConvertible, slot: HTAccessorySlotTypes) ->
             registerAccessory(item, HTWrappedAccessory, slot)
         }
@@ -32,6 +47,21 @@ object RagiumAccessoriesInit {
                     AccessorySlotValidationComponent(slots, setOf()),
                 )
             }
+        }
+
+        HTOpenBackpackPayload
+
+        ServerPlayNetworking.registerGlobalReceiver(
+            HTOpenBackpackPayload.ID,
+        ) { _: HTOpenBackpackPayload, context: ServerPlayNetworking.Context ->
+            val player: ServerPlayerEntity = context.player()
+            val world: World = player.world
+            val capability: AccessoriesCapability = player.accessoriesCapability() ?: return@registerGlobalReceiver
+            capability
+                .getEquipped { it.contains(RagiumComponentTypes.COLOR) }
+                ?.firstOrNull { it.reference.slotName() == "back" }
+                ?.stack
+                ?.let { stack: ItemStack -> openBackpackScreen(world, player, stack) }
         }
 
         RagiumAPI.log { info("Accessories integration loaded!") }
