@@ -4,17 +4,17 @@ import hiiragi283.ragium.api.RagiumAPI
 import hiiragi283.ragium.api.extension.component1
 import hiiragi283.ragium.api.extension.component2
 import hiiragi283.ragium.api.machine.HTMachineConvertible
-import hiiragi283.ragium.api.machine.HTMachinePropertyKeys
 import hiiragi283.ragium.api.machine.HTMachineTier
 import hiiragi283.ragium.api.machine.HTMachineType
+import hiiragi283.ragium.api.machine.property.HTMachinePropertyKeys
 import hiiragi283.ragium.api.recipe.HTMachineRecipe
+import hiiragi283.ragium.api.screen.HTMachineScreenHandlerBase
 import hiiragi283.ragium.common.init.RagiumBlocks
 import hiiragi283.ragium.common.init.RagiumEnchantments
 import hiiragi283.ragium.common.init.RagiumMachineTypes
 import hiiragi283.ragium.common.init.RagiumRecipeTypes
-import hiiragi283.ragium.common.screen.HTLargeProcessorScreenHandler
-import hiiragi283.ragium.common.screen.HTProcessorScreenHandlerBase
-import hiiragi283.ragium.common.screen.HTSimpleProcessorScreenHandler
+import hiiragi283.ragium.common.screen.HTLargeMachineScreenHandler
+import hiiragi283.ragium.common.screen.HTSimpleMachineScreenHandler
 import me.shedaniel.rei.api.client.plugins.REIClientPlugin
 import me.shedaniel.rei.api.client.registry.category.CategoryRegistry
 import me.shedaniel.rei.api.client.registry.display.DisplayRegistry
@@ -42,12 +42,16 @@ object RagiumREIClient : REIClientPlugin {
 
     override fun registerCategories(registry: CategoryRegistry) {
         // Machines
-        RagiumAPI.getInstance().machineTypeRegistry.processors.forEach { type: HTMachineType ->
-            registry.add(HTMachineRecipeCategory(type))
-            HTMachineTier.entries.map(type::createEntryStack).forEach { stack: EntryStack<ItemStack> ->
-                registry.addWorkstations(type.categoryId, stack)
+        RagiumAPI
+            .getInstance()
+            .machineTypeRegistry.processors
+            .map { it.key }
+            .forEach { key ->
+                registry.add(HTMachineRecipeCategory(key))
+                HTMachineTier.entries.map(key::createEntryStack).forEach { stack: EntryStack<ItemStack> ->
+                    registry.addWorkstations(key.categoryId, stack)
+                }
             }
-        }
         addWorkStation(registry, RagiumMachineTypes.Processor.METAL_FORMER, RagiumBlocks.MANUAL_FORGE)
         addWorkStation(registry, RagiumMachineTypes.Processor.GRINDER, RagiumBlocks.MANUAL_GRINDER)
         addWorkStation(registry, RagiumMachineTypes.Processor.MIXER, RagiumBlocks.MANUAL_MIXER)
@@ -74,9 +78,9 @@ object RagiumREIClient : REIClientPlugin {
             RagiumRecipeTypes.MACHINE,
         ) { entry: RecipeEntry<HTMachineRecipe> ->
             val (id: Identifier, recipe: HTMachineRecipe) = entry
-            when (recipe.sizeType) {
-                HTMachineRecipe.SizeType.SIMPLE -> HTMachineRecipeDisplay.Simple(recipe, id)
-                HTMachineRecipe.SizeType.LARGE -> HTMachineRecipeDisplay.Large(recipe, id)
+            when (recipe.typeSize) {
+                HTMachineType.Size.SIMPLE -> HTMachineRecipeDisplay.Simple(recipe, id)
+                HTMachineType.Size.LARGE -> HTMachineRecipeDisplay.Large(recipe, id)
             }
         }
     }
@@ -98,14 +102,14 @@ object RagiumREIClient : REIClientPlugin {
             .machineTypeRegistry
             .processors
             .forEach { type: HTMachineType ->
-                val sizeType: HTMachineRecipe.SizeType = type[HTMachinePropertyKeys.RECIPE_SIZE] ?: return@forEach
-                val screenClass: Class<out HTProcessorScreenHandlerBase> = when (sizeType) {
-                    HTMachineRecipe.SizeType.SIMPLE -> HTSimpleProcessorScreenHandler::class
-                    HTMachineRecipe.SizeType.LARGE -> HTLargeProcessorScreenHandler::class
+                val sizeType: HTMachineType.Size = type[HTMachinePropertyKeys.RECIPE_SIZE] ?: return@forEach
+                val screenClass: Class<out HTMachineScreenHandlerBase> = when (sizeType) {
+                    HTMachineType.Size.SIMPLE -> HTSimpleMachineScreenHandler::class
+                    HTMachineType.Size.LARGE -> HTLargeMachineScreenHandler::class
                 }.java
                 val inputRange: SimpleTransferHandler.IntRange = when (sizeType) {
-                    HTMachineRecipe.SizeType.SIMPLE -> SimpleTransferHandler.IntRange(0, 2)
-                    HTMachineRecipe.SizeType.LARGE -> SimpleTransferHandler.IntRange(0, 3)
+                    HTMachineType.Size.SIMPLE -> SimpleTransferHandler.IntRange(0, 2)
+                    HTMachineType.Size.LARGE -> SimpleTransferHandler.IntRange(0, 3)
                 }
                 registry.register(SimpleTransferHandler.create(screenClass, type.categoryId, inputRange))
             }

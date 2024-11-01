@@ -29,7 +29,7 @@ val dynamicRegistry: () -> DynamicRegistryManager
 //    CategoryIdentifier    //
 
 val HTMachineConvertible.categoryId: CategoryIdentifier<HTMachineRecipeDisplay>
-    get() = CategoryIdentifier.of(asMachine().id)
+    get() = CategoryIdentifier.of(key.id)
 
 //    EntryStack    //
 

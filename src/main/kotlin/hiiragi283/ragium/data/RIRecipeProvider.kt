@@ -1,4 +1,4 @@
-package hiiragi283.ragium.integration.data
+package hiiragi283.ragium.data
 
 import hiiragi283.ragium.api.RagiumAPI
 import hiiragi283.ragium.api.data.recipe.HTShapelessRecipeJsonBuilder

@@ -1,7 +1,7 @@
 package hiiragi283.ragium.integration.rei
 
 import hiiragi283.ragium.api.machine.HTMachineTier
-import hiiragi283.ragium.api.machine.HTMachineType
+import hiiragi283.ragium.api.machine.HTMachineTypeKey
 import hiiragi283.ragium.api.recipe.HTMachineRecipe
 import hiiragi283.ragium.common.init.RagiumTranslationKeys
 import me.shedaniel.math.Point
@@ -28,12 +28,12 @@ import net.minecraft.text.Text
 import net.minecraft.util.Formatting
 
 @Environment(EnvType.CLIENT)
-class HTMachineRecipeCategory(private val type: HTMachineType) : DisplayCategory<HTMachineRecipeDisplay> {
-    override fun getCategoryIdentifier(): CategoryIdentifier<out HTMachineRecipeDisplay> = type.categoryId
+class HTMachineRecipeCategory(private val key: HTMachineTypeKey) : DisplayCategory<HTMachineRecipeDisplay> {
+    override fun getCategoryIdentifier(): CategoryIdentifier<out HTMachineRecipeDisplay> = key.categoryId
 
-    override fun getTitle(): Text = type.text
+    override fun getTitle(): Text = key.text
 
-    override fun getIcon(): Renderer = type.createEntryStack(HTMachineTier.PRIMITIVE)
+    override fun getIcon(): Renderer = key.createEntryStack(HTMachineTier.PRIMITIVE)
 
     override fun setupDisplay(display: HTMachineRecipeDisplay, bounds: Rectangle): List<Widget> = buildList {
         this += Widgets.createRecipeBase(bounds)

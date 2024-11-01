@@ -52,7 +52,7 @@ object HTMachineProvider : IBlockComponentProvider, IServerDataProvider<BlockAcc
         val tier: HTMachineTier = accessor
             .readData(TIER)
             .orElse(HTMachineTier.PRIMITIVE)
-        type.appendTooltip(
+        type.key.appendTooltip(
             tooltip::add,
             tier,
         )
@@ -80,12 +80,12 @@ object HTMachineProvider : IBlockComponentProvider, IServerDataProvider<BlockAcc
     //    IServerDataProvider    //
 
     override fun appendServerData(nbt: NbtCompound, accessor: BlockAccessor) {
-        accessor.machineEntity?.let { machine: HTMachineEntity ->
+        accessor.machineEntity?.let { machine: HTMachineEntity<*> ->
             accessor.writeData(TYPE, machine.machineType)
             accessor.writeData(TIER, machine.tier)
             accessor.writeData(INVENTORY, machine.parent)
-            accessor.writeData(TICK, machine.propertyDelegate.get(0))
-            accessor.writeData(MAX_TICK, machine.propertyDelegate.get(1))
+            accessor.writeData(TICK, machine.property.get(0))
+            accessor.writeData(MAX_TICK, machine.property.get(1))
             if (machine is HTMultiblockController) {
                 accessor.writeData(PREVIEW, machine.showPreview)
             }

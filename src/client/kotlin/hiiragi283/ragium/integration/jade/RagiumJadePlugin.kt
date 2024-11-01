@@ -15,11 +15,11 @@ object RagiumJadePlugin : IWailaPlugin {
     val NETWORK_INTERFACE: Identifier = RagiumAPI.id("network_interface")
 
     override fun register(registration: IWailaCommonRegistration) {
-        registration.registerBlock(HTMachineProvider, RagiumBlocks.META_MACHINE)
+        registration.registerBlock(HTMachineProvider, RagiumBlocks.META_PROCESSOR)
     }
 
     override fun registerClient(registration: IWailaClientRegistration) {
-        registration.registerBlock(HTMachineProvider, RagiumBlocks.META_MACHINE)
+        registration.registerBlock(HTMachineProvider, RagiumBlocks.META_PROCESSOR)
         registration.registerBlock(HTEnergyNetworkProvider, RagiumBlocks.NETWORK_INTERFACE)
 
         RagiumAPI.log { info("Jade integration enabled!") }

@@ -17,5 +17,5 @@ fun IWailaClientRegistration.registerBlock(provider: IBlockComponentProvider, bl
 
 //    BlockAccessor    //
 
-val BlockAccessor.machineEntity: HTMachineEntity?
+val BlockAccessor.machineEntity: HTMachineEntity<*>?
     get() = (blockEntity as? HTMetaMachineBlockEntity)?.machineEntity

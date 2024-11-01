@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "hiiragi283.ragium"
-version = "0.4.0+121x"
+version = "0.5.0+121x"
 
 sourceSets {
     main {
@@ -161,5 +161,13 @@ tasks {
 
     create("runIntegration") {
         dependsOn(":runClient")
+    }
+
+    create("runDataIntegration") {
+        dependsOn(":runDatagen")
+    }
+
+    create("buildIntegration") {
+        dependsOn(":build")
     }
 }
