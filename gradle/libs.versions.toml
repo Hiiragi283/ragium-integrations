@@ -32,7 +32,7 @@ fabric-kotlin = { group = "net.fabricmc", name = "fabric-language-kotlin", versi
 #cca-api = { group = "org.ladysnake.cardinal-components-api", name = "cardinal-components-api", version.ref = "cca" }
 #cca-base = { group = "org.ladysnake.cardinal-components-api", name = "cardinal-components-base", version.ref = "cca" }
 #cca-entity = { group = "org.ladysnake.cardinal-components-api", name = "cardinal-components-entity", version.ref = "cca" }
-#energy = { group = "teamreborn", name = "energy", version.ref = "energy" }
+
 #libgui = { group = "io.github.cottonmc", name = "LibGui", version.ref = "lib-gui" }
 
 accessories = { group = "io.wispforest", name = "accessories-fabric", version.ref = "accessories" }

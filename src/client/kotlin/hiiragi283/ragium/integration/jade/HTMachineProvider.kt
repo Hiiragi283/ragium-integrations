@@ -2,6 +2,7 @@ package hiiragi283.ragium.integration.jade
 
 import com.mojang.serialization.Codec
 import com.mojang.serialization.MapCodec
+import hiiragi283.ragium.api.inventory.HTDelegatedInventory
 import hiiragi283.ragium.api.inventory.HTSimpleInventory
 import hiiragi283.ragium.api.machine.HTMachineTier
 import hiiragi283.ragium.api.machine.HTMachineType
@@ -83,7 +84,7 @@ object HTMachineProvider : IBlockComponentProvider, IServerDataProvider<BlockAcc
         accessor.machineEntity?.let { machine: HTMachineEntity<*> ->
             accessor.writeData(TYPE, machine.machineType)
             accessor.writeData(TIER, machine.tier)
-            accessor.writeData(INVENTORY, machine.parent)
+            (machine as? HTDelegatedInventory<*>)?.parent?.let { accessor.writeData(INVENTORY, it) }
             accessor.writeData(TICK, machine.property.get(0))
             accessor.writeData(MAX_TICK, machine.property.get(1))
             if (machine is HTMultiblockController) {

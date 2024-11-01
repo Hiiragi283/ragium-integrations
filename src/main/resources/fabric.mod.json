@@ -50,10 +50,6 @@
         "adapter": "kotlin"
       },
       {
-        "value": "hiiragi283.ragium.integration.RagiumEnergyPlugin",
-        "adapter": "kotlin"
-      },
-      {
         "value": "hiiragi283.ragium.integration.RagiumPatchouliPlugin",
         "adapter": "kotlin"
       }
