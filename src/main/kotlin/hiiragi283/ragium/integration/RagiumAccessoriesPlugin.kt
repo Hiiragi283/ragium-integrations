@@ -6,8 +6,8 @@ import hiiragi283.ragium.api.accessory.HTAccessoryRegistry
 import hiiragi283.ragium.api.accessory.HTAccessorySlotTypes
 import hiiragi283.ragium.api.extension.isModLoaded
 import hiiragi283.ragium.api.extension.openBackpackScreen
-import hiiragi283.ragium.common.RagiumContents
 import hiiragi283.ragium.common.init.RagiumComponentTypes
+import hiiragi283.ragium.common.init.RagiumItems
 import hiiragi283.ragium.integration.accessories.HTEmptyAccessory
 import hiiragi283.ragium.integration.accessories.HTOpenBackpackPayload
 import hiiragi283.ragium.integration.accessories.HTWrappedAccessory
@@ -32,12 +32,12 @@ object RagiumAccessoriesPlugin : RagiumPlugin {
 
     private val slotCache: MutableMap<Item, Set<String>> = mutableMapOf()
 
-    override fun afterRagiumInit() {
+    override fun afterRagiumInit(instance: RagiumAPI) {
         HTAccessoryRegistry.slotTypes.forEach { (item: ItemConvertible, slot: HTAccessorySlotTypes) ->
             registerAccessory(item, HTWrappedAccessory, slot)
         }
 
-        registerAccessory(RagiumContents.Misc.BACKPACK, HTEmptyAccessory, HTAccessorySlotTypes.BACK)
+        registerAccessory(RagiumItems.BACKPACK, HTEmptyAccessory, HTAccessorySlotTypes.BACK)
 
         DefaultItemComponentEvents.MODIFY.register { context: DefaultItemComponentEvents.ModifyContext ->
             context.modify(slotCache::containsKey) { builder: ComponentMap.Builder, item: Item ->

@@ -10,54 +10,35 @@ import net.minecraft.util.Identifier
 import java.util.*
 
 @Environment(EnvType.CLIENT)
-sealed class HTMachineRecipeDisplay(val recipe: HTMachineRecipe, val id: Identifier) : Display {
-    fun getItemInput(index: Int): EntryIngredient = recipe.itemInputs.getOrNull(index)?.entryIngredient ?: EntryIngredient.empty()
+class HTMachineRecipeDisplay(val recipe: HTMachineRecipe, val id: Identifier) : Display {
+    private fun getItemInput(index: Int): EntryIngredient = recipe.itemInputs.getOrNull(index)?.entryIngredient ?: EntryIngredient.empty()
 
-    fun getFluidInput(index: Int): EntryIngredient = recipe.fluidInputs.getOrNull(index)?.entryIngredient ?: EntryIngredient.empty()
+    private fun getFluidInput(index: Int): EntryIngredient = recipe.fluidInputs.getOrNull(index)?.entryIngredient ?: EntryIngredient.empty()
 
-    fun getItemOutput(index: Int): EntryIngredient = recipe.itemOutputs.getOrNull(index)?.entryIngredient ?: EntryIngredient.empty()
+    private fun getItemOutput(index: Int): EntryIngredient = recipe.itemOutputs.getOrNull(index)?.entryIngredient ?: EntryIngredient.empty()
 
-    fun getFluidOutput(index: Int): EntryIngredient = recipe.fluidOutputs.getOrNull(index)?.entryIngredient ?: EntryIngredient.empty()
+    private fun getFluidOutput(index: Int): EntryIngredient =
+        recipe.fluidOutputs.getOrNull(index)?.entryIngredient ?: EntryIngredient.empty()
 
     val catalyst: EntryIngredient = recipe.catalyst?.entryIngredient ?: EntryIngredient.empty()
 
-    override fun getCategoryIdentifier(): CategoryIdentifier<*> = recipe.machineType.categoryId
-
-    final override fun getDisplayLocation(): Optional<Identifier> = Optional.of(id)
-
-    //    Simple    //
-
-    class Simple(recipe: HTMachineRecipe, id: Identifier) : HTMachineRecipeDisplay(recipe, id) {
-        override fun getInputEntries(): List<EntryIngredient> = buildList {
-            add(getItemInput(0))
-            add(getItemInput(1))
-            add(getFluidInput(0))
-        }
-
-        override fun getOutputEntries(): List<EntryIngredient> = buildList {
-            add(getItemOutput(0))
-            add(getItemOutput(1))
-            add(getFluidOutput(0))
-        }
+    override fun getInputEntries(): List<EntryIngredient> = buildList {
+        add(getItemInput(0))
+        add(getItemInput(1))
+        add(getItemInput(2))
+        add(getFluidInput(0))
+        add(getFluidInput(1))
     }
 
-    //    Large    //
-
-    class Large(recipe: HTMachineRecipe, id: Identifier) : HTMachineRecipeDisplay(recipe, id) {
-        override fun getInputEntries(): List<EntryIngredient> = buildList {
-            add(getItemInput(0))
-            add(getItemInput(1))
-            add(getItemInput(2))
-            add(getFluidInput(0))
-            add(getFluidInput(1))
-        }
-
-        override fun getOutputEntries(): List<EntryIngredient> = buildList {
-            add(getItemOutput(0))
-            add(getItemOutput(1))
-            add(getItemOutput(2))
-            add(getFluidOutput(0))
-            add(getFluidOutput(1))
-        }
+    override fun getOutputEntries(): List<EntryIngredient> = buildList {
+        add(getItemOutput(0))
+        add(getItemOutput(1))
+        add(getItemOutput(2))
+        add(getFluidOutput(0))
+        add(getFluidOutput(1))
     }
+
+    override fun getCategoryIdentifier(): CategoryIdentifier<*> = recipe.key.categoryId
+
+    override fun getDisplayLocation(): Optional<Identifier> = Optional.of(id)
 }

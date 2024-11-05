@@ -1,6 +1,7 @@
 package hiiragi283.ragium.integration.rei
 
-import hiiragi283.ragium.api.machine.HTMachineConvertible
+import dev.architectury.fluid.FluidStack
+import hiiragi283.ragium.api.machine.HTMachineKey
 import hiiragi283.ragium.api.machine.HTMachineTier
 import hiiragi283.ragium.api.recipe.HTIngredient
 import hiiragi283.ragium.api.recipe.HTRecipeResult
@@ -28,12 +29,12 @@ val dynamicRegistry: () -> DynamicRegistryManager
 
 //    CategoryIdentifier    //
 
-val HTMachineConvertible.categoryId: CategoryIdentifier<HTMachineRecipeDisplay>
+val HTMachineKey.categoryId: CategoryIdentifier<HTMachineRecipeDisplay>
     get() = CategoryIdentifier.of(key.id)
 
 //    EntryStack    //
 
-fun HTMachineConvertible.createEntryStack(tier: HTMachineTier): EntryStack<ItemStack> = EntryStacks.of(createItemStack(tier))
+fun HTMachineKey.createEntryStack(tier: HTMachineTier): EntryStack<ItemStack> = EntryStacks.of(createItemStack(tier))
 
 fun createEnchantedBook(key: RegistryKey<Enchantment>): EntryStack<ItemStack> = dynamicRegistry()
     .get(RegistryKeys.ENCHANTMENT)
@@ -74,7 +75,7 @@ val OUTPUT_ENTRIES: HTPropertyKey.Defaulted<(HTMachineRecipe) -> List<EntryIngre
 
 //    WeightedIngredient    //
 
-val HTIngredient<*, *, *>.entryStacks: List<EntryStack<*>>
+val HTIngredient<*, *>.entryStacks: List<EntryStack<*>>
     get() = when (this) {
         is HTIngredient.Fluid -> entryMap.map { (fluid: RegistryEntry<Fluid>, amount: Long) ->
             EntryStacks.of(
@@ -86,14 +87,14 @@ val HTIngredient<*, *, *>.entryStacks: List<EntryStack<*>>
         is HTIngredient.Item -> matchingStacks.map(EntryStacks::of)
     }
 
-val HTIngredient<*, *, *>.entryIngredient: EntryIngredient
+val HTIngredient<*, *>.entryIngredient: EntryIngredient
     get() = EntryIngredient.of(entryStacks)
 
 //    HTRecipeResult    //
 
 val HTRecipeResult<*, *, *>.entryStack: EntryStack<*>
     get() = when (this) {
-        is HTRecipeResult.Fluid -> EntryStacks.of(resourceAmount.resource.fluid, resourceAmount.amount)
+        is HTRecipeResult.Fluid -> EntryStacks.of(FluidStack.create(variant.fluid, amount, variant.components))
         is HTRecipeResult.Item -> EntryStacks.of(stack)
     }
 

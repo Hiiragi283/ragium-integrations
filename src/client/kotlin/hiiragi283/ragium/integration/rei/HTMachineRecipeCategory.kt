@@ -1,7 +1,7 @@
 package hiiragi283.ragium.integration.rei
 
+import hiiragi283.ragium.api.machine.HTMachineKey
 import hiiragi283.ragium.api.machine.HTMachineTier
-import hiiragi283.ragium.api.machine.HTMachineTypeKey
 import hiiragi283.ragium.api.recipe.HTMachineRecipe
 import hiiragi283.ragium.common.init.RagiumTranslationKeys
 import me.shedaniel.math.Point
@@ -28,7 +28,7 @@ import net.minecraft.text.Text
 import net.minecraft.util.Formatting
 
 @Environment(EnvType.CLIENT)
-class HTMachineRecipeCategory(private val key: HTMachineTypeKey) : DisplayCategory<HTMachineRecipeDisplay> {
+class HTMachineRecipeCategory(private val key: HTMachineKey) : DisplayCategory<HTMachineRecipeDisplay> {
     override fun getCategoryIdentifier(): CategoryIdentifier<out HTMachineRecipeDisplay> = key.categoryId
 
     override fun getTitle(): Text = key.text
@@ -38,12 +38,7 @@ class HTMachineRecipeCategory(private val key: HTMachineTypeKey) : DisplayCatego
     override fun setupDisplay(display: HTMachineRecipeDisplay, bounds: Rectangle): List<Widget> = buildList {
         this += Widgets.createRecipeBase(bounds)
         this += Widgets.createArrow(getPoint(bounds, 3.25, 0.0)).animationDurationTicks(200.0)
-        this.addAll(
-            when (display) {
-                is HTMachineRecipeDisplay.Simple -> setupSimple(display, bounds)
-                is HTMachineRecipeDisplay.Large -> setupLarge(display, bounds)
-            },
-        )
+        this.addAll(setupLarge(display, bounds))
         // catalyst
         this += createSlot(bounds, 3.5, 1.0, display.catalyst).markInput()
         // info

@@ -1,25 +1,17 @@
 package hiiragi283.ragium.integration.rei
 
 import hiiragi283.ragium.api.RagiumAPI
-import hiiragi283.ragium.api.extension.component1
-import hiiragi283.ragium.api.extension.component2
-import hiiragi283.ragium.api.machine.HTMachineConvertible
+import hiiragi283.ragium.api.machine.HTMachineKey
 import hiiragi283.ragium.api.machine.HTMachineTier
-import hiiragi283.ragium.api.machine.HTMachineType
-import hiiragi283.ragium.api.machine.property.HTMachinePropertyKeys
+import hiiragi283.ragium.api.machine.HTMachineTypeNew
 import hiiragi283.ragium.api.recipe.HTMachineRecipe
-import hiiragi283.ragium.api.screen.HTMachineScreenHandlerBase
 import hiiragi283.ragium.common.init.RagiumBlocks
 import hiiragi283.ragium.common.init.RagiumEnchantments
-import hiiragi283.ragium.common.init.RagiumMachineTypes
+import hiiragi283.ragium.common.init.RagiumMachineKeys
 import hiiragi283.ragium.common.init.RagiumRecipeTypes
-import hiiragi283.ragium.common.screen.HTLargeMachineScreenHandler
-import hiiragi283.ragium.common.screen.HTSimpleMachineScreenHandler
 import me.shedaniel.rei.api.client.plugins.REIClientPlugin
 import me.shedaniel.rei.api.client.registry.category.CategoryRegistry
 import me.shedaniel.rei.api.client.registry.display.DisplayRegistry
-import me.shedaniel.rei.api.client.registry.transfer.TransferHandlerRegistry
-import me.shedaniel.rei.api.client.registry.transfer.simple.SimpleTransferHandler
 import me.shedaniel.rei.api.common.entry.EntryStack
 import me.shedaniel.rei.api.common.util.EntryStacks
 import me.shedaniel.rei.plugin.common.BuiltinPlugin
@@ -30,7 +22,10 @@ import net.minecraft.item.ItemConvertible
 import net.minecraft.item.ItemStack
 import net.minecraft.recipe.RecipeEntry
 import net.minecraft.registry.RegistryKey
-import net.minecraft.util.Identifier
+import kotlin.collections.component1
+import kotlin.collections.component2
+import kotlin.collections.forEach
+import kotlin.collections.map
 
 @Environment(EnvType.CLIENT)
 object RagiumREIClient : REIClientPlugin {
@@ -44,31 +39,33 @@ object RagiumREIClient : REIClientPlugin {
         // Machines
         RagiumAPI
             .getInstance()
-            .machineTypeRegistry.processors
-            .map { it.key }
-            .forEach { key ->
-                registry.add(HTMachineRecipeCategory(key))
-                HTMachineTier.entries.map(key::createEntryStack).forEach { stack: EntryStack<ItemStack> ->
-                    registry.addWorkstations(key.categoryId, stack)
+            .machineRegistry
+            .types
+            .forEach { (key: HTMachineKey, type: HTMachineTypeNew) ->
+                if (type == HTMachineTypeNew.PROCESSOR) {
+                    registry.add(HTMachineRecipeCategory(key))
+                    HTMachineTier.entries.map(key::createEntryStack).forEach { stack: EntryStack<ItemStack> ->
+                        registry.addWorkstations(key.categoryId, stack)
+                    }
                 }
             }
-        addWorkStation(registry, RagiumMachineTypes.Processor.METAL_FORMER, RagiumBlocks.MANUAL_FORGE)
-        addWorkStation(registry, RagiumMachineTypes.Processor.GRINDER, RagiumBlocks.MANUAL_GRINDER)
-        addWorkStation(registry, RagiumMachineTypes.Processor.MIXER, RagiumBlocks.MANUAL_MIXER)
+        addWorkStation(registry, RagiumMachineKeys.METAL_FORMER, RagiumBlocks.MANUAL_FORGE)
+        addWorkStation(registry, RagiumMachineKeys.GRINDER, RagiumBlocks.MANUAL_GRINDER)
+        addWorkStation(registry, RagiumMachineKeys.MIXER, RagiumBlocks.MANUAL_MIXER)
         // Enchantment
         registry.addWorkstations(BuiltinPlugin.SMELTING, createEnchantedBook(RagiumEnchantments.SMELTING))
-        addWorkStation(registry, RagiumMachineTypes.Processor.GRINDER, RagiumEnchantments.SLEDGE_HAMMER)
-        addWorkStation(registry, RagiumMachineTypes.SAW_MILL, RagiumEnchantments.BUZZ_SAW)
+        addWorkStation(registry, RagiumMachineKeys.GRINDER, RagiumEnchantments.SLEDGE_HAMMER)
+        addWorkStation(registry, RagiumMachineKeys.SAW_MILL, RagiumEnchantments.BUZZ_SAW)
     }
 
     @JvmStatic
-    private fun addWorkStation(registry: CategoryRegistry, type: HTMachineConvertible, item: ItemConvertible) {
-        registry.addWorkstations(type.categoryId, EntryStacks.of(item))
+    private fun addWorkStation(registry: CategoryRegistry, key: HTMachineKey, item: ItemConvertible) {
+        registry.addWorkstations(key.categoryId, EntryStacks.of(item))
     }
 
     @JvmStatic
-    private fun addWorkStation(registry: CategoryRegistry, type: HTMachineConvertible, key: RegistryKey<Enchantment>) {
-        registry.addWorkstations(type.categoryId, createEnchantedBook(key))
+    private fun addWorkStation(registry: CategoryRegistry, key: HTMachineKey, enchantKey: RegistryKey<Enchantment>) {
+        registry.addWorkstations(key.categoryId, createEnchantedBook(enchantKey))
     }
 
     override fun registerDisplays(registry: DisplayRegistry) {
@@ -76,13 +73,7 @@ object RagiumREIClient : REIClientPlugin {
         registry.registerRecipeFiller(
             HTMachineRecipe::class.java,
             RagiumRecipeTypes.MACHINE,
-        ) { entry: RecipeEntry<HTMachineRecipe> ->
-            val (id: Identifier, recipe: HTMachineRecipe) = entry
-            when (recipe.typeSize) {
-                HTMachineType.Size.SIMPLE -> HTMachineRecipeDisplay.Simple(recipe, id)
-                HTMachineType.Size.LARGE -> HTMachineRecipeDisplay.Large(recipe, id)
-            }
-        }
+        ) { entry: RecipeEntry<HTMachineRecipe> -> HTMachineRecipeDisplay(entry.value, entry.id) }
     }
 
     /*override fun registerScreens(registry: ScreenRegistry) {
@@ -92,14 +83,14 @@ object RagiumREIClient : REIClientPlugin {
             HTProcessorScreen::class.java,
      *getMachineIds().toTypedArray(),
         )
-    }*/
+    }
 
     @Suppress("UnstableApiUsage")
     override fun registerTransferHandlers(registry: TransferHandlerRegistry) {
         // Machines
         RagiumAPI
             .getInstance()
-            .machineTypeRegistry
+            .machineRegistry
             .processors
             .forEach { type: HTMachineType ->
                 val sizeType: HTMachineType.Size = type[HTMachinePropertyKeys.RECIPE_SIZE] ?: return@forEach
@@ -113,5 +104,5 @@ object RagiumREIClient : REIClientPlugin {
                 }
                 registry.register(SimpleTransferHandler.create(screenClass, type.categoryId, inputRange))
             }
-    }
+    }*/
 }

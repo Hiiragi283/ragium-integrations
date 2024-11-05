@@ -1,9 +1,10 @@
 package hiiragi283.ragium.integration
 
+import hiiragi283.ragium.api.RagiumAPI
 import hiiragi283.ragium.api.RagiumPlugin
 import hiiragi283.ragium.api.extension.isClientEnv
 import hiiragi283.ragium.api.extension.isModLoaded
-import hiiragi283.ragium.common.RagiumContents
+import hiiragi283.ragium.common.init.RagiumItems
 import hiiragi283.ragium.integration.accessories.HTOpenBackpackPayload
 import io.wispforest.accessories.api.AccessoriesCapability
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents
@@ -15,11 +16,11 @@ object RagiumClientAccessoriesPlugin : RagiumPlugin {
 
     override fun shouldLoad(): Boolean = isClientEnv() && isModLoaded("accessories")
 
-    override fun afterRagiumInit() {
+    override fun afterRagiumInit(instance: RagiumAPI) {
         ClientTickEvents.END_CLIENT_TICK.register { client: MinecraftClient ->
             while (RIKeyBinds.OPEN_BACKPACK.wasPressed()) {
                 val capability: AccessoriesCapability = client.player?.accessoriesCapability() ?: break
-                if (capability.isEquipped(RagiumContents.Misc.BACKPACK.asItem())) {
+                if (capability.isEquipped(RagiumItems.BACKPACK.asItem())) {
                     ClientPlayNetworking.send(HTOpenBackpackPayload)
                 }
             }

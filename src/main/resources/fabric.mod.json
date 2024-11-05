@@ -30,7 +30,7 @@
     ],
     "jade": [
       {
-        "value": "hiiragi283.ragium.integration.jade.RagiumJadePlugin",
+        "value": "hiiragi283.ragium.integration.jade.RagiumJadeCompat",
         "adapter": "kotlin"
       }
     ],
@@ -47,6 +47,10 @@
       },
       {
         "value": "hiiragi283.ragium.integration.RagiumClientAccessoriesPlugin",
+        "adapter": "kotlin"
+      },
+      {
+        "value": "hiiragi283.ragium.integration.jade.RagiumJadePlugin",
         "adapter": "kotlin"
       },
       {

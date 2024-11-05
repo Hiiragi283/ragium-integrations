@@ -1,21 +1,9 @@
 package hiiragi283.ragium.integration.jade
 
-import hiiragi283.ragium.api.machine.entity.HTMachineEntity
-import hiiragi283.ragium.common.block.entity.HTMetaMachineBlockEntity
-import net.minecraft.block.Block
-import snownee.jade.api.*
-
-//    IWailaPlugin    //
-
-fun IWailaCommonRegistration.registerBlock(provider: IServerDataProvider<BlockAccessor>, block: Block) {
-    registerBlockDataProvider(provider, block::class.java)
-}
-
-fun IWailaClientRegistration.registerBlock(provider: IBlockComponentProvider, block: Block) {
-    registerBlockComponent(provider, block::class.java)
-}
+import hiiragi283.ragium.api.machine.block.HTMachineBlockEntityBase
+import snownee.jade.api.BlockAccessor
 
 //    BlockAccessor    //
 
-val BlockAccessor.machineEntity: HTMachineEntity<*>?
-    get() = (blockEntity as? HTMetaMachineBlockEntity)?.machineEntity
+val BlockAccessor.machineBlockEntity: HTMachineBlockEntityBase?
+    get() = blockEntity as? HTMachineBlockEntityBase

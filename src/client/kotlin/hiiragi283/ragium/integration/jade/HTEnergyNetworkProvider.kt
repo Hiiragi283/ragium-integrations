@@ -14,7 +14,7 @@ import snownee.jade.api.config.IPluginConfig
 object HTEnergyNetworkProvider : IBlockComponentProvider {
     //    IBlockComponentProvider    //
 
-    override fun getUid(): Identifier = RagiumJadePlugin.NETWORK_INTERFACE
+    override fun getUid(): Identifier = RagiumJadeCompat.NETWORK_INTERFACE
 
     override fun appendTooltip(tooltip: ITooltip, accessor: BlockAccessor, config: IPluginConfig) {
         MinecraftClient.getInstance().server?.getWorld(accessor.level.registryKey)?.energyNetwork?.let { network: HTEnergyNetwork ->

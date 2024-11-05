@@ -4,16 +4,14 @@ import com.mojang.serialization.Codec
 import com.mojang.serialization.MapCodec
 import hiiragi283.ragium.api.inventory.HTDelegatedInventory
 import hiiragi283.ragium.api.inventory.HTSimpleInventory
+import hiiragi283.ragium.api.machine.HTMachineKey
 import hiiragi283.ragium.api.machine.HTMachineTier
-import hiiragi283.ragium.api.machine.HTMachineType
-import hiiragi283.ragium.api.machine.HTMachineTypeRegistry
-import hiiragi283.ragium.api.machine.entity.HTMachineEntity
+import hiiragi283.ragium.api.machine.block.HTMachineBlockEntityBase
 import hiiragi283.ragium.api.machine.multiblock.HTMultiblockController
 import hiiragi283.ragium.common.init.RagiumTranslationKeys
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.text.Text
 import net.minecraft.util.Identifier
-import net.minecraft.util.math.Vec2f
 import snownee.jade.api.BlockAccessor
 import snownee.jade.api.IBlockComponentProvider
 import snownee.jade.api.IServerDataProvider
@@ -24,7 +22,7 @@ import kotlin.jvm.optionals.getOrNull
 
 object HTMachineProvider : IBlockComponentProvider, IServerDataProvider<BlockAccessor> {
     @JvmField
-    val TYPE: MapCodec<HTMachineType> = HTMachineTypeRegistry.CODEC.fieldOf("type")
+    val KEY: MapCodec<HTMachineKey> = HTMachineKey.CODEC.fieldOf("key")
 
     @JvmField
     val TIER: MapCodec<HTMachineTier> = HTMachineTier.CODEC.fieldOf("tier")
@@ -43,34 +41,24 @@ object HTMachineProvider : IBlockComponentProvider, IServerDataProvider<BlockAcc
 
     //    IBlockComponentProvider    //
 
-    override fun getUid(): Identifier = RagiumJadePlugin.MACHINE
+    override fun getUid(): Identifier = RagiumJadeCompat.MACHINE
 
     override fun appendTooltip(tooltip: ITooltip, accessor: BlockAccessor, config: IPluginConfig) {
-        val type: HTMachineType = accessor
-            .readData(TYPE)
+        val key: HTMachineKey = accessor
+            .readData(KEY)
             .getOrNull()
             ?: return
         val tier: HTMachineTier = accessor
             .readData(TIER)
             .orElse(HTMachineTier.PRIMITIVE)
-        type.key.appendTooltip(
-            tooltip::add,
-            tier,
-        )
-
+        key.appendTooltip(tooltip::add, tier)
         val progress: Int = accessor.readData(TICK).orElse(0)
         val maxProgress: Int = accessor.readData(MAX_TICK).orElse(tier.tickRate)
+        val currentProgress: Float = progress.toFloat() / maxProgress.toFloat()
         val helper: IElementHelper = IElementHelper.get()
         accessor.readData(INVENTORY).ifPresent { inventory: HTSimpleInventory ->
             if (!inventory.isEmpty) {
-                tooltip.add(helper.item(inventory.getStack(0)))
-                tooltip.append(helper.item(inventory.getStack(1)))
-                tooltip.append(helper.item(inventory.getStack(2)))
-                tooltip.append(helper.spacer(4, 0))
-                tooltip.append(helper.progress(progress.toFloat() / maxProgress.toFloat()).translate(Vec2f(-2.0f, 0.0f)))
-                tooltip.append(helper.item(inventory.getStack(4)))
-                tooltip.append(helper.item(inventory.getStack(5)))
-                tooltip.append(helper.item(inventory.getStack(6)))
+                key.asProperties().getOrDefault(RagiumJadePlugin.INVENTORY)(inventory, tooltip, helper, currentProgress)
             }
         }
 
@@ -81,8 +69,8 @@ object HTMachineProvider : IBlockComponentProvider, IServerDataProvider<BlockAcc
     //    IServerDataProvider    //
 
     override fun appendServerData(nbt: NbtCompound, accessor: BlockAccessor) {
-        accessor.machineEntity?.let { machine: HTMachineEntity<*> ->
-            accessor.writeData(TYPE, machine.machineType)
+        accessor.machineBlockEntity?.let { machine: HTMachineBlockEntityBase ->
+            accessor.writeData(KEY, machine.key)
             accessor.writeData(TIER, machine.tier)
             (machine as? HTDelegatedInventory<*>)?.parent?.let { accessor.writeData(INVENTORY, it) }
             accessor.writeData(TICK, machine.property.get(0))
