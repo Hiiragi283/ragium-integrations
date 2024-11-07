@@ -58,7 +58,7 @@ object HTMachineProvider : IBlockComponentProvider, IServerDataProvider<BlockAcc
         val helper: IElementHelper = IElementHelper.get()
         accessor.readData(INVENTORY).ifPresent { inventory: HTSimpleInventory ->
             if (!inventory.isEmpty) {
-                key.asProperties().getOrDefault(RagiumJadePlugin.INVENTORY)(inventory, tooltip, helper, currentProgress)
+                key.entry.getOrDefault(RagiumJadePlugin.INVENTORY)(inventory, tooltip, helper, currentProgress)
             }
         }
 

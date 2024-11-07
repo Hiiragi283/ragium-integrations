@@ -1,7 +1,7 @@
 package hiiragi283.ragium.integration.patchouli
 
 import hiiragi283.ragium.api.recipe.HTIngredient
-import hiiragi283.ragium.api.recipe.HTRecipeResult
+import hiiragi283.ragium.api.recipe.HTItemResult
 import net.minecraft.client.gui.DrawContext
 import net.minecraft.item.ItemStack
 import vazkii.patchouli.client.book.gui.GuiBookEntry
@@ -28,7 +28,7 @@ fun GuiBookEntry.renderResult(
     y: Int,
     mouseX: Int,
     mouseY: Int,
-    result: HTRecipeResult.Item?,
+    result: HTItemResult?,
 ) {
     result?.stack?.let {
         renderItemStack(context, x, y, mouseX, mouseY, it)

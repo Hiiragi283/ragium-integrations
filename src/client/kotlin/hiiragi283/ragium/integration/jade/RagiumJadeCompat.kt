@@ -21,7 +21,7 @@ object RagiumJadeCompat : IWailaPlugin {
 
     override fun registerClient(registration: IWailaClientRegistration) {
         registration.registerBlockComponent(HTMachineProvider, HTMachineBlock::class.java)
-        registration.registerBlockComponent(HTMachineProvider, HTNetworkInterfaceBlock::class.java)
+        registration.registerBlockComponent(HTEnergyNetworkProvider, HTNetworkInterfaceBlock::class.java)
 
         RagiumAPI.log { info("Jade integration enabled!") }
     }

@@ -3,7 +3,6 @@ package hiiragi283.ragium.integration.rei
 import hiiragi283.ragium.api.RagiumAPI
 import hiiragi283.ragium.api.machine.HTMachineKey
 import hiiragi283.ragium.api.machine.HTMachineTier
-import hiiragi283.ragium.api.machine.HTMachineTypeNew
 import hiiragi283.ragium.api.recipe.HTMachineRecipe
 import hiiragi283.ragium.common.init.RagiumBlocks
 import hiiragi283.ragium.common.init.RagiumEnchantments
@@ -22,10 +21,6 @@ import net.minecraft.item.ItemConvertible
 import net.minecraft.item.ItemStack
 import net.minecraft.recipe.RecipeEntry
 import net.minecraft.registry.RegistryKey
-import kotlin.collections.component1
-import kotlin.collections.component2
-import kotlin.collections.forEach
-import kotlin.collections.map
 
 @Environment(EnvType.CLIENT)
 object RagiumREIClient : REIClientPlugin {
@@ -40,9 +35,9 @@ object RagiumREIClient : REIClientPlugin {
         RagiumAPI
             .getInstance()
             .machineRegistry
-            .types
-            .forEach { (key: HTMachineKey, type: HTMachineTypeNew) ->
-                if (type == HTMachineTypeNew.PROCESSOR) {
+            .keys
+            .forEach { key: HTMachineKey ->
+                if (key.isProcessor()) {
                     registry.add(HTMachineRecipeCategory(key))
                     HTMachineTier.entries.map(key::createEntryStack).forEach { stack: EntryStack<ItemStack> ->
                         registry.addWorkstations(key.categoryId, stack)
