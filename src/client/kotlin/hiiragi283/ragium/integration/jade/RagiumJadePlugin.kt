@@ -30,7 +30,7 @@ object RagiumJadePlugin : RagiumPlugin {
 
     override fun shouldLoad(): Boolean = isClientEnv() && isModLoaded("jade")
 
-    override fun setupClientMachineProperties(helper: RagiumPlugin.PropertyHelper<HTMachineKey>) {
+    override fun setupMachineProperties(helper: RagiumPlugin.PropertyHelper<HTMachineKey>) {
         helper.modify(
             RagiumMachineKeys.BLAST_FURNACE,
             RagiumMachineKeys.DISTILLATION_TOWER,
