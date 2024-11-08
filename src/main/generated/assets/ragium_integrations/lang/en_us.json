@@ -1,0 +1,9 @@
+{
+  "category.ragium.ragium": "Ragium",
+  "config.jade.plugin_ragium.machine": "Machines",
+  "config.jade.plugin_ragium.network_interface": "E.N.I",
+  "key.ragium.open_backpack": "Open Backpack",
+  "tooltip.jade.plugin_ragium.network_interface": "Stored Energy: %s E",
+  "tooltip.ragium.found_in_biome": "Found in the biome: %s",
+  "tooltip.ragium.recipe_info": "Recipe Info"
+}

@@ -3,7 +3,7 @@ package hiiragi283.ragium.integration.rei
 import hiiragi283.ragium.api.machine.HTMachineKey
 import hiiragi283.ragium.api.machine.HTMachineTier
 import hiiragi283.ragium.api.recipe.HTMachineRecipe
-import hiiragi283.ragium.common.init.RagiumTranslationKeys
+import hiiragi283.ragium.integration.RITranslationKeys
 import me.shedaniel.math.Point
 import me.shedaniel.math.Rectangle
 import me.shedaniel.rei.api.client.gui.Renderer
@@ -114,7 +114,7 @@ class HTMachineRecipeCategory(private val key: HTMachineKey) : DisplayCategory<H
             .builder()
             .add(
                 DataComponentTypes.ITEM_NAME,
-                Text.translatable(RagiumTranslationKeys.REI_RECIPE_INFO).formatted(Formatting.LIGHT_PURPLE),
+                Text.translatable(RITranslationKeys.REI_RECIPE_INFO).formatted(Formatting.LIGHT_PURPLE),
             ).build()
         val stack = ItemStack(entry, 1, components)
         val tier: HTMachineTier = recipe.tier

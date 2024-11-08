@@ -11,5 +11,7 @@ object RIDataGenerator : DataGeneratorEntrypoint {
         // server
         pack.addProvider(::RIRecipeProvider)
         pack.addProvider(::TRRecipeProvider)
+        // client
+        RILangProviders.init(pack)
     }
 }
