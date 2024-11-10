@@ -19,7 +19,7 @@ import net.minecraft.util.Rarity
 object RagiumEPPlugin : RagiumPlugin {
     @JvmField
     val ADVANCED_ALLOY: HTMaterialKey = HTMaterialKey.of("advanced_alloy")
-    
+
     @JvmField
     val REDSTONE_ALLOY: HTMaterialKey = HTMaterialKey.of("redstone_alloy")
 

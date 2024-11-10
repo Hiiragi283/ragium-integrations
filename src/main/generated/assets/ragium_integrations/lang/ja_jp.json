@@ -4,6 +4,8 @@
   "config.jade.plugin_ragium.network_interface": "E.N.I",
   "key.ragium.open_backpack": "バックパックを開く",
   "tooltip.jade.plugin_ragium.network_interface": "エネルギー量: %s E",
+  "tooltip.ragium.apply_damage": "実行時に%sだけ耐久値を減らす",
   "tooltip.ragium.found_in_biome": "次のバイオームで見つかる: %s",
+  "tooltip.ragium.no_matching_entry": "次を満たす値がありません: %s",
   "tooltip.ragium.recipe_info": "レシピ情報"
 }

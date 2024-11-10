@@ -1,12 +1,10 @@
-package hiiragi283.ragium.integration
+package hiiragi283.ragium.integration.patchouli
 
 import hiiragi283.ragium.api.RagiumAPI
 import hiiragi283.ragium.api.RagiumPlugin
 import hiiragi283.ragium.api.extension.isClientEnv
 import hiiragi283.ragium.api.extension.isModLoaded
 import hiiragi283.ragium.common.RagiumContents
-import hiiragi283.ragium.integration.patchouli.HTCustomCraftingPage
-import hiiragi283.ragium.integration.patchouli.HTMachineRecipePage
 import net.minecraft.item.Items
 import net.minecraft.util.Identifier
 import vazkii.patchouli.client.book.BookPage

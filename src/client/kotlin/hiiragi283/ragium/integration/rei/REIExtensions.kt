@@ -1,15 +1,18 @@
 package hiiragi283.ragium.integration.rei
 
+import hiiragi283.ragium.api.extension.buildItemStack
 import hiiragi283.ragium.api.machine.HTMachineKey
 import hiiragi283.ragium.api.machine.HTMachineTier
 import hiiragi283.ragium.api.recipe.HTFluidResult
 import hiiragi283.ragium.api.recipe.HTIngredient
 import hiiragi283.ragium.api.recipe.HTItemResult
+import hiiragi283.ragium.integration.RITranslationKeys
 import me.shedaniel.rei.api.common.category.CategoryIdentifier
 import me.shedaniel.rei.api.common.entry.EntryIngredient
 import me.shedaniel.rei.api.common.entry.EntryStack
 import me.shedaniel.rei.api.common.util.EntryStacks
 import me.shedaniel.rei.impl.Internals
+import net.minecraft.component.DataComponentTypes
 import net.minecraft.enchantment.Enchantment
 import net.minecraft.enchantment.EnchantmentLevelEntry
 import net.minecraft.item.EnchantedBookItem
@@ -49,9 +52,28 @@ fun createEnchantedBook(key: RegistryKey<Enchantment>): EntryStack<ItemStack> = 
 val HTIngredient<*, *>.entryStacks: List<EntryStack<*>>
     get() = when (this) {
         is HTIngredient.Fluid -> valueMap.map { EntryStacks.of(it.key, it.value) }
-        is HTIngredient.Item -> matchingStacks.map(EntryStacks::of).onEach { stack: EntryStack<ItemStack> ->
-            if (consumeType == HTIngredient.ConsumeType.DAMAGE) {
-                stack.tooltip(Text.literal("Apply $amount damage when processed").formatted(Formatting.YELLOW))
+        is HTIngredient.Item -> {
+            var stacks: List<EntryStack<ItemStack>> = matchingStacks.map(EntryStacks::of)
+            if (stacks.isEmpty()) {
+                stacks = listOf(
+                    EntryStacks.of(
+                        buildItemStack(Items.BARRIER) {
+                            add(
+                                DataComponentTypes.ITEM_NAME,
+                                Text
+                                    .translatable(RITranslationKeys.REI_ENTRY_NO_MATCHING, this@entryStacks.entryText)
+                                    .formatted(Formatting.RED),
+                            )
+                        },
+                    ),
+                )
+            }
+            stacks.onEach { stack: EntryStack<ItemStack> ->
+                if (consumeType == HTIngredient.ConsumeType.DAMAGE) {
+                    stack.tooltip(
+                        Text.translatable(RITranslationKeys.REI_ENTRY_APPLY_DAMAGE, amount).formatted(Formatting.YELLOW),
+                    )
+                }
             }
         }
     }

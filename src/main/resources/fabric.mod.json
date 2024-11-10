@@ -64,7 +64,7 @@
         "adapter": "kotlin"
       },
       {
-        "value": "hiiragi283.ragium.integration.RagiumPatchouliPlugin",
+        "value": "hiiragi283.ragium.integration.patchouli.RagiumPatchouliPlugin",
         "adapter": "kotlin"
       }
     ]

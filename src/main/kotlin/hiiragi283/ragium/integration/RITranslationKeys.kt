@@ -10,6 +10,9 @@ object RITranslationKeys {
 
     //    REI    //
 
+    const val REI_ENTRY_NO_MATCHING = "tooltip.ragium.no_matching_entry"
+    const val REI_ENTRY_APPLY_DAMAGE = "tooltip.ragium.apply_damage"
+
     const val REI_RECIPE_BIOME = "tooltip.ragium.found_in_biome"
     const val REI_RECIPE_INFO = "tooltip.ragium.recipe_info"
 }

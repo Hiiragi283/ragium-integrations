@@ -31,6 +31,9 @@ object RILangProviders {
 
             builder.add(RITranslationKeys.PROVIDER_JADE_NETWORK_INTERFACE, "Stored Energy: %s E")
             // REI
+            builder.add(RITranslationKeys.REI_ENTRY_NO_MATCHING, "No matching entry for %s")
+            builder.add(RITranslationKeys.REI_ENTRY_APPLY_DAMAGE, "Apply %s damage when processed")
+
             builder.add(RITranslationKeys.REI_RECIPE_BIOME, "Found in the biome: %s")
             builder.add(RITranslationKeys.REI_RECIPE_INFO, "Recipe Info")
         }
@@ -51,6 +54,9 @@ object RILangProviders {
 
             builder.add(RITranslationKeys.PROVIDER_JADE_NETWORK_INTERFACE, "エネルギー量: %s E")
             // REI
+            builder.add(RITranslationKeys.REI_ENTRY_NO_MATCHING, "次を満たす値がありません: %s")
+            builder.add(RITranslationKeys.REI_ENTRY_APPLY_DAMAGE, "実行時に%sだけ耐久値を減らす")
+
             builder.add(RITranslationKeys.REI_RECIPE_BIOME, "次のバイオームで見つかる: %s")
             builder.add(RITranslationKeys.REI_RECIPE_INFO, "レシピ情報")
         }
