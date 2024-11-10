@@ -13,7 +13,7 @@ import me.jddev0.ep.block.EPBlocks
 import me.jddev0.ep.item.EPItems
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags
 import net.minecraft.data.server.recipe.RecipeExporter
-import net.minecraft.item.Item
+import net.minecraft.item.ItemConvertible
 import net.minecraft.util.Rarity
 
 object RagiumEPPlugin : RagiumPlugin {
@@ -43,7 +43,7 @@ object RagiumEPPlugin : RagiumPlugin {
         consumer.accept(ENERGIZED_GOLD, HTMaterialKey.Type.METAL, Rarity.RARE)
     }
 
-    override fun bindMaterialToItem(consumer: TriConsumer<HTTagPrefix, HTMaterialKey, Item>) {
+    override fun bindMaterialToItem(consumer: TriConsumer<HTTagPrefix, HTMaterialKey, ItemConvertible>) {
         consumer.accept(HTTagPrefix.DEEP_ORE, RagiumMaterialKeys.TIN, EPBlocks.DEEPSLATE_TIN_ORE_ITEM)
 
         consumer.accept(HTTagPrefix.DUST, RagiumMaterialKeys.COPPER, EPItems.COPPER_DUST)

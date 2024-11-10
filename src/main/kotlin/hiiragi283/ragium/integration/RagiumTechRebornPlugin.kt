@@ -5,6 +5,7 @@ import hiiragi283.ragium.api.extension.isModLoaded
 import hiiragi283.ragium.api.material.HTMaterialKey
 import hiiragi283.ragium.api.material.HTTagPrefix
 import hiiragi283.ragium.api.util.TriConsumer
+import hiiragi283.ragium.common.init.RagiumMaterialKeys
 import net.minecraft.item.Item
 import net.minecraft.item.ItemConvertible
 import reborncore.common.misc.TagConvertible
@@ -15,7 +16,7 @@ object RagiumTechRebornPlugin : RagiumPlugin {
 
     override fun shouldLoad(): Boolean = isModLoaded("techreborn")
 
-    override fun bindMaterialToItem(consumer: TriConsumer<HTTagPrefix, HTMaterialKey, Item>) {
+    override fun bindMaterialToItem(consumer: TriConsumer<HTTagPrefix, HTMaterialKey, ItemConvertible>) {
         fun <T> registerContents(prefix: HTTagPrefix, entries: List<T>) where T : ItemConvertible, T : TagConvertible<Item> {
             entries.forEach {
                 val name: String = it
@@ -26,10 +27,24 @@ object RagiumTechRebornPlugin : RagiumPlugin {
                 consumer.accept(
                     prefix,
                     HTMaterialKey.of(name),
-                    it.asItem(),
+                    it,
                 )
             }
         }
+
+        fun registerOre(key: HTMaterialKey, ore: TRContent.Ores, prefix: HTTagPrefix = HTTagPrefix.ORE) {
+            consumer.accept(prefix, key, ore)
+            ore.deepslate?.let {
+                consumer.accept(HTTagPrefix.DEEP_ORE, key, ore)
+            }
+        }
+
+        registerOre(RagiumMaterialKeys.BAUXITE, TRContent.Ores.BAUXITE)
+        registerOre(RagiumMaterialKeys.IRIDIUM, TRContent.Ores.IRIDIUM)
+        registerOre(RagiumMaterialKeys.LEAD, TRContent.Ores.LEAD)
+        registerOre(RagiumMaterialKeys.SILVER, TRContent.Ores.SILVER)
+        registerOre(RagiumMaterialKeys.TIN, TRContent.Ores.TIN)
+        registerOre(RagiumMaterialKeys.TUNGSTEN, TRContent.Ores.TUNGSTEN)
 
         registerContents(HTTagPrefix.DUST, TRContent.Dusts.entries)
         registerContents(HTTagPrefix.GEM, TRContent.Gems.entries)
