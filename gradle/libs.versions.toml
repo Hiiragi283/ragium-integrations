@@ -12,6 +12,7 @@ fabric-kotlin = "1.12.+"
 #lib-gui = "11.1.0+1.21"
 
 accessories = "1.1.0-beta.16+1.21.1"
+energized-power = "1.21.1-2.12.4-fabric"
 #alloy-forgery = "2.4.1+1.21"
 #cloth-config = "15.0.130"
 #fiber = "0.23.0-2"
@@ -36,6 +37,7 @@ fabric-kotlin = { group = "net.fabricmc", name = "fabric-language-kotlin", versi
 #libgui = { group = "io.github.cottonmc", name = "LibGui", version.ref = "lib-gui" }
 
 accessories = { group = "io.wispforest", name = "accessories-fabric", version.ref = "accessories" }
+energized-power = { group = "maven.modrinth", name = "energized-power", version.ref = "energized-power" }
 #alloy-forgely = { group = "maven.modrinth", name = "alloy-forgery", version.ref = "alloy-forgery" }
 #cloth-config = { group = "me.shedaniel.cloth", name = "cloth-config-fabric", version.ref = "cloth-config" }
 #fiber = { group = "me.zeroeightsix", name = "fiber", version.ref = "fiber" }
@@ -54,6 +56,7 @@ mods-fabric = [
     "fabric-kotlin",
     "fabric-loader",
     "accessories",
+    "energized-power",
     "jade",
     "mod-modmenu",
     "patchouli",

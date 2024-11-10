@@ -46,6 +46,10 @@
         "adapter": "kotlin"
       },
       {
+        "value": "hiiragi283.ragium.integration.RagiumEPPlugin",
+        "adapter": "kotlin"
+      },
+      {
         "value": "hiiragi283.ragium.integration.RagiumTechRebornPlugin",
         "adapter": "kotlin"
       }
