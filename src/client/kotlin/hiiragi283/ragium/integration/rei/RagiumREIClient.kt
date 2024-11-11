@@ -11,6 +11,7 @@ import hiiragi283.ragium.common.init.RagiumRecipeTypes
 import me.shedaniel.rei.api.client.plugins.REIClientPlugin
 import me.shedaniel.rei.api.client.registry.category.CategoryRegistry
 import me.shedaniel.rei.api.client.registry.display.DisplayRegistry
+import me.shedaniel.rei.api.common.category.CategoryIdentifier
 import me.shedaniel.rei.api.common.entry.EntryStack
 import me.shedaniel.rei.api.common.util.EntryStacks
 import me.shedaniel.rei.plugin.common.BuiltinPlugin
@@ -19,6 +20,7 @@ import net.fabricmc.api.Environment
 import net.minecraft.enchantment.Enchantment
 import net.minecraft.item.ItemConvertible
 import net.minecraft.item.ItemStack
+import net.minecraft.item.Items
 import net.minecraft.recipe.RecipeEntry
 import net.minecraft.registry.RegistryKey
 
@@ -27,6 +29,9 @@ object RagiumREIClient : REIClientPlugin {
     init {
         RagiumAPI.log { info("REI Integration enabled!") }
     }
+
+    @JvmField
+    val MATERIAL_INFO: CategoryIdentifier<HTMaterialInfoDisplay> = CategoryIdentifier.of(RagiumAPI.id("material_info"))
 
     //    REIClientPlugin    //
 
@@ -51,6 +56,10 @@ object RagiumREIClient : REIClientPlugin {
         registry.addWorkstations(BuiltinPlugin.SMELTING, createEnchantedBook(RagiumEnchantments.SMELTING))
         addWorkStation(registry, RagiumMachineKeys.GRINDER, RagiumEnchantments.SLEDGE_HAMMER)
         addWorkStation(registry, RagiumMachineKeys.SAW_MILL, RagiumEnchantments.BUZZ_SAW)
+
+        // Material Info
+        registry.add(HTMaterialInfoCategory)
+        registry.addWorkstations(MATERIAL_INFO, EntryStacks.of(Items.IRON_INGOT))
     }
 
     @JvmStatic
@@ -69,6 +78,13 @@ object RagiumREIClient : REIClientPlugin {
             HTMachineRecipe::class.java,
             RagiumRecipeTypes.MACHINE,
         ) { entry: RecipeEntry<HTMachineRecipe> -> HTMachineRecipeDisplay(entry.value, entry.id) }
+        // Material Info
+        RagiumAPI
+            .getInstance()
+            .materialRegistry
+            .keys
+            .map(::HTMaterialInfoDisplay)
+            .forEach(registry::add)
     }
 
     /*override fun registerScreens(registry: ScreenRegistry) {

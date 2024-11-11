@@ -1,7 +1,6 @@
-package hiiragi283.ragium.integration.data
+package hiiragi283.ragium.data
 
 import hiiragi283.ragium.api.RagiumAPI
-import hiiragi283.ragium.integration.RIKeyBinds
 import hiiragi283.ragium.integration.RITranslationKeys
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
@@ -22,9 +21,9 @@ object RILangProviders {
         FabricLanguageProvider(output, registryLookup) {
         override fun generateTranslations(registryLookup: RegistryWrapper.WrapperLookup, builder: TranslationBuilder) {
             // Key Binds
-            builder.add(RIKeyBinds.CATEGORY, RagiumAPI.MOD_NAME)
+            builder.add("category.ragium.ragium", RagiumAPI.MOD_NAME)
 
-            builder.add(RIKeyBinds.OPEN_BACKPACK.translationKey, "Open Backpack")
+            builder.add("key.ragium.open_backpack", "Open Backpack")
             // Jade
             builder.add(RITranslationKeys.CONFIG_JADE_MACHINE, "Machines")
             builder.add(RITranslationKeys.CONFIG_JADE_NETWORK_INTERFACE, "E.N.I")
@@ -45,9 +44,9 @@ object RILangProviders {
         FabricLanguageProvider(output, "ja_jp", registryLookup) {
         override fun generateTranslations(registryLookup: RegistryWrapper.WrapperLookup, builder: TranslationBuilder) {
             // Key Binds
-            builder.add(RIKeyBinds.CATEGORY, RagiumAPI.MOD_NAME)
+            builder.add("category.ragium.ragium", RagiumAPI.MOD_NAME)
 
-            builder.add(RIKeyBinds.OPEN_BACKPACK.translationKey, "バックパックを開く")
+            builder.add("key.ragium.open_backpack", "バックパックを開く")
             // Jade
             builder.add(RITranslationKeys.CONFIG_JADE_MACHINE, "機械")
             builder.add(RITranslationKeys.CONFIG_JADE_NETWORK_INTERFACE, "E.N.I")

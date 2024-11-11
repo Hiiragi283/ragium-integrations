@@ -1,18 +1,13 @@
 package hiiragi283.ragium.integration
 
 import hiiragi283.ragium.api.RagiumPlugin
-import hiiragi283.ragium.api.data.recipe.HTMachineRecipeJsonBuilder
 import hiiragi283.ragium.api.extension.isModLoaded
 import hiiragi283.ragium.api.material.HTMaterialKey
-import hiiragi283.ragium.api.material.HTMaterialRegistry
 import hiiragi283.ragium.api.material.HTTagPrefix
 import hiiragi283.ragium.api.util.TriConsumer
-import hiiragi283.ragium.common.init.RagiumMachineKeys
 import hiiragi283.ragium.common.init.RagiumMaterialKeys
 import me.jddev0.ep.block.EPBlocks
 import me.jddev0.ep.item.EPItems
-import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags
-import net.minecraft.data.server.recipe.RecipeExporter
 import net.minecraft.item.ItemConvertible
 import net.minecraft.util.Rarity
 
@@ -80,28 +75,5 @@ object RagiumEPPlugin : RagiumPlugin {
 
         consumer.accept(HTTagPrefix.STORAGE_BLOCK, RagiumMaterialKeys.SILICON, EPBlocks.SILICON_BLOCK_ITEM)
         consumer.accept(HTTagPrefix.STORAGE_BLOCK, RagiumMaterialKeys.TIN, EPBlocks.TIN_BLOCK_ITEM)
-    }
-
-    override fun registerRuntimeRecipes(
-        exporter: RecipeExporter,
-        key: HTMaterialKey,
-        entry: HTMaterialRegistry.Entry,
-        helper: RagiumPlugin.RecipeHelper,
-    ) {
-        HTMachineRecipeJsonBuilder
-            .create(RagiumMachineKeys.BLAST_FURNACE)
-            .itemInput(ConventionalItemTags.IRON_INGOTS)
-            .itemInput(EPItems.SILICON)
-            .itemInput(ConventionalItemTags.COPPER_INGOTS)
-            .itemOutput(EPItems.REDSTONE_ALLOY_INGOT)
-            .offerTo(exporter, EPItems.REDSTONE_ALLOY_INGOT)
-
-        HTMachineRecipeJsonBuilder
-            .create(RagiumMachineKeys.BLAST_FURNACE)
-            .itemInput(ConventionalItemTags.IRON_INGOTS, 3)
-            .itemInput(ConventionalItemTags.COPPER_INGOTS, 3)
-            .itemInput(HTTagPrefix.INGOT, RagiumMaterialKeys.TIN, 3)
-            .itemOutput(EPItems.ADVANCED_ALLOY_INGOT)
-            .offerTo(exporter, EPItems.ADVANCED_ALLOY_INGOT)
     }
 }

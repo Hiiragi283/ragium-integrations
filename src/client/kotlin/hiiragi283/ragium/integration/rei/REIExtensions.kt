@@ -10,17 +10,21 @@ import hiiragi283.ragium.integration.RITranslationKeys
 import me.shedaniel.rei.api.common.category.CategoryIdentifier
 import me.shedaniel.rei.api.common.entry.EntryIngredient
 import me.shedaniel.rei.api.common.entry.EntryStack
+import me.shedaniel.rei.api.common.util.EntryIngredients
 import me.shedaniel.rei.api.common.util.EntryStacks
 import me.shedaniel.rei.impl.Internals
 import net.minecraft.component.DataComponentTypes
 import net.minecraft.enchantment.Enchantment
 import net.minecraft.enchantment.EnchantmentLevelEntry
+import net.minecraft.fluid.Fluid
 import net.minecraft.item.EnchantedBookItem
+import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
 import net.minecraft.registry.DynamicRegistryManager
 import net.minecraft.registry.RegistryKey
 import net.minecraft.registry.RegistryKeys
+import net.minecraft.registry.entry.RegistryEntry
 import net.minecraft.text.Text
 import net.minecraft.util.Formatting
 
@@ -49,48 +53,45 @@ fun createEnchantedBook(key: RegistryKey<Enchantment>): EntryStack<ItemStack> = 
 
 //    HTIngredient    //
 
-val HTIngredient<*, *>.entryStacks: List<EntryStack<*>>
-    get() = when (this) {
-        is HTIngredient.Fluid -> valueMap.map { EntryStacks.of(it.key, it.value) }
-        is HTIngredient.Item -> {
-            var stacks: List<EntryStack<ItemStack>> = matchingStacks.map(EntryStacks::of)
-            if (stacks.isEmpty()) {
-                stacks = listOf(
-                    EntryStacks.of(
-                        buildItemStack(Items.BARRIER) {
-                            add(
-                                DataComponentTypes.ITEM_NAME,
-                                Text
-                                    .translatable(RITranslationKeys.REI_ENTRY_NO_MATCHING, this@entryStacks.entryText)
-                                    .formatted(Formatting.RED),
-                            )
-                        },
-                    ),
+val HTIngredient<*, *>.entryIngredient: EntryIngredient
+    get() {
+        val dummyIngredient: EntryIngredient = EntryIngredients.of(
+            buildItemStack(Items.BARRIER) {
+                add(
+                    DataComponentTypes.ITEM_NAME,
+                    Text
+                        .translatable(RITranslationKeys.REI_ENTRY_NO_MATCHING, this@entryIngredient.entryText)
+                        .formatted(Formatting.RED),
                 )
-            }
-            stacks.onEach { stack: EntryStack<ItemStack> ->
-                if (consumeType == HTIngredient.ConsumeType.DAMAGE) {
-                    stack.tooltip(
-                        Text.translatable(RITranslationKeys.REI_ENTRY_APPLY_DAMAGE, amount).formatted(Formatting.YELLOW),
-                    )
-                }
-            }
+            },
+        )
+        return when (this) {
+            is HTIngredient.Fluid -> storage.map(
+                { EntryIngredients.ofFluidTag(it).takeIf(EntryIngredient::isNotEmpty) ?: dummyIngredient },
+                { it.map(RegistryEntry<Fluid>::value).map(EntryStacks::of).let(EntryIngredient::of) },
+            )
+
+            is HTIngredient.Item ->
+                storage
+                    .map(
+                        { EntryIngredients.ofItemTag(it).takeIf(EntryIngredient::isNotEmpty) ?: dummyIngredient },
+                        { it.map(RegistryEntry<Item>::value).map(EntryStacks::of).let(EntryIngredient::of) },
+                    ).onEach { stack: EntryStack<*> ->
+                        if (consumeType == HTIngredient.ConsumeType.DAMAGE) {
+                            stack.tooltip(
+                                Text
+                                    .translatable(RITranslationKeys.REI_ENTRY_APPLY_DAMAGE, amount)
+                                    .formatted(Formatting.YELLOW),
+                            )
+                        }
+                    }
         }
     }
 
-val HTIngredient<*, *>.entryIngredient: EntryIngredient
-    get() = EntryIngredient.of(entryStacks)
-
 //    HTRecipeResult    //
 
-val HTItemResult.entryStack: EntryStack<*>
-    get() = EntryStacks.of(stack)
-
-val HTFluidResult.entryStack: EntryStack<*>
-    get() = EntryStacks.of(fluid, amount)
-
 val HTItemResult.entryIngredient: EntryIngredient
-    get() = EntryIngredient.of(entryStack)
+    get() = EntryIngredients.of(stack)
 
 val HTFluidResult.entryIngredient: EntryIngredient
-    get() = EntryIngredient.of(entryStack)
+    get() = EntryIngredients.of(fluid, amount)

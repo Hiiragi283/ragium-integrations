@@ -24,7 +24,7 @@
     ],
     "fabric-datagen": [
       {
-        "value": "hiiragi283.ragium.integration.data.RIDataGenerator",
+        "value": "hiiragi283.ragium.data.RIDataGenerator",
         "adapter": "kotlin"
       }
     ],
@@ -47,6 +47,10 @@
       },
       {
         "value": "hiiragi283.ragium.integration.RagiumEPPlugin",
+        "adapter": "kotlin"
+      },
+      {
+        "value": "hiiragi283.ragium.integration.RagiumOritechPlugin",
         "adapter": "kotlin"
       },
       {

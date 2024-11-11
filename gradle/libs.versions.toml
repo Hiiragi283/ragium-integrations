@@ -19,7 +19,8 @@ energized-power = "1.21.1-2.12.4-fabric"
 jade = "15.8.2+fabric"
 mod-menu = "11.0.2"
 #modonomicon = "1.108.1"
-#owo = "0.12.11+1.21"
+oritech = "0.10.3"
+owo = "0.12.11+1.21"
 patchouli = "1.21-87-FABRIC"
 rei = "16.0.788"
 tech-reborn = "5.11.11"
@@ -44,11 +45,12 @@ energized-power = { group = "maven.modrinth", name = "energized-power", version.
 jade = { group = "maven.modrinth", name = "jade", version.ref = "jade" }
 mod-modmenu = { group = "com.terraformersmc", name = "modmenu", version.ref = "mod-menu" }
 #modonomicon = { group = "com.klikli_dev", name = "modonomicon-1.21.1-fabric", version.ref = "modonomicon" }
+oritech = { group = "maven.modrinth", name = "oritech", version.ref = "oritech" }
 patchouli = { group = "vazkii.patchouli", name = "Patchouli", version.ref = "patchouli" }
 rei = { group = "me.shedaniel", name = "RoughlyEnoughItems-fabric", version.ref = "rei" }
 tech-reborn = { group = "TechReborn", name = "TechReborn-1.21", version.ref = "tech-reborn" }
 
-#owo = { group = "io.wispforest", name = "owo-lib", version.ref = "owo" }
+owo = { group = "io.wispforest", name = "owo-lib", version.ref = "owo" }
 
 [bundles]
 mods-fabric = [
@@ -59,12 +61,15 @@ mods-fabric = [
     "energized-power",
     "jade",
     "mod-modmenu",
+    "oritech",
     "patchouli",
     "rei",
     "tech-reborn"
 ]
 mods-include = []
-mods-compile = []
+mods-compile = [
+    "owo"
+]
 mods-runtime = []
 
 [plugins]
