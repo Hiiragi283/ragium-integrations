@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "hiiragi283.ragium"
-version = "0.6.2+121x"
+version = "0.7.0+121x"
 
 sourceSets {
     main {
@@ -37,6 +37,10 @@ repositories {
     maven(url = "https://maven.blamejared.com") // Patchouli
 }
 
+fabricApi {
+    configureDataGeneration()
+}
+
 loom {
     // accessWidenerPath = file("src/main/resources/ht_materials.accesswidener")
     splitEnvironmentSourceSets()
@@ -55,25 +59,11 @@ loom {
         getByName("server") {
             runDir = "run/server"
         }
-        create("datagen") {
-            inherit(getByName("client"))
-            name = "Data Generation"
+        getByName("datagen") {
             vmArg("-Dfabric-api.datagen")
             vmArg("-Dfabric-api.datagen.output-dir=${file("src/main/generated")}")
             vmArg("-Dfabric-api.datagen.modid=ragium_integrations")
-            runDir("build/datagen")
-            source(sourceSets.getByName("client"))
         }
-        /*create("test") {
-            inherit(getByName("client"))
-            name = "Game Test Client"
-            vmArg("-Dfabric-api.gametest")
-            mods {
-                create("ht_materials") {
-                    sourceSet(sourceSets.getByName("test"))
-                }
-            }
-        }*/
     }
 }
 

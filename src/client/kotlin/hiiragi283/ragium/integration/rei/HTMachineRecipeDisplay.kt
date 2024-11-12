@@ -10,7 +10,7 @@ import net.minecraft.util.Identifier
 import java.util.*
 
 @Environment(EnvType.CLIENT)
-class HTMachineRecipeDisplay(val recipe: HTMachineRecipe, val id: Identifier) : Display {
+class HTMachineRecipeDisplay(val recipe: HTMachineRecipe, private val id: Identifier? = null) : Display {
     private fun getItemInput(index: Int): EntryIngredient = recipe.itemInputs.getOrNull(index)?.entryIngredient ?: EntryIngredient.empty()
 
     private fun getFluidInput(index: Int): EntryIngredient = recipe.fluidInputs.getOrNull(index)?.entryIngredient ?: EntryIngredient.empty()
@@ -40,5 +40,5 @@ class HTMachineRecipeDisplay(val recipe: HTMachineRecipe, val id: Identifier) : 
 
     override fun getCategoryIdentifier(): CategoryIdentifier<*> = recipe.key.categoryId
 
-    override fun getDisplayLocation(): Optional<Identifier> = Optional.of(id)
+    override fun getDisplayLocation(): Optional<Identifier> = Optional.ofNullable(id)
 }

@@ -1,13 +1,13 @@
 package hiiragi283.ragium.integration.rei
 
 import hiiragi283.ragium.api.RagiumAPI
+import hiiragi283.ragium.api.machine.HTMachineDefinition
 import hiiragi283.ragium.api.machine.HTMachineKey
 import hiiragi283.ragium.api.machine.HTMachineTier
+import hiiragi283.ragium.api.recipe.HTFluidResult
+import hiiragi283.ragium.api.recipe.HTIngredient
 import hiiragi283.ragium.api.recipe.HTMachineRecipe
-import hiiragi283.ragium.common.init.RagiumBlocks
-import hiiragi283.ragium.common.init.RagiumEnchantments
-import hiiragi283.ragium.common.init.RagiumMachineKeys
-import hiiragi283.ragium.common.init.RagiumRecipeTypes
+import hiiragi283.ragium.common.init.*
 import me.shedaniel.rei.api.client.plugins.REIClientPlugin
 import me.shedaniel.rei.api.client.registry.category.CategoryRegistry
 import me.shedaniel.rei.api.client.registry.display.DisplayRegistry
@@ -17,6 +17,8 @@ import me.shedaniel.rei.api.common.util.EntryStacks
 import me.shedaniel.rei.plugin.common.BuiltinPlugin
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
+import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants
+import net.minecraft.block.ComposterBlock
 import net.minecraft.enchantment.Enchantment
 import net.minecraft.item.ItemConvertible
 import net.minecraft.item.ItemStack
@@ -42,11 +44,9 @@ object RagiumREIClient : REIClientPlugin {
             .machineRegistry
             .keys
             .forEach { key: HTMachineKey ->
-                if (key.isProcessor()) {
-                    registry.add(HTMachineRecipeCategory(key))
-                    HTMachineTier.entries.map(key::createEntryStack).forEach { stack: EntryStack<ItemStack> ->
-                        registry.addWorkstations(key.categoryId, stack)
-                    }
+                registry.add(HTMachineRecipeCategory(key))
+                HTMachineTier.entries.map(key::createEntryStack).forEach { stack: EntryStack<ItemStack> ->
+                    registry.addWorkstations(key.categoryId, stack)
                 }
             }
         addWorkStation(registry, RagiumMachineKeys.METAL_FORMER, RagiumBlocks.MANUAL_FORGE)
@@ -78,6 +78,19 @@ object RagiumREIClient : REIClientPlugin {
             HTMachineRecipe::class.java,
             RagiumRecipeTypes.MACHINE,
         ) { entry: RecipeEntry<HTMachineRecipe> -> HTMachineRecipeDisplay(entry.value, entry.id) }
+
+        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.forEach { (item: ItemConvertible, chance: Float) ->
+            val fixedAmount: Long = (FluidConstants.BUCKET * chance).toLong()
+            val dummyRecipe = HTMachineRecipe(
+                HTMachineDefinition(RagiumMachineKeys.BIOMASS_FERMENTER, HTMachineTier.PRIMITIVE),
+                listOf(HTIngredient.ofItem(item)),
+                listOf(),
+                null,
+                listOf(),
+                listOf(HTFluidResult(RagiumFluids.BIOMASS.value, fixedAmount)),
+            )
+            registry.add(HTMachineRecipeDisplay(dummyRecipe))
+        }
         // Material Info
         RagiumAPI
             .getInstance()

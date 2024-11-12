@@ -49,7 +49,6 @@ object RagiumEPPlugin : RagiumPlugin {
 
         consumer.accept(HTTagPrefix.GEAR, RagiumMaterialKeys.IRON, EPItems.IRON_GEAR)
 
-        consumer.accept(HTTagPrefix.INGOT, RagiumMaterialKeys.SILICON, EPItems.SILICON)
         consumer.accept(HTTagPrefix.INGOT, RagiumMaterialKeys.STEEL, EPItems.STEEL_INGOT)
         consumer.accept(HTTagPrefix.INGOT, RagiumMaterialKeys.TIN, EPItems.TIN_INGOT)
         consumer.accept(HTTagPrefix.INGOT, ADVANCED_ALLOY, EPItems.ADVANCED_ALLOY_INGOT)
@@ -73,7 +72,6 @@ object RagiumEPPlugin : RagiumPlugin {
 
         consumer.accept(HTTagPrefix.ROD, RagiumMaterialKeys.IRON, EPItems.IRON_ROD)
 
-        consumer.accept(HTTagPrefix.STORAGE_BLOCK, RagiumMaterialKeys.SILICON, EPBlocks.SILICON_BLOCK_ITEM)
         consumer.accept(HTTagPrefix.STORAGE_BLOCK, RagiumMaterialKeys.TIN, EPBlocks.TIN_BLOCK_ITEM)
     }
 }
