@@ -1,5 +1,6 @@
 package hiiragi283.ragium.integration.rei
 
+import com.mojang.datafixers.util.Either
 import hiiragi283.ragium.api.extension.buildItemStack
 import hiiragi283.ragium.api.machine.HTMachineKey
 import hiiragi283.ragium.api.machine.HTMachineTier
@@ -25,6 +26,7 @@ import net.minecraft.registry.DynamicRegistryManager
 import net.minecraft.registry.RegistryKey
 import net.minecraft.registry.RegistryKeys
 import net.minecraft.registry.entry.RegistryEntry
+import net.minecraft.registry.tag.TagKey
 import net.minecraft.text.Text
 import net.minecraft.util.Formatting
 
@@ -66,25 +68,38 @@ val HTIngredient<*, *>.entryIngredient: EntryIngredient
             },
         )
         return when (this) {
-            is HTIngredient.Fluid -> storage.map(
-                { EntryIngredients.ofFluidTag(it).takeIf(EntryIngredient::isNotEmpty) ?: dummyIngredient },
-                { it.map(RegistryEntry<Fluid>::value).map(EntryStacks::of).let(EntryIngredient::of) },
-            )
+            is HTIngredient.Fluid -> map { storage: Either<TagKey<Fluid>, List<RegistryEntry<Fluid>>>, amount: Long ->
+                storage.map(
+                    { EntryIngredients.ofFluidTag(it).takeIf(EntryIngredient::isNotEmpty) ?: dummyIngredient },
+                    {
+                        it
+                            .map(RegistryEntry<Fluid>::value)
+                            .map { fluid: Fluid -> EntryStacks.of(fluid, amount) }
+                            .let(EntryIngredient::of)
+                    },
+                )
+            }
 
-            is HTIngredient.Item ->
+            is HTIngredient.Item -> map { storage: Either<TagKey<Item>, List<RegistryEntry<Item>>>, count: Int ->
                 storage
                     .map(
                         { EntryIngredients.ofItemTag(it).takeIf(EntryIngredient::isNotEmpty) ?: dummyIngredient },
-                        { it.map(RegistryEntry<Item>::value).map(EntryStacks::of).let(EntryIngredient::of) },
-                    ).onEach { stack: EntryStack<*> ->
-                        if (consumeType == HTIngredient.ConsumeType.DAMAGE) {
-                            stack.tooltip(
-                                Text
-                                    .translatable(RITranslationKeys.REI_ENTRY_APPLY_DAMAGE, amount)
-                                    .formatted(Formatting.YELLOW),
-                            )
-                        }
-                    }
+                        {
+                            it
+                                .map(RegistryEntry<Item>::value)
+                                .map { item: Item -> EntryStacks.of(item, count) }
+                                .let(EntryIngredient::of)
+                        },
+                    )
+            }.onEach { stack: EntryStack<*> ->
+                if (consumeType == HTIngredient.ConsumeType.DAMAGE) {
+                    stack.tooltip(
+                        Text
+                            .translatable(RITranslationKeys.REI_ENTRY_APPLY_DAMAGE, amount)
+                            .formatted(Formatting.YELLOW),
+                    )
+                }
+            }
         }
     }
 
