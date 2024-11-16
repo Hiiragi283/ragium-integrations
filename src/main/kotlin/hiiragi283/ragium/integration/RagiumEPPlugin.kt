@@ -30,12 +30,12 @@ object RagiumEPPlugin : RagiumPlugin {
 
     override fun shouldLoad(): Boolean = isModLoaded("energizedpower")
 
-    override fun registerMaterial(consumer: TriConsumer<HTMaterialKey, HTMaterialKey.Type, Rarity>) {
-        consumer.accept(ADVANCED_ALLOY, HTMaterialKey.Type.ALLOY, Rarity.RARE)
-        consumer.accept(REDSTONE_ALLOY, HTMaterialKey.Type.ALLOY, Rarity.UNCOMMON)
+    override fun registerMaterial(helper: RagiumPlugin.MaterialHelper) {
+        helper.register(ADVANCED_ALLOY, HTMaterialKey.Type.ALLOY, Rarity.RARE)
+        helper.register(REDSTONE_ALLOY, HTMaterialKey.Type.ALLOY, Rarity.UNCOMMON)
 
-        consumer.accept(ENERGIZED_COPPER, HTMaterialKey.Type.METAL, Rarity.UNCOMMON)
-        consumer.accept(ENERGIZED_GOLD, HTMaterialKey.Type.METAL, Rarity.RARE)
+        helper.register(ENERGIZED_COPPER, HTMaterialKey.Type.METAL, Rarity.UNCOMMON)
+        helper.register(ENERGIZED_GOLD, HTMaterialKey.Type.METAL, Rarity.RARE)
     }
 
     override fun bindMaterialToItem(consumer: TriConsumer<HTTagPrefix, HTMaterialKey, ItemConvertible>) {

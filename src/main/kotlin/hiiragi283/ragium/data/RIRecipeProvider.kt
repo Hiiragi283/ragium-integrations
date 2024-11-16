@@ -64,10 +64,5 @@ class RIRecipeProvider(output: FabricDataOutput, completableFuture: CompletableF
             RagiumItems.POLYMER_RESIN,
             ItemContent.POLYMER_RESIN,
         )
-        HTStonecuttingRecipeJsonBuilder.registerExchange(
-            oritech,
-            RagiumItems.SILICON_PLATE,
-            ItemContent.SILICON_WAFER,
-        )
     }
 }

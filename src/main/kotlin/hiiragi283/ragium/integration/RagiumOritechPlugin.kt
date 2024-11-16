@@ -33,12 +33,13 @@ object RagiumOritechPlugin : RagiumPlugin {
 
     override fun shouldLoad(): Boolean = isModLoaded("oritech")
 
-    override fun registerMaterial(consumer: TriConsumer<HTMaterialKey, HTMaterialKey.Type, Rarity>) {
+    override fun registerMaterial(helper: RagiumPlugin.MaterialHelper) {
         // alloy
-        consumer.accept(ADAMANT, HTMaterialKey.Type.ALLOY, Rarity.RARE)
-        consumer.accept(DURATIUM, HTMaterialKey.Type.ALLOY, Rarity.RARE)
-        consumer.accept(ENERGITE, HTMaterialKey.Type.ALLOY, Rarity.RARE)
-        consumer.accept(PROMETHEUM, HTMaterialKey.Type.ALLOY, Rarity.EPIC)
+        helper.register(ADAMANT, HTMaterialKey.Type.ALLOY, Rarity.RARE)
+        helper.register(BIOSTEEL, HTMaterialKey.Type.ALLOY, Rarity.UNCOMMON)
+        helper.register(DURATIUM, HTMaterialKey.Type.ALLOY, Rarity.RARE)
+        helper.register(ENERGITE, HTMaterialKey.Type.ALLOY, Rarity.RARE)
+        helper.register(PROMETHEUM, HTMaterialKey.Type.ALLOY, Rarity.EPIC)
     }
 
     override fun setupMaterialProperties(helper: RagiumPlugin.PropertyHelper<HTMaterialKey>) {
