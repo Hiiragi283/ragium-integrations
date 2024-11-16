@@ -1,6 +1,5 @@
 package hiiragi283.ragium.integration.rei
 
-import com.mojang.datafixers.util.Either
 import hiiragi283.ragium.api.extension.buildItemStack
 import hiiragi283.ragium.api.machine.HTMachineKey
 import hiiragi283.ragium.api.machine.HTMachineTier
@@ -14,6 +13,7 @@ import me.shedaniel.rei.api.common.entry.EntryStack
 import me.shedaniel.rei.api.common.util.EntryIngredients
 import me.shedaniel.rei.api.common.util.EntryStacks
 import me.shedaniel.rei.impl.Internals
+import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants
 import net.minecraft.component.DataComponentTypes
 import net.minecraft.enchantment.Enchantment
 import net.minecraft.enchantment.EnchantmentLevelEntry
@@ -26,7 +26,6 @@ import net.minecraft.registry.DynamicRegistryManager
 import net.minecraft.registry.RegistryKey
 import net.minecraft.registry.RegistryKeys
 import net.minecraft.registry.entry.RegistryEntry
-import net.minecraft.registry.tag.TagKey
 import net.minecraft.text.Text
 import net.minecraft.util.Formatting
 
@@ -42,6 +41,11 @@ val HTMachineKey.categoryId: CategoryIdentifier<HTMachineRecipeDisplay>
     get() = CategoryIdentifier.of(id)
 
 //    EntryStack    //
+
+fun itemEntryStackOf(entry: RegistryEntry<Item>, count: Int = 1): EntryStack<*> = EntryStacks.of(entry.value(), count)
+
+fun fluidEntryStackOf(entry: RegistryEntry<Fluid>, amount: Long = FluidConstants.BUCKET): EntryStack<*> =
+    EntryStacks.of(entry.value(), amount)
 
 fun HTMachineKey.createEntryStack(tier: HTMachineTier): EntryStack<ItemStack> = EntryStacks.of(createItemStack(tier))
 
@@ -68,30 +72,15 @@ val HTIngredient<*, *>.entryIngredient: EntryIngredient
             },
         )
         return when (this) {
-            is HTIngredient.Fluid -> map { storage: Either<TagKey<Fluid>, List<RegistryEntry<Fluid>>>, amount: Long ->
-                storage.map(
-                    { EntryIngredients.ofFluidTag(it).takeIf(EntryIngredient::isNotEmpty) ?: dummyIngredient },
-                    {
-                        it
-                            .map(RegistryEntry<Fluid>::value)
-                            .map { fluid: Fluid -> EntryStacks.of(fluid, amount) }
-                            .let(EntryIngredient::of)
-                    },
-                )
-            }
+            is HTIngredient.Fluid ->
+                map(::fluidEntryStackOf).let(EntryIngredient::of).takeIf(EntryIngredient::isNotEmpty)
+                    ?: dummyIngredient
 
-            is HTIngredient.Item -> map { storage: Either<TagKey<Item>, List<RegistryEntry<Item>>>, count: Int ->
-                storage
-                    .map(
-                        { EntryIngredients.ofItemTag(it).takeIf(EntryIngredient::isNotEmpty) ?: dummyIngredient },
-                        {
-                            it
-                                .map(RegistryEntry<Item>::value)
-                                .map { item: Item -> EntryStacks.of(item, count) }
-                                .let(EntryIngredient::of)
-                        },
-                    )
-            }.onEach { stack: EntryStack<*> ->
+            is HTIngredient.Item -> (
+                map(::itemEntryStackOf)
+                    .let(EntryIngredient::of)
+                    .takeIf(EntryIngredient::isNotEmpty) ?: dummyIngredient
+            ).onEach { stack: EntryStack<*> ->
                 if (consumeType == HTIngredient.ConsumeType.DAMAGE) {
                     stack.tooltip(
                         Text
