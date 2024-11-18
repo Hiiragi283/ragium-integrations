@@ -47,7 +47,7 @@ object HTMachineProvider : IBlockComponentProvider, IServerDataProvider<BlockAcc
         val tier: HTMachineTier = accessor
             .readData(TIER)
             .orElse(HTMachineTier.PRIMITIVE)
-        key.appendTooltip(tooltip::add, tier)
+        key.appendTooltip(tooltip::add, tier, false)
         /*val progress: Int = accessor.readData(TICK).orElse(0)
         val maxProgress: Int = accessor.readData(MAX_TICK).orElse(tier.tickRate)
         val currentProgress: Float = progress.toFloat() / maxProgress.toFloat()
