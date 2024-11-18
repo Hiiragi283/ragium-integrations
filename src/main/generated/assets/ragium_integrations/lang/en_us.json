@@ -1,5 +1,6 @@
 {
   "category.ragium.ragium": "Ragium",
+  "config.jade.plugin_ragium.exporter": "Exporters",
   "config.jade.plugin_ragium.machine": "Machines",
   "config.jade.plugin_ragium.network_interface": "E.N.I",
   "key.ragium.open_backpack": "Open Backpack",

@@ -25,6 +25,7 @@ object RILangProviders {
 
             builder.add("key.ragium.open_backpack", "Open Backpack")
             // Jade
+            builder.add(RITranslationKeys.CONFIG_JADE_EXPORTER, "Exporters")
             builder.add(RITranslationKeys.CONFIG_JADE_MACHINE, "Machines")
             builder.add(RITranslationKeys.CONFIG_JADE_NETWORK_INTERFACE, "E.N.I")
 
@@ -48,6 +49,7 @@ object RILangProviders {
 
             builder.add("key.ragium.open_backpack", "バックパックを開く")
             // Jade
+            builder.add(RITranslationKeys.CONFIG_JADE_EXPORTER, "搬出機")
             builder.add(RITranslationKeys.CONFIG_JADE_MACHINE, "機械")
             builder.add(RITranslationKeys.CONFIG_JADE_NETWORK_INTERFACE, "E.N.I")
 

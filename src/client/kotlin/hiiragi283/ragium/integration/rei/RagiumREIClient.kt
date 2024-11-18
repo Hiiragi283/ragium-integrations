@@ -5,7 +5,7 @@ import hiiragi283.ragium.api.machine.HTMachineDefinition
 import hiiragi283.ragium.api.machine.HTMachineKey
 import hiiragi283.ragium.api.machine.HTMachineTier
 import hiiragi283.ragium.api.recipe.HTFluidResult
-import hiiragi283.ragium.api.recipe.HTIngredient
+import hiiragi283.ragium.api.recipe.HTItemIngredient
 import hiiragi283.ragium.api.recipe.HTMachineRecipe
 import hiiragi283.ragium.common.init.*
 import me.shedaniel.rei.api.client.plugins.REIClientPlugin
@@ -83,7 +83,7 @@ object RagiumREIClient : REIClientPlugin {
             val fixedAmount: Long = (FluidConstants.BUCKET * chance).toLong()
             val dummyRecipe = HTMachineRecipe(
                 HTMachineDefinition(RagiumMachineKeys.BIOMASS_FERMENTER, HTMachineTier.PRIMITIVE),
-                listOf(HTIngredient.ofItem(item)),
+                listOf(HTItemIngredient.of(item)),
                 listOf(),
                 null,
                 listOf(),

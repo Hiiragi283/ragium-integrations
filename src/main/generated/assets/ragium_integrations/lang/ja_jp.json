@@ -1,5 +1,6 @@
 {
   "category.ragium.ragium": "Ragium",
+  "config.jade.plugin_ragium.exporter": "搬出機",
   "config.jade.plugin_ragium.machine": "機械",
   "config.jade.plugin_ragium.network_interface": "E.N.I",
   "key.ragium.open_backpack": "バックパックを開く",

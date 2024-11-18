@@ -1,9 +1,9 @@
 package hiiragi283.ragium.data
 
 import hiiragi283.ragium.api.RagiumAPI
-import hiiragi283.ragium.api.data.recipe.HTMachineRecipeJsonBuilder
-import hiiragi283.ragium.api.data.recipe.HTShapelessRecipeJsonBuilder
-import hiiragi283.ragium.api.data.recipe.HTStonecuttingRecipeJsonBuilder
+import hiiragi283.ragium.api.data.HTMachineRecipeJsonBuilder
+import hiiragi283.ragium.api.data.HTShapelessRecipeJsonBuilder
+import hiiragi283.ragium.api.data.HTStonecuttingRecipeJsonBuilder
 import hiiragi283.ragium.api.material.HTTagPrefix
 import hiiragi283.ragium.api.tags.RagiumItemTags
 import hiiragi283.ragium.common.RagiumContents

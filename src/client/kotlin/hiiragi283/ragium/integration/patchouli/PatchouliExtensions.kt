@@ -1,6 +1,6 @@
 package hiiragi283.ragium.integration.patchouli
 
-import hiiragi283.ragium.api.recipe.HTIngredient
+import hiiragi283.ragium.api.recipe.HTItemIngredient
 import hiiragi283.ragium.api.recipe.HTItemResult
 import net.minecraft.client.gui.DrawContext
 import net.minecraft.item.ItemStack
@@ -14,7 +14,7 @@ fun GuiBookEntry.renderIngredient(
     y: Int,
     mouseX: Int,
     mouseY: Int,
-    ingredient: HTIngredient.Item?,
+    ingredient: HTItemIngredient?,
 ) {
     val stacks: List<ItemStack> = ingredient?.matchingStacks ?: return
     if (stacks.isNotEmpty()) {

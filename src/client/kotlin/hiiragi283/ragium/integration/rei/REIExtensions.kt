@@ -3,8 +3,9 @@ package hiiragi283.ragium.integration.rei
 import hiiragi283.ragium.api.extension.buildItemStack
 import hiiragi283.ragium.api.machine.HTMachineKey
 import hiiragi283.ragium.api.machine.HTMachineTier
+import hiiragi283.ragium.api.recipe.HTFluidIngredient
 import hiiragi283.ragium.api.recipe.HTFluidResult
-import hiiragi283.ragium.api.recipe.HTIngredient
+import hiiragi283.ragium.api.recipe.HTItemIngredient
 import hiiragi283.ragium.api.recipe.HTItemResult
 import hiiragi283.ragium.integration.RITranslationKeys
 import me.shedaniel.rei.api.common.category.CategoryIdentifier
@@ -59,38 +60,36 @@ fun createEnchantedBook(key: RegistryKey<Enchantment>): EntryStack<ItemStack> = 
 
 //    HTIngredient    //
 
-val HTIngredient<*, *>.entryIngredient: EntryIngredient
-    get() {
-        val dummyIngredient: EntryIngredient = EntryIngredients.of(
-            buildItemStack(Items.BARRIER) {
-                add(
-                    DataComponentTypes.ITEM_NAME,
-                    Text
-                        .translatable(RITranslationKeys.REI_ENTRY_NO_MATCHING, this@entryIngredient.entryText)
-                        .formatted(Formatting.RED),
-                )
-            },
+fun getDummyIngredient(entryText: Text): EntryIngredient = EntryIngredients.of(
+    buildItemStack(Items.BARRIER) {
+        add(
+            DataComponentTypes.ITEM_NAME,
+            Text
+                .translatable(RITranslationKeys.REI_ENTRY_NO_MATCHING, entryText)
+                .formatted(Formatting.RED),
         )
-        return when (this) {
-            is HTIngredient.Fluid ->
-                map(::fluidEntryStackOf).let(EntryIngredient::of).takeIf(EntryIngredient::isNotEmpty)
-                    ?: dummyIngredient
+    },
+)
 
-            is HTIngredient.Item -> (
-                map(::itemEntryStackOf)
-                    .let(EntryIngredient::of)
-                    .takeIf(EntryIngredient::isNotEmpty) ?: dummyIngredient
-            ).onEach { stack: EntryStack<*> ->
-                if (consumeType == HTIngredient.ConsumeType.DAMAGE) {
-                    stack.tooltip(
-                        Text
-                            .translatable(RITranslationKeys.REI_ENTRY_APPLY_DAMAGE, amount)
-                            .formatted(Formatting.YELLOW),
-                    )
-                }
-            }
+val HTItemIngredient.entryIngredient: EntryIngredient
+    get() = (
+        map(::itemEntryStackOf).let(EntryIngredient::of).takeIf(EntryIngredient::isNotEmpty)
+            ?: getDummyIngredient(text)
+    ).onEach { stack: EntryStack<*> ->
+        if (consumeType == HTItemIngredient.ConsumeType.DAMAGE) {
+            stack.tooltip(
+                Text
+                    .translatable(RITranslationKeys.REI_ENTRY_APPLY_DAMAGE, count)
+                    .formatted(Formatting.YELLOW),
+            )
         }
     }
+
+val HTFluidIngredient.entryIngredient: EntryIngredient
+    get() = (
+        map(::fluidEntryStackOf).let(EntryIngredient::of).takeIf(EntryIngredient::isNotEmpty)
+            ?: getDummyIngredient(text)
+    )
 
 //    HTRecipeResult    //
 

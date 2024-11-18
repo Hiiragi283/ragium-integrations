@@ -3,6 +3,7 @@ package hiiragi283.ragium.integration
 object RITranslationKeys {
     //    Jade    //
 
+    const val CONFIG_JADE_EXPORTER = "config.jade.plugin_ragium.exporter"
     const val CONFIG_JADE_MACHINE = "config.jade.plugin_ragium.machine"
     const val CONFIG_JADE_NETWORK_INTERFACE = "config.jade.plugin_ragium.network_interface"
 
