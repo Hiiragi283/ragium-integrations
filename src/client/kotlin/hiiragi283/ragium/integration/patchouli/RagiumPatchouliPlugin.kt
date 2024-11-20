@@ -4,8 +4,10 @@ import hiiragi283.ragium.api.RagiumAPI
 import hiiragi283.ragium.api.RagiumPlugin
 import hiiragi283.ragium.api.extension.isClientEnv
 import hiiragi283.ragium.api.extension.isModLoaded
+import hiiragi283.ragium.api.recipe.HTItemIngredient
+import hiiragi283.ragium.api.recipe.HTItemResult
 import hiiragi283.ragium.common.RagiumContents
-import net.minecraft.item.Items
+import net.minecraft.registry.tag.ItemTags
 import net.minecraft.util.Identifier
 import vazkii.patchouli.client.book.BookPage
 import vazkii.patchouli.client.book.ClientBookRegistry
@@ -20,21 +22,10 @@ object RagiumPatchouliPlugin : RagiumPlugin {
         addPageType<HTCustomCraftingPage>(RagiumAPI.MOD_ID, "custom_recipe")
 
         HTCustomCraftingPage.register(
-            RagiumAPI.id("raw_raginite"),
-            RagiumContents.Ores.NETHER_RAGINITE.prefixedTagKey,
-            Items.WOODEN_PICKAXE.defaultStack,
-            RagiumContents.RawMaterials.RAGINITE
-                .asItem()
-                .defaultStack,
-        )
-
-        HTCustomCraftingPage.register(
-            RagiumAPI.id("raginite_dust"),
-            RagiumContents.Dusts.CRUDE_RAGINITE,
-            Items.CAULDRON.defaultStack,
-            RagiumContents.Dusts.RAGINITE
-                .asItem()
-                .defaultStack,
+            RagiumAPI.id("crude_raginite"),
+            HTItemIngredient.of(RagiumContents.Ores.NETHER_RAGINITE),
+            HTItemIngredient.of(ItemTags.PICKAXES),
+            HTItemResult(RagiumContents.RawMaterials.RAGINITE, 3),
         )
     }
 

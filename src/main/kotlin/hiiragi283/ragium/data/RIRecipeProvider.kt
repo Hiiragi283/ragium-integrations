@@ -10,6 +10,7 @@ import hiiragi283.ragium.common.RagiumContents
 import hiiragi283.ragium.common.init.RagiumItems
 import hiiragi283.ragium.common.init.RagiumMachineKeys
 import hiiragi283.ragium.common.init.RagiumMaterialKeys
+import hiiragi283.ragium.integration.RagiumIntegration
 import me.jddev0.ep.item.EPItems
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider
@@ -30,7 +31,7 @@ class RIRecipeProvider(output: FabricDataOutput, completableFuture: CompletableF
     override fun generate(exporter: RecipeExporter) {
         // patchouli
         HTShapelessRecipeJsonBuilder
-            .create(ItemModBook.forBook(RagiumAPI.id("ragi_wiki")))
+            .create(ItemModBook.forBook(RagiumIntegration.id("ragi_wiki")))
             .input(Items.BOOK)
             .input(RagiumContents.RawMaterials.CRUDE_RAGINITE)
             .input(ConventionalItemTags.IRON_INGOTS)

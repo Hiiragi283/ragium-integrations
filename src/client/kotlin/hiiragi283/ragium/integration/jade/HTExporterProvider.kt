@@ -20,7 +20,6 @@ import snownee.jade.api.ITooltip
 import snownee.jade.api.config.IPluginConfig
 
 object HTExporterProvider : IBlockComponentProvider, IServerDataProvider<BlockAccessor> {
-
     @JvmField
     val FLUID_FILTER: MapCodec<RegistryEntryList<Fluid>> = RegistryCodecs.entryList(RegistryKeys.FLUID).fieldOf("fluid")
 
@@ -32,20 +31,20 @@ object HTExporterProvider : IBlockComponentProvider, IServerDataProvider<BlockAc
     override fun getUid(): Identifier = RagiumJadeCompat.EXPORTER
 
     override fun appendTooltip(tooltip: ITooltip, accessor: BlockAccessor, config: IPluginConfig) {
-        accessor.readData(FLUID_FILTER).ifPresent { fluid: RegistryEntryList<Fluid> -> 
+        accessor.readData(FLUID_FILTER).ifPresent { fluid: RegistryEntryList<Fluid> ->
             tooltip.add(
                 Text.translatable(
                     RagiumTranslationKeys.EXPORTER_FLUID_FILTER,
-                    fluid.asText(Fluid::name)
-                )
+                    fluid.asText(Fluid::name),
+                ),
             )
         }
         accessor.readData(ITEM_FILTER).ifPresent { item: RegistryEntryList<Item> ->
             tooltip.add(
                 Text.translatable(
                     RagiumTranslationKeys.EXPORTER_FLUID_FILTER,
-                    item.asText(Item::getName)
-                )
+                    item.asText(Item::getName),
+                ),
             )
         }
     }

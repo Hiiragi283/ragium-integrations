@@ -36,37 +36,24 @@ class HTMachineRecipeCategory(private val key: HTMachineKey) : HTDisplayCategory
     override fun setupDisplay(display: HTMachineRecipeDisplay, bounds: Rectangle): List<Widget> = buildList {
         this += Widgets.createRecipeBase(bounds)
         this += Widgets.createArrow(getPoint(bounds, 3.25, 0.0)).animationDurationTicks(200.0)
-        this.addAll(setupLarge(display, bounds))
-        // catalyst
-        this += createSlot(bounds, 3.5, 1.0, display.catalyst).markInput()
-        // info
-        this += createInfoSlot(bounds, 7, 1, display).markOutput()
-    }
-
-    private fun setupSimple(display: HTMachineRecipeDisplay, bounds: Rectangle): List<Widget> = buildList {
-        // inputs
-        this += createSlot(bounds, 1, 0, display.inputEntries.getOrNull(0)).markInput()
-        this += createSlot(bounds, 2, 0, display.inputEntries.getOrNull(1)).markInput()
-        this += createSlot(bounds, 2, 1, display.inputEntries.getOrNull(2)).markInput()
-        // outputs
-        this += createSlot(bounds, 5, 0, display.outputEntries.getOrNull(0)).markOutput()
-        this += createSlot(bounds, 6, 0, display.outputEntries.getOrNull(1)).markOutput()
-        this += createSlot(bounds, 5, 1, display.outputEntries.getOrNull(2)).markOutput()
-    }
-
-    private fun setupLarge(display: HTMachineRecipeDisplay, bounds: Rectangle): List<Widget> = buildList {
         // inputs
         this += createSlot(bounds, 0, 0, display.inputEntries.getOrNull(0)).markInput()
         this += createSlot(bounds, 1, 0, display.inputEntries.getOrNull(1)).markInput()
         this += createSlot(bounds, 2, 0, display.inputEntries.getOrNull(2)).markInput()
-        this += createSlot(bounds, 1, 1, display.inputEntries.getOrNull(3)).markInput()
-        this += createSlot(bounds, 2, 1, display.inputEntries.getOrNull(4)).markInput()
+        this += createSlot(bounds, 0, 1, display.inputEntries.getOrNull(4)).markInput()
+        this += createSlot(bounds, 1, 1, display.inputEntries.getOrNull(5)).markInput()
+        this += createSlot(bounds, 2, 1, display.inputEntries.getOrNull(6)).markInput()
         // outputs
         this += createSlot(bounds, 5, 0, display.outputEntries.getOrNull(0)).markOutput()
         this += createSlot(bounds, 6, 0, display.outputEntries.getOrNull(1)).markOutput()
         this += createSlot(bounds, 7, 0, display.outputEntries.getOrNull(2)).markOutput()
-        this += createSlot(bounds, 5, 1, display.outputEntries.getOrNull(3)).markOutput()
-        this += createSlot(bounds, 6, 1, display.outputEntries.getOrNull(4)).markOutput()
+        this += createSlot(bounds, 5, 1, display.outputEntries.getOrNull(4)).markOutput()
+        this += createSlot(bounds, 6, 1, display.outputEntries.getOrNull(5)).markOutput()
+        this += createSlot(bounds, 7, 1, display.outputEntries.getOrNull(6)).markOutput()
+        // catalyst
+        this += createSlot(bounds, 3.5, 1.0, display.catalyst).markInput()
+        // info
+        this += createInfoSlot(bounds, 7, 1, display).markOutput()
     }
 
     override fun getDisplayHeight(): Int = 18 * 2 + 8

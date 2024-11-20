@@ -10,6 +10,7 @@ object RIDataGenerator : DataGeneratorEntrypoint {
         pack.addProvider(::RIRecipeProvider)
         pack.addProvider(::RITagProvider)
         // client
+        pack.addProvider(::RIEnglishPatchouliEntryProvider)
         RILangProviders.init(pack)
     }
 }

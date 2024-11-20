@@ -28,6 +28,7 @@ class HTMachineRecipeDisplay(val recipe: HTMachineRecipe, private val id: Identi
         add(getItemInput(2))
         add(getFluidInput(0))
         add(getFluidInput(1))
+        add(getFluidInput(2))
     }
 
     override fun getOutputEntries(): List<EntryIngredient> = buildList {
@@ -36,6 +37,7 @@ class HTMachineRecipeDisplay(val recipe: HTMachineRecipe, private val id: Identi
         add(getItemOutput(2))
         add(getFluidOutput(0))
         add(getFluidOutput(1))
+        add(getFluidOutput(2))
     }
 
     override fun getCategoryIdentifier(): CategoryIdentifier<*> = recipe.key.categoryId

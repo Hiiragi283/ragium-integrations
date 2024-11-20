@@ -22,7 +22,7 @@
   ],
   "result": {
     "components": {
-      "patchouli:book": "ragium:ragi_wiki"
+      "patchouli:book": "ragium_integrations:ragi_wiki"
     },
     "count": 1,
     "id": "patchouli:guide_book"

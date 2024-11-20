@@ -15,7 +15,12 @@
   "icon": "assets/ragium/textures/item/integrated_ragium.png",
   "environment": "*",
   "entrypoints": {
-    "main": [],
+    "main": [
+      {
+        "value": "hiiragi283.ragium.integration.RagiumIntegration",
+        "adapter": "kotlin"
+      }
+    ],
     "client": [
       {
         "value": "hiiragi283.ragium.integration.RagiumClientIntegration",

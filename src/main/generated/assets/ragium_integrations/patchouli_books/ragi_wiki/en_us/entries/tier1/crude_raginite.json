@@ -1,0 +1,17 @@
+{
+  "category": "ragium_integrations:tier1",
+  "icon": "ragium:raw_crude_raginite",
+  "name": "Crude Raginite",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "ragium:raginite_ore",
+      "link_recipe": true
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "ragium:raw_crude_raginite",
+      "link_recipe": true
+    }
+  ]
+}
