@@ -3,6 +3,7 @@ package hiiragi283.ragium.data.patchouli
 import com.mojang.datafixers.kinds.App
 import com.mojang.serialization.Codec
 import com.mojang.serialization.codecs.RecordCodecBuilder
+import hiiragi283.ragium.api.RagiumAPI
 import net.minecraft.item.Item
 import net.minecraft.registry.Registries
 import net.minecraft.registry.Registry
@@ -71,6 +72,10 @@ object HTBookPageSerializers {
     val STONECUTTING: HTBookPageSerializer<PageDoubleRecipe<*>, HTRecipeBookPage> = registerRecipe("stonecutting")
 
     @JvmField
+    val MACHINE_RECIPE: HTBookPageSerializer<PageDoubleRecipe<*>, HTRecipeBookPage> =
+        registerRecipe("machine_recipe", RagiumAPI.MOD_ID)
+
+    @JvmField
     val IMAGE: HTBookPageSerializer<PageImage, HTImageBookPage> =
         register("image") { instance ->
             instance
@@ -97,7 +102,10 @@ object HTBookPageSerializers {
         }
 
     @JvmStatic
-    private fun registerRecipe(path: String): HTBookPageSerializer<PageDoubleRecipe<*>, HTRecipeBookPage> = register(path) { instance ->
+    private fun registerRecipe(
+        path: String,
+        namespace: String = PatchouliAPI.MOD_ID,
+    ): HTBookPageSerializer<PageDoubleRecipe<*>, HTRecipeBookPage> = register(path, namespace) { instance ->
         instance
             .group(
                 Registries.RECIPE_TYPE.codec

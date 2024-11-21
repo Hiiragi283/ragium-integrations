@@ -1,5 +1,6 @@
 package hiiragi283.ragium.data.patchouli
 
+import hiiragi283.ragium.common.init.RagiumRecipeTypes
 import net.minecraft.recipe.RecipeType
 import net.minecraft.util.Identifier
 import vazkii.patchouli.client.book.page.abstr.PageDoubleRecipe
@@ -36,6 +37,7 @@ data class HTRecipeBookPage(
             RecipeType.CAMPFIRE_COOKING -> HTBookPageSerializers.CAMPFIRE
             RecipeType.SMITHING -> HTBookPageSerializers.SMITHING
             RecipeType.STONECUTTING -> HTBookPageSerializers.STONECUTTING
+            RagiumRecipeTypes.MACHINE -> HTBookPageSerializers.MACHINE_RECIPE
             else -> throw IllegalStateException("Unsupported recipe type: $recipeType!")
         }
 }

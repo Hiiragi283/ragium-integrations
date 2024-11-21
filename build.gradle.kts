@@ -93,7 +93,7 @@ dependencies {
     }
 
     // modImplementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    implementation(project(path = ":ragium", configuration = "namedElements"))
+    implementation(project(path = ":ragium", configuration = "namedElements")) { isTransitive = false }
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 }
 

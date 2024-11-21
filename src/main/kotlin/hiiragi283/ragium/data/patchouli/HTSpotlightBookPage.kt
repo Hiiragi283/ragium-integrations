@@ -14,7 +14,7 @@ class HTSpotlightBookPage private constructor(
     val title: String? = null,
     val text: String? = null,
 ) : HTBookPage<PageSpotlight, HTSpotlightBookPage> {
-    constructor(item: ItemConvertible, title: String? = null, text: String? = null) : this(
+    constructor(item: ItemConvertible, text: String? = null, title: String? = null) : this(
         listOf(Registries.ITEM.getEntry(item.asItem())),
         true,
         title,

@@ -23,8 +23,8 @@ class RIEnglishPatchouliEntryProvider(output: FabricDataOutput, registriesFuture
             "crude_raginite",
             "Crude Raginite",
             RagiumContents.RawMaterials.CRUDE_RAGINITE,
-            HTSpotlightBookPage(RagiumContents.Ores.CRUDE_RAGINITE),
-            HTSpotlightBookPage(RagiumContents.RawMaterials.CRUDE_RAGINITE),
+            HTSpotlightBookPage(RagiumContents.Ores.CRUDE_RAGINITE, "Found in Overworld, between y = -48 ~ y = 48"),
+            HTSpotlightBookPage(RagiumContents.RawMaterials.CRUDE_RAGINITE, "Drops 1 ~ 3 from Crude Raginite Ore"),
         )
         register(
             consumer,
@@ -32,6 +32,7 @@ class RIEnglishPatchouliEntryProvider(output: FabricDataOutput, registriesFuture
             "ragi_alloy",
             "Ragi-Alloy",
             RagiumContents.Ingots.RAGI_ALLOY,
+            HTSpotlightBookPage(RagiumContents.Ingots.RAGI_ALLOY, "Tier 1 Main Material"),
             HTRecipeBookPage(
                 RecipeType.CRAFTING,
                 RagiumAPI.id("shaped/ragi_alloy_compound"),

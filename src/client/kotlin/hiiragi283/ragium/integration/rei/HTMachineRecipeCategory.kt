@@ -53,7 +53,7 @@ class HTMachineRecipeCategory(private val key: HTMachineKey) : HTDisplayCategory
         // catalyst
         this += createSlot(bounds, 3.5, 1.0, display.catalyst).markInput()
         // info
-        this += createInfoSlot(bounds, 7, 1, display).markOutput()
+        // this += createInfoSlot(bounds, 7, 1, display).markOutput()
     }
 
     override fun getDisplayHeight(): Int = 18 * 2 + 8
