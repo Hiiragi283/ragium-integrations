@@ -40,16 +40,16 @@ class HTMachineRecipeCategory(private val key: HTMachineKey) : HTDisplayCategory
         this += createSlot(bounds, 0, 0, display.inputEntries.getOrNull(0)).markInput()
         this += createSlot(bounds, 1, 0, display.inputEntries.getOrNull(1)).markInput()
         this += createSlot(bounds, 2, 0, display.inputEntries.getOrNull(2)).markInput()
-        this += createSlot(bounds, 0, 1, display.inputEntries.getOrNull(4)).markInput()
-        this += createSlot(bounds, 1, 1, display.inputEntries.getOrNull(5)).markInput()
-        this += createSlot(bounds, 2, 1, display.inputEntries.getOrNull(6)).markInput()
+        this += createSlot(bounds, 0, 1, display.inputEntries.getOrNull(3)).markInput()
+        this += createSlot(bounds, 1, 1, display.inputEntries.getOrNull(4)).markInput()
+        this += createSlot(bounds, 2, 1, display.inputEntries.getOrNull(5)).markInput()
         // outputs
         this += createSlot(bounds, 5, 0, display.outputEntries.getOrNull(0)).markOutput()
         this += createSlot(bounds, 6, 0, display.outputEntries.getOrNull(1)).markOutput()
         this += createSlot(bounds, 7, 0, display.outputEntries.getOrNull(2)).markOutput()
-        this += createSlot(bounds, 5, 1, display.outputEntries.getOrNull(4)).markOutput()
-        this += createSlot(bounds, 6, 1, display.outputEntries.getOrNull(5)).markOutput()
-        this += createSlot(bounds, 7, 1, display.outputEntries.getOrNull(6)).markOutput()
+        this += createSlot(bounds, 5, 1, display.outputEntries.getOrNull(3)).markOutput()
+        this += createSlot(bounds, 6, 1, display.outputEntries.getOrNull(4)).markOutput()
+        this += createSlot(bounds, 7, 1, display.outputEntries.getOrNull(5)).markOutput()
         // catalyst
         this += createSlot(bounds, 3.5, 1.0, display.catalyst).markInput()
         // info

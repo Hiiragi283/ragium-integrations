@@ -6,12 +6,14 @@
     {
       "type": "patchouli:spotlight",
       "item": "ragium:raginite_ore",
-      "link_recipe": true
+      "link_recipe": true,
+      "text": "Found in Overworld, between y = -48 ~ y = 48"
     },
     {
       "type": "patchouli:spotlight",
       "item": "ragium:raw_crude_raginite",
-      "link_recipe": true
+      "link_recipe": true,
+      "text": "Drops 1 ~ 3 from Crude Raginite Ore"
     }
   ]
 }
