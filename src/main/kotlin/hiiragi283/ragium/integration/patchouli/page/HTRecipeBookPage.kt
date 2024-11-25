@@ -1,6 +1,9 @@
-package hiiragi283.ragium.data.patchouli
+package hiiragi283.ragium.integration.patchouli.page
 
 import hiiragi283.ragium.common.init.RagiumRecipeTypes
+import hiiragi283.ragium.integration.patchouli.HTBookPage
+import hiiragi283.ragium.integration.patchouli.HTBookPageSerializer
+import hiiragi283.ragium.integration.patchouli.HTBookPageSerializers
 import net.minecraft.recipe.RecipeType
 import net.minecraft.util.Identifier
 import vazkii.patchouli.client.book.page.abstr.PageDoubleRecipe

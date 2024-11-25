@@ -1,8 +1,8 @@
 package hiiragi283.ragium.data
 
-import hiiragi283.ragium.data.patchouli.HTBookEntry
-import hiiragi283.ragium.data.patchouli.HTBookPage
 import hiiragi283.ragium.integration.RagiumIntegration
+import hiiragi283.ragium.integration.patchouli.HTBookEntry
+import hiiragi283.ragium.integration.patchouli.HTBookPage
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricCodecDataProvider
 import net.minecraft.data.DataOutput

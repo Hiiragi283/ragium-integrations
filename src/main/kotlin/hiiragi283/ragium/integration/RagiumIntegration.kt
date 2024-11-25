@@ -1,7 +1,7 @@
 package hiiragi283.ragium.integration
 
-import hiiragi283.ragium.data.patchouli.HTBookPage
-import hiiragi283.ragium.data.patchouli.HTBookPageSerializers
+import hiiragi283.ragium.integration.patchouli.HTBookPage
+import hiiragi283.ragium.integration.patchouli.HTBookPageSerializers
 import net.fabricmc.api.ModInitializer
 import net.minecraft.util.Identifier
 

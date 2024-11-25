@@ -2,9 +2,9 @@ package hiiragi283.ragium.data
 
 import hiiragi283.ragium.api.RagiumAPI
 import hiiragi283.ragium.common.RagiumContents
-import hiiragi283.ragium.data.patchouli.HTBookEntry
-import hiiragi283.ragium.data.patchouli.HTRecipeBookPage
-import hiiragi283.ragium.data.patchouli.HTSpotlightBookPage
+import hiiragi283.ragium.integration.patchouli.HTBookEntry
+import hiiragi283.ragium.integration.patchouli.page.HTRecipeBookPage
+import hiiragi283.ragium.integration.patchouli.page.HTSpotlightBookPage
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.minecraft.recipe.RecipeType
 import net.minecraft.registry.RegistryWrapper
