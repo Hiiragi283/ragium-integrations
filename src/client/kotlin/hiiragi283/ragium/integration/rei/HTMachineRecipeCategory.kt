@@ -2,28 +2,14 @@ package hiiragi283.ragium.integration.rei
 
 import hiiragi283.ragium.api.machine.HTMachineKey
 import hiiragi283.ragium.api.machine.HTMachineTier
-import hiiragi283.ragium.api.recipe.HTMachineRecipe
-import hiiragi283.ragium.integration.RITranslationKeys
 import me.shedaniel.math.Rectangle
 import me.shedaniel.rei.api.client.gui.Renderer
-import me.shedaniel.rei.api.client.gui.widgets.Slot
-import me.shedaniel.rei.api.client.gui.widgets.Tooltip
 import me.shedaniel.rei.api.client.gui.widgets.Widget
 import me.shedaniel.rei.api.client.gui.widgets.Widgets
 import me.shedaniel.rei.api.common.category.CategoryIdentifier
-import me.shedaniel.rei.api.common.entry.EntryStack
-import me.shedaniel.rei.api.common.util.EntryStacks
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
-import net.minecraft.component.ComponentChanges
-import net.minecraft.component.DataComponentTypes
-import net.minecraft.item.Item
-import net.minecraft.item.ItemStack
-import net.minecraft.item.Items
-import net.minecraft.registry.Registries
-import net.minecraft.registry.entry.RegistryEntry
 import net.minecraft.text.Text
-import net.minecraft.util.Formatting
 
 @Environment(EnvType.CLIENT)
 class HTMachineRecipeCategory(private val key: HTMachineKey) : HTDisplayCategory<HTMachineRecipeDisplay> {
@@ -53,38 +39,17 @@ class HTMachineRecipeCategory(private val key: HTMachineKey) : HTDisplayCategory
         // catalyst
         this += createSlot(bounds, 3.5, 1.0, display.catalyst).markInput()
         // info
-        // this += createInfoSlot(bounds, 7, 1, display).markOutput()
+        this += Widgets
+            .createLabel(getPoint(bounds, 0, 2), display.recipe.tier.recipeCostText)
+            .noShadow()
+            .leftAligned()
+        this += Widgets
+            .createLabel(getPoint(bounds, 0.0, 2.5), display.recipe.tier.tierText)
+            .noShadow()
+            .leftAligned()
     }
 
-    override fun getDisplayHeight(): Int = 18 * 2 + 8
+    override fun getDisplayHeight(): Int = 18 * 3 + 8
 
     override fun getDisplayWidth(display: HTMachineRecipeDisplay): Int = 18 * 8 + 8
-
-    //    Utils    //
-
-    fun createInfoSlot(
-        bounds: Rectangle,
-        x: Int,
-        y: Int,
-        display: HTMachineRecipeDisplay,
-    ): Slot = Widgets
-        .createSlot(getPoint(bounds, x, y))
-        .entries(listOf(createInfoEntry(display.recipe)))
-
-    protected fun createInfoEntry(recipe: HTMachineRecipe): EntryStack<*> {
-        val entry: RegistryEntry<Item> = Registries.ITEM.getEntry(Items.WRITABLE_BOOK)
-        val components: ComponentChanges = ComponentChanges
-            .builder()
-            .add(
-                DataComponentTypes.ITEM_NAME,
-                Text.translatable(RITranslationKeys.REI_RECIPE_INFO).formatted(Formatting.LIGHT_PURPLE),
-            ).build()
-        val stack = ItemStack(entry, 1, components)
-        val tier: HTMachineTier = recipe.tier
-        return EntryStacks.of(stack).tooltipProcessor { _: EntryStack<ItemStack>, tooltip: Tooltip ->
-            tooltip.add(tier.tierText)
-            tooltip.add(tier.recipeCostText)
-            tooltip
-        }
-    }
 }
