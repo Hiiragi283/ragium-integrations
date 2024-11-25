@@ -1,4 +1,4 @@
-package hiiragi283.ragium.integration
+package hiiragi283.ragium.integration.accessories
 
 import hiiragi283.ragium.api.RagiumAPI
 import hiiragi283.ragium.api.RagiumPlugin
@@ -8,9 +8,6 @@ import hiiragi283.ragium.api.extension.isModLoaded
 import hiiragi283.ragium.api.extension.openBackpackScreen
 import hiiragi283.ragium.common.init.RagiumComponentTypes
 import hiiragi283.ragium.common.init.RagiumItems
-import hiiragi283.ragium.integration.accessories.HTEmptyAccessory
-import hiiragi283.ragium.integration.accessories.HTOpenBackpackPayload
-import hiiragi283.ragium.integration.accessories.HTWrappedAccessory
 import io.wispforest.accessories.api.AccessoriesAPI
 import io.wispforest.accessories.api.AccessoriesCapability
 import io.wispforest.accessories.api.Accessory

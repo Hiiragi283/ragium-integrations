@@ -12,7 +12,7 @@
     "issues": "https://github.com/Hiiragi283/ragium-integrations/issues"
   },
   "license": "MPL-2.0",
-  "icon": "assets/ragium/textures/item/integrated_ragium.png",
+  "icon": "assets/ragium_integrations/textures/item/integrated_ragium.png",
   "environment": "*",
   "entrypoints": {
     "main": [
@@ -23,7 +23,7 @@
     ],
     "client": [
       {
-        "value": "hiiragi283.ragium.integration.RagiumClientIntegration",
+        "value": "hiiragi283.ragium.integration.RagiumIntegration",
         "adapter": "kotlin"
       }
     ],
@@ -47,7 +47,7 @@
     ],
     "ragium.plugin.server": [
       {
-        "value": "hiiragi283.ragium.integration.RagiumAccessoriesPlugin",
+        "value": "hiiragi283.ragium.integration.accessories.RagiumAccessoriesPlugin",
         "adapter": "kotlin"
       },
       {
@@ -65,7 +65,7 @@
     ],
     "ragium.plugin.client": [
       {
-        "value": "hiiragi283.ragium.integration.RagiumClientAccessoriesPlugin",
+        "value": "hiiragi283.ragium.integration.accessories.RagiumClientAccessoriesPlugin",
         "adapter": "kotlin"
       },
       {
@@ -74,7 +74,9 @@
       }
     ]
   },
-  "mixins": [],
+  "mixins": [
+    "ragium_integrations.mixins.json"
+  ],
   "depends": {
     "fabricloader": ">=0.16.4",
     "minecraft": ">=1.21- <1.22-",

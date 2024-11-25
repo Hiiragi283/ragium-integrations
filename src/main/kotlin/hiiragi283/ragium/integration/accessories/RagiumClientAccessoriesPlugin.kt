@@ -1,11 +1,11 @@
-package hiiragi283.ragium.integration
+package hiiragi283.ragium.integration.accessories
 
 import hiiragi283.ragium.api.RagiumAPI
 import hiiragi283.ragium.api.RagiumPlugin
 import hiiragi283.ragium.api.extension.isClientEnv
 import hiiragi283.ragium.api.extension.isModLoaded
 import hiiragi283.ragium.common.init.RagiumItems
-import hiiragi283.ragium.integration.accessories.HTOpenBackpackPayload
+import hiiragi283.ragium.integration.RIKeyBinds
 import io.wispforest.accessories.api.AccessoriesCapability
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking
