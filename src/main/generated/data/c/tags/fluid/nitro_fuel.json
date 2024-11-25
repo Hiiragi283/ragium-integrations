@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "techreborn:nitrocoal_fuel",
+      "required": false
+    },
+    {
+      "id": "techreborn:nitrofuel",
+      "required": false
+    }
+  ]
+}

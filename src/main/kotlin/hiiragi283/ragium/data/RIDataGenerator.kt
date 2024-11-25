@@ -8,7 +8,7 @@ object RIDataGenerator : DataGeneratorEntrypoint {
         val pack: FabricDataGenerator.Pack = fabricDataGenerator.createPack()
         // server
         pack.addProvider(::RIRecipeProvider)
-        pack.addProvider(::RITagProvider)
+        RITagProviders.init(pack)
         // client
         pack.addProvider(::RIEnglishPatchouliEntryProvider)
         RILangProviders.init(pack)
