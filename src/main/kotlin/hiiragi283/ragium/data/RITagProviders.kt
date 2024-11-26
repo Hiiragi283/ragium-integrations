@@ -55,10 +55,10 @@ object RITagProviders {
             add(RagiumFluids.REFINED_GAS, ModFluids.METHANE)
             add(RagiumFluids.SULFURIC_ACID, ModFluids.SULFURIC_ACID)
 
-            add(RagiumFluidTags.FUEL, ModFluids.BIOFUEL.fluid)
-            add(RagiumFluidTags.FUEL, ModFluids.DIESEL.fluid)
-            add(RagiumFluidTags.FUEL, ModFluids.NITROCOAL_FUEL.fluid)
-            add(RagiumFluidTags.FUEL, ModFluids.NITROFUEL.fluid)
+            add(RagiumFluidTags.NON_NITRO_FUELS, ModFluids.BIOFUEL.fluid)
+            add(RagiumFluidTags.NON_NITRO_FUELS, ModFluids.DIESEL.fluid)
+            add(RagiumFluidTags.NITRO_FUELS, ModFluids.NITROCOAL_FUEL.fluid)
+            add(RagiumFluidTags.NITRO_FUELS, ModFluids.NITROFUEL.fluid)
         }
     }
 

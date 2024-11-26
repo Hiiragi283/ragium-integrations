@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "techreborn:biofuel",
+      "required": false
+    },
+    {
+      "id": "techreborn:diesel",
+      "required": false
+    }
+  ]
+}
