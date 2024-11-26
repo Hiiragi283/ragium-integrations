@@ -14,19 +14,15 @@ import me.shedaniel.rei.api.common.entry.EntryStack
 import me.shedaniel.rei.api.common.util.EntryIngredients
 import me.shedaniel.rei.api.common.util.EntryStacks
 import me.shedaniel.rei.impl.Internals
-import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants
 import net.minecraft.component.DataComponentTypes
 import net.minecraft.enchantment.Enchantment
 import net.minecraft.enchantment.EnchantmentLevelEntry
-import net.minecraft.fluid.Fluid
 import net.minecraft.item.EnchantedBookItem
-import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
 import net.minecraft.registry.DynamicRegistryManager
 import net.minecraft.registry.RegistryKey
 import net.minecraft.registry.RegistryKeys
-import net.minecraft.registry.entry.RegistryEntry
 import net.minecraft.text.Text
 import net.minecraft.util.Formatting
 
@@ -42,11 +38,6 @@ val HTMachineKey.categoryId: CategoryIdentifier<HTMachineRecipeDisplay>
     get() = CategoryIdentifier.of(id)
 
 //    EntryStack    //
-
-fun itemEntryStackOf(entry: RegistryEntry<Item>, count: Int = 1): EntryStack<*> = EntryStacks.of(entry.value(), count)
-
-fun fluidEntryStackOf(entry: RegistryEntry<Fluid>, amount: Long = FluidConstants.BUCKET): EntryStack<*> =
-    EntryStacks.of(entry.value(), amount)
 
 fun HTMachineKey.createEntryStack(tier: HTMachineTier): EntryStack<ItemStack> = EntryStacks.of(createItemStack(tier))
 
@@ -73,7 +64,9 @@ fun getDummyIngredient(entryText: Text): EntryIngredient = EntryIngredients.of(
 
 val HTItemIngredient.entryIngredient: EntryIngredient
     get() = (
-        map(::itemEntryStackOf).let(EntryIngredient::of).takeIf(EntryIngredient::isNotEmpty)
+        map(EntryStacks::of)
+            .let(EntryIngredient::of)
+            .takeIf(EntryIngredient::isNotEmpty)
             ?: getDummyIngredient(text)
     ).onEach { stack: EntryStack<*> ->
         if (consumeType == HTItemIngredient.ConsumeType.DAMAGE) {
@@ -86,10 +79,10 @@ val HTItemIngredient.entryIngredient: EntryIngredient
     }
 
 val HTFluidIngredient.entryIngredient: EntryIngredient
-    get() = (
-        map(::fluidEntryStackOf).let(EntryIngredient::of).takeIf(EntryIngredient::isNotEmpty)
-            ?: getDummyIngredient(text)
-    )
+    get() = map(EntryStacks::of)
+        .let(EntryIngredient::of)
+        .takeIf(EntryIngredient::isNotEmpty)
+        ?: getDummyIngredient(text)
 
 //    HTRecipeResult    //
 
