@@ -30,6 +30,9 @@ object RILangProviders {
             builder.add(RITranslationKeys.CONFIG_JADE_NETWORK_INTERFACE, "E.N.I")
 
             builder.add(RITranslationKeys.PROVIDER_JADE_NETWORK_INTERFACE, "Stored Energy: %s E")
+            // Patchouli
+            builder.add(RITranslationKeys.PATCHOULI_CRUDE_RAGINITE_ORE, "Found in Overworld, between y = [-48, 48]")
+            builder.add(RITranslationKeys.PATCHOULI_RAW_CRUDE_RAGINITE, "Drops [1, 3] from Crude Raginite Ore")
             // REI
             builder.add(RITranslationKeys.REI_ENTRY_NO_MATCHING, "No matching entry for %s")
             builder.add(RITranslationKeys.REI_ENTRY_APPLY_DAMAGE, "Apply %s damage when processed")
@@ -54,6 +57,9 @@ object RILangProviders {
             builder.add(RITranslationKeys.CONFIG_JADE_NETWORK_INTERFACE, "E.N.I")
 
             builder.add(RITranslationKeys.PROVIDER_JADE_NETWORK_INTERFACE, "エネルギー量: %s E")
+            // Patchouli
+            builder.add(RITranslationKeys.PATCHOULI_CRUDE_RAGINITE_ORE, "オーバーワールドのy = [-48, 48]の範囲に生成される")
+            builder.add(RITranslationKeys.PATCHOULI_RAW_CRUDE_RAGINITE, "ラギナイト鉱石から[1, 3]個ドロップする")
             // REI
             builder.add(RITranslationKeys.REI_ENTRY_NO_MATCHING, "次を満たす値がありません: %s")
             builder.add(RITranslationKeys.REI_ENTRY_APPLY_DAMAGE, "実行時に%sだけ耐久値を減らす")

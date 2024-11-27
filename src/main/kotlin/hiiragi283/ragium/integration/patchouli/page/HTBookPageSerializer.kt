@@ -1,4 +1,4 @@
-package hiiragi283.ragium.integration.patchouli
+package hiiragi283.ragium.integration.patchouli.page
 
 import com.mojang.serialization.MapCodec
 import net.fabricmc.fabric.api.event.registry.FabricRegistryBuilder

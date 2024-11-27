@@ -2,6 +2,7 @@ package hiiragi283.ragium.integration.patchouli
 
 import com.mojang.serialization.Codec
 import com.mojang.serialization.codecs.RecordCodecBuilder
+import hiiragi283.ragium.integration.patchouli.page.HTBookPage
 import net.minecraft.item.Item
 import net.minecraft.registry.entry.RegistryEntry
 import net.minecraft.util.Identifier

@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_21",
   "plugin": "hiiragi283.ragium.integration.mixin.RagiumMixinPlugin",
   "mixins": [
+    "BookRegistryMixin",
     "FluidEntryDefinitionMixin"
   ],
   "client": [],

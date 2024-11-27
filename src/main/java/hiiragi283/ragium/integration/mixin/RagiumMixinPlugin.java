@@ -23,6 +23,9 @@ public class RagiumMixinPlugin implements IMixinConfigPlugin {
         if (mixinClassName.equals("FluidEntryDefinitionMixin")) {
             return FabricLoader.getInstance().isModLoaded("roughlyenoughitems");
         }
+        if (mixinClassName.equals("BookRegistryMixin")) {
+            return FabricLoader.getInstance().isModLoaded("patchouli");
+        }
         return true;
     }
 

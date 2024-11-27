@@ -9,6 +9,11 @@ object RITranslationKeys {
 
     const val PROVIDER_JADE_NETWORK_INTERFACE = "tooltip.jade.plugin_ragium.network_interface"
 
+    //    Patchouli    //
+
+    const val PATCHOULI_CRUDE_RAGINITE_ORE = "ragium.page.crude_raginite_ore"
+    const val PATCHOULI_RAW_CRUDE_RAGINITE = "ragium.page.raw_crude_raginite"
+
     //    REI    //
 
     const val REI_ENTRY_NO_MATCHING = "tooltip.ragium.no_matching_entry"

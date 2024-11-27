@@ -1,13 +1,9 @@
-package hiiragi283.ragium.integration.patchouli
+package hiiragi283.ragium.integration.patchouli.page
 
 import com.mojang.datafixers.kinds.App
 import com.mojang.serialization.Codec
 import com.mojang.serialization.codecs.RecordCodecBuilder
 import hiiragi283.ragium.api.RagiumAPI
-import hiiragi283.ragium.integration.patchouli.page.HTImageBookPage
-import hiiragi283.ragium.integration.patchouli.page.HTRecipeBookPage
-import hiiragi283.ragium.integration.patchouli.page.HTSpotlightBookPage
-import hiiragi283.ragium.integration.patchouli.page.HTTextBookPage
 import net.minecraft.item.Item
 import net.minecraft.registry.Registries
 import net.minecraft.registry.Registry

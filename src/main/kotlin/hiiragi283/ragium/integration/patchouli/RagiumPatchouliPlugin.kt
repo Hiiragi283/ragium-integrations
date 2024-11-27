@@ -4,7 +4,15 @@ import hiiragi283.ragium.api.RagiumAPI
 import hiiragi283.ragium.api.RagiumPlugin
 import hiiragi283.ragium.api.extension.isClientEnv
 import hiiragi283.ragium.api.extension.isModLoaded
+import net.fabricmc.fabric.api.event.player.UseItemCallback
+import net.minecraft.entity.player.PlayerEntity
+import net.minecraft.item.ItemStack
+import net.minecraft.server.network.ServerPlayerEntity
+import net.minecraft.util.Hand
 import net.minecraft.util.Identifier
+import net.minecraft.util.TypedActionResult
+import net.minecraft.world.World
+import vazkii.patchouli.api.PatchouliAPI
 import vazkii.patchouli.client.book.BookPage
 import vazkii.patchouli.client.book.ClientBookRegistry
 
@@ -14,15 +22,13 @@ object RagiumPatchouliPlugin : RagiumPlugin {
     override fun shouldLoad(): Boolean = isClientEnv() && isModLoaded("patchouli")
 
     override fun afterRagiumInit(instance: RagiumAPI) {
-        addPageType<HTMachineRecipePage>(RagiumAPI.MOD_ID, "machine_recipe")
-        /*addPageType<HTCustomCraftingPage>(RagiumAPI.MOD_ID, "custom_recipe")
-
-        HTCustomCraftingPage.register(
-            RagiumAPI.id("crude_raginite"),
-            HTItemIngredient.of(RagiumContents.Ores.NETHER_RAGINITE),
-            HTItemIngredient.of(ItemTags.PICKAXES),
-            HTItemResult(RagiumContents.RawMaterials.RAGINITE, 3),
-        )*/
+        UseItemCallback.EVENT.register { player: PlayerEntity, world: World, hand: Hand ->
+            val stack: ItemStack = player.getStackInHand(hand)
+            if (player is ServerPlayerEntity) {
+                PatchouliAPI.get().openBookGUI(player, RagiumAPI.id("ragi_wiki"))
+            }
+            TypedActionResult.success(stack, world.isClient)
+        }
     }
 
     @JvmStatic

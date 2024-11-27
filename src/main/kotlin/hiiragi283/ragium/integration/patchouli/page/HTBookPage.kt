@@ -1,4 +1,4 @@
-package hiiragi283.ragium.integration.patchouli
+package hiiragi283.ragium.integration.patchouli.page
 
 import com.mojang.serialization.Codec
 import vazkii.patchouli.client.book.BookPage

@@ -3,7 +3,7 @@ kotlin = "2.0.+"
 minecraft = "1.21.1"
 fabric-loom = "1.8-SNAPSHOT"
 fabric-loader = "0.16.+"
-fabric-api = "0.107.0+1.21.1"
+fabric-api = "0.110.0+1.21.1"
 fabric-yarn = "1.21.1+build.3"
 fabric-kotlin = "1.12.+"
 
@@ -16,11 +16,12 @@ energized-power = "1.21.1-2.12.4-fabric"
 #alloy-forgery = "2.4.1+1.21"
 #cloth-config = "15.0.130"
 #fiber = "0.23.0-2"
-jade = "15.8.2+fabric"
-mod-menu = "11.0.2"
+jade = "15.8.3+fabric"
+mod-menu = "11.0.3"
+lavender = "0.1.14+1.21"
 #modonomicon = "1.108.1"
 oritech = "0.10.3"
-owo = "0.12.11+1.21"
+owo = "0.12.15+1.21"
 patchouli = "1.21-87-FABRIC"
 rei = "16.0.788"
 tech-reborn = "5.11.11"
@@ -43,6 +44,7 @@ energized-power = { group = "maven.modrinth", name = "energized-power", version.
 #cloth-config = { group = "me.shedaniel.cloth", name = "cloth-config-fabric", version.ref = "cloth-config" }
 #fiber = { group = "me.zeroeightsix", name = "fiber", version.ref = "fiber" }
 jade = { group = "maven.modrinth", name = "jade", version.ref = "jade" }
+lavender = { group = "io.wispforest", name = "lavender", version.ref = "lavender" }
 mod-modmenu = { group = "com.terraformersmc", name = "modmenu", version.ref = "mod-menu" }
 #modonomicon = { group = "com.klikli_dev", name = "modonomicon-1.21.1-fabric", version.ref = "modonomicon" }
 oritech = { group = "maven.modrinth", name = "oritech", version.ref = "oritech" }

@@ -41,10 +41,12 @@ class HTMachineRecipeCategory(private val key: HTMachineKey) : HTDisplayCategory
         // info
         this += Widgets
             .createLabel(getPoint(bounds, 0, 2), display.recipe.tier.recipeCostText)
+            .color(0x404040, 0xBBBBBB)
             .noShadow()
             .leftAligned()
         this += Widgets
             .createLabel(getPoint(bounds, 0.0, 2.5), display.recipe.tier.tierText)
+            .color(0x404040, 0xBBBBBB)
             .noShadow()
             .leftAligned()
     }
