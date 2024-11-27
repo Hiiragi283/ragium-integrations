@@ -3,6 +3,7 @@ package hiiragi283.ragium.data
 import hiiragi283.ragium.common.RagiumContents
 import hiiragi283.ragium.common.init.RagiumBlocks
 import hiiragi283.ragium.common.init.RagiumItems
+import hiiragi283.ragium.integration.RITranslationKeys
 import hiiragi283.ragium.integration.patchouli.HTBookCategory
 import hiiragi283.ragium.integration.patchouli.HTPatchouliCategory
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
@@ -29,29 +30,29 @@ class RIPatchouliCategoryProvider(output: FabricDataOutput, registriesFuture: Co
         registerCategory(
             consumer,
             HTPatchouliCategory.TIER_1,
-            "Tier 1",
-            "The first age",
+            RITranslationKeys.PATCHOULI_CATEGORY_TIER1,
+            RITranslationKeys.PATCHOULI_CATEGORY_TIER10,
             RagiumContents.Ingots.RAGI_ALLOY,
         )
         registerCategory(
             consumer,
             HTPatchouliCategory.TIER_2,
-            "Tier 2",
-            "The second age",
+            RITranslationKeys.PATCHOULI_CATEGORY_TIER2,
+            RITranslationKeys.PATCHOULI_CATEGORY_TIER20,
             RagiumContents.Ingots.RAGI_STEEL,
         )
         registerCategory(
             consumer,
             HTPatchouliCategory.TIER_3,
-            "Tier 3",
-            "The third age",
+            RITranslationKeys.PATCHOULI_CATEGORY_TIER3,
+            RITranslationKeys.PATCHOULI_CATEGORY_TIER30,
             RagiumContents.Ingots.REFINED_RAGI_STEEL,
         )
         registerCategory(
             consumer,
             HTPatchouliCategory.TIER_4,
-            "Tier 4",
-            "The final age",
+            RITranslationKeys.PATCHOULI_CATEGORY_TIER4,
+            RITranslationKeys.PATCHOULI_CATEGORY_TIER40,
             RagiumContents.Gems.RAGIUM,
         )
         registerCategory(

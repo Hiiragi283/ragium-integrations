@@ -1,13 +1,13 @@
 {
   "category": "ragium:tier_1",
   "icon": "ragium:ragi_alloy_ingot",
-  "name": "Ragi-Alloy",
+  "name": "ragium.page.ragi_alloy",
   "pages": [
     {
       "type": "patchouli:spotlight",
       "item": "ragium:ragi_alloy_ingot",
       "link_recipe": true,
-      "text": "Tier 1 Main Material"
+      "text": "ragium.page.ragi_alloy0"
     },
     {
       "type": "patchouli:crafting",

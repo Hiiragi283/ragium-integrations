@@ -31,8 +31,21 @@ object RILangProviders {
 
             builder.add(RITranslationKeys.PROVIDER_JADE_NETWORK_INTERFACE, "Stored Energy: %s E")
             // Patchouli
-            builder.add(RITranslationKeys.PATCHOULI_CRUDE_RAGINITE_ORE, "Found in Overworld, between y = [-48, 48]")
-            builder.add(RITranslationKeys.PATCHOULI_RAW_CRUDE_RAGINITE, "Drops [1, 3] from Crude Raginite Ore")
+            builder.add(RITranslationKeys.PATCHOULI_CATEGORY_TIER1, "Tier 1")
+            builder.add(RITranslationKeys.PATCHOULI_CATEGORY_TIER10, "The first stage")
+            builder.add(RITranslationKeys.PATCHOULI_CATEGORY_TIER2, "Tier 2")
+            builder.add(RITranslationKeys.PATCHOULI_CATEGORY_TIER20, "The second stage")
+            builder.add(RITranslationKeys.PATCHOULI_CATEGORY_TIER3, "Tier 3")
+            builder.add(RITranslationKeys.PATCHOULI_CATEGORY_TIER30, "The third stage")
+            builder.add(RITranslationKeys.PATCHOULI_CATEGORY_TIER4, "Tier 4")
+            builder.add(RITranslationKeys.PATCHOULI_CATEGORY_TIER40, "The final stage")
+            
+            builder.add(RITranslationKeys.PATCHOULI_CRUDE_RAGINITE_ORE, "Find Crude Raginite")
+            builder.add(RITranslationKeys.PATCHOULI_CRUDE_RAGINITE_ORE0, "Found in Overworld, between y = [-48, 48]")
+            builder.add(RITranslationKeys.PATCHOULI_CRUDE_RAGINITE_ORE1, "Drops [1, 3] from Crude Raginite Ore")
+
+            builder.add(RITranslationKeys.PATCHOULI_RAGI_ALLOY, "Craft Ragi-Alloy")
+            builder.add(RITranslationKeys.PATCHOULI_RAGI_ALLOY0, "Ragi-Alloy is the main metal for tier 1")
             // REI
             builder.add(RITranslationKeys.REI_ENTRY_NO_MATCHING, "No matching entry for %s")
             builder.add(RITranslationKeys.REI_ENTRY_APPLY_DAMAGE, "Apply %s damage when processed")
@@ -58,8 +71,21 @@ object RILangProviders {
 
             builder.add(RITranslationKeys.PROVIDER_JADE_NETWORK_INTERFACE, "エネルギー量: %s E")
             // Patchouli
-            builder.add(RITranslationKeys.PATCHOULI_CRUDE_RAGINITE_ORE, "オーバーワールドのy = [-48, 48]の範囲に生成される")
-            builder.add(RITranslationKeys.PATCHOULI_RAW_CRUDE_RAGINITE, "ラギナイト鉱石から[1, 3]個ドロップする")
+            builder.add(RITranslationKeys.PATCHOULI_CATEGORY_TIER1, "Tier 1")
+            builder.add(RITranslationKeys.PATCHOULI_CATEGORY_TIER10, "最初のステージ")
+            builder.add(RITranslationKeys.PATCHOULI_CATEGORY_TIER2, "Tier 2")
+            builder.add(RITranslationKeys.PATCHOULI_CATEGORY_TIER20, "次なるステージ")
+            builder.add(RITranslationKeys.PATCHOULI_CATEGORY_TIER3, "Tier 3")
+            builder.add(RITranslationKeys.PATCHOULI_CATEGORY_TIER30, "さらなるステージ")
+            builder.add(RITranslationKeys.PATCHOULI_CATEGORY_TIER4, "Tier 4")
+            builder.add(RITranslationKeys.PATCHOULI_CATEGORY_TIER40, "最後のステージ")
+            
+            builder.add(RITranslationKeys.PATCHOULI_CRUDE_RAGINITE_ORE, "粗製ラギナイトを見つけよう")
+            builder.add(RITranslationKeys.PATCHOULI_CRUDE_RAGINITE_ORE0, "オーバーワールドのy = [-48, 48]の範囲に生成される")
+            builder.add(RITranslationKeys.PATCHOULI_CRUDE_RAGINITE_ORE1, "ラギナイト鉱石から[1, 3]個ドロップする")
+
+            builder.add(RITranslationKeys.PATCHOULI_RAGI_ALLOY, "ラギ合金を作ろう")
+            builder.add(RITranslationKeys.PATCHOULI_RAGI_ALLOY0, "ラギ合金はTier 1のメイン金属となる")
             // REI
             builder.add(RITranslationKeys.REI_ENTRY_NO_MATCHING, "次を満たす値がありません: %s")
             builder.add(RITranslationKeys.REI_ENTRY_APPLY_DAMAGE, "実行時に%sだけ耐久値を減らす")

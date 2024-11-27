@@ -34,21 +34,27 @@ class RIPatchouliPageProvider(output: FabricDataOutput, registriesFuture: Comple
             consumer,
             HTPatchouliCategory.TIER_1,
             "crude_raginite",
-            "Crude Raginite",
+            RITranslationKeys.PATCHOULI_CRUDE_RAGINITE_ORE,
             RagiumContents.RawMaterials.CRUDE_RAGINITE,
-            HTSpotlightBookPage(RagiumContents.Ores.CRUDE_RAGINITE, RITranslationKeys.PATCHOULI_CRUDE_RAGINITE_ORE),
+            HTSpotlightBookPage(
+                RagiumContents.Ores.CRUDE_RAGINITE,
+                RITranslationKeys.PATCHOULI_CRUDE_RAGINITE_ORE0
+            ),
             HTSpotlightBookPage(
                 RagiumContents.RawMaterials.CRUDE_RAGINITE,
-                RITranslationKeys.PATCHOULI_RAW_CRUDE_RAGINITE,
+                RITranslationKeys.PATCHOULI_CRUDE_RAGINITE_ORE1,
             ),
         )
         registerPage(
             consumer,
             HTPatchouliCategory.TIER_1,
             "ragi_alloy",
-            "Ragi-Alloy",
+            RITranslationKeys.PATCHOULI_RAGI_ALLOY,
             RagiumContents.Ingots.RAGI_ALLOY,
-            HTSpotlightBookPage(RagiumContents.Ingots.RAGI_ALLOY, "Tier 1 Main Material"),
+            HTSpotlightBookPage(
+                RagiumContents.Ingots.RAGI_ALLOY, 
+                RITranslationKeys.PATCHOULI_RAGI_ALLOY0
+            ),
             HTRecipeBookPage(
                 RecipeType.CRAFTING,
                 RagiumAPI.id("shaped/ragi_alloy_compound"),
