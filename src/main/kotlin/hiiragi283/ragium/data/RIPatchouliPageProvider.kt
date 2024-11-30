@@ -38,7 +38,7 @@ class RIPatchouliPageProvider(output: FabricDataOutput, registriesFuture: Comple
             RagiumContents.RawMaterials.CRUDE_RAGINITE,
             HTSpotlightBookPage(
                 RagiumContents.Ores.CRUDE_RAGINITE,
-                RITranslationKeys.PATCHOULI_CRUDE_RAGINITE_ORE0
+                RITranslationKeys.PATCHOULI_CRUDE_RAGINITE_ORE0,
             ),
             HTSpotlightBookPage(
                 RagiumContents.RawMaterials.CRUDE_RAGINITE,
@@ -52,8 +52,8 @@ class RIPatchouliPageProvider(output: FabricDataOutput, registriesFuture: Comple
             RITranslationKeys.PATCHOULI_RAGI_ALLOY,
             RagiumContents.Ingots.RAGI_ALLOY,
             HTSpotlightBookPage(
-                RagiumContents.Ingots.RAGI_ALLOY, 
-                RITranslationKeys.PATCHOULI_RAGI_ALLOY0
+                RagiumContents.Ingots.RAGI_ALLOY,
+                RITranslationKeys.PATCHOULI_RAGI_ALLOY0,
             ),
             HTRecipeBookPage(
                 RecipeType.CRAFTING,

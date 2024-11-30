@@ -39,7 +39,7 @@ object RILangProviders {
             builder.add(RITranslationKeys.PATCHOULI_CATEGORY_TIER30, "The third stage")
             builder.add(RITranslationKeys.PATCHOULI_CATEGORY_TIER4, "Tier 4")
             builder.add(RITranslationKeys.PATCHOULI_CATEGORY_TIER40, "The final stage")
-            
+
             builder.add(RITranslationKeys.PATCHOULI_CRUDE_RAGINITE_ORE, "Find Crude Raginite")
             builder.add(RITranslationKeys.PATCHOULI_CRUDE_RAGINITE_ORE0, "Found in Overworld, between y = [-48, 48]")
             builder.add(RITranslationKeys.PATCHOULI_CRUDE_RAGINITE_ORE1, "Drops [1, 3] from Crude Raginite Ore")
@@ -79,7 +79,7 @@ object RILangProviders {
             builder.add(RITranslationKeys.PATCHOULI_CATEGORY_TIER30, "さらなるステージ")
             builder.add(RITranslationKeys.PATCHOULI_CATEGORY_TIER4, "Tier 4")
             builder.add(RITranslationKeys.PATCHOULI_CATEGORY_TIER40, "最後のステージ")
-            
+
             builder.add(RITranslationKeys.PATCHOULI_CRUDE_RAGINITE_ORE, "粗製ラギナイトを見つけよう")
             builder.add(RITranslationKeys.PATCHOULI_CRUDE_RAGINITE_ORE0, "オーバーワールドのy = [-48, 48]の範囲に生成される")
             builder.add(RITranslationKeys.PATCHOULI_CRUDE_RAGINITE_ORE1, "ラギナイト鉱石から[1, 3]個ドロップする")
