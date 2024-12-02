@@ -1,13 +1,13 @@
 package hiiragi283.ragium.integration.rei
 
 import hiiragi283.ragium.api.RagiumAPI
-import hiiragi283.ragium.api.machine.HTMachineDefinition
+import hiiragi283.ragium.api.data.HTMachineRecipeJsonBuilder
 import hiiragi283.ragium.api.machine.HTMachineKey
 import hiiragi283.ragium.api.machine.HTMachineTier
-import hiiragi283.ragium.api.recipe.HTFluidResult
 import hiiragi283.ragium.api.recipe.HTItemIngredient
 import hiiragi283.ragium.api.recipe.HTMachineRecipe
 import hiiragi283.ragium.common.init.*
+import hiiragi283.ragium.common.machine.generator.HTEnergeticFuelRegistry
 import me.shedaniel.rei.api.client.plugins.REIClientPlugin
 import me.shedaniel.rei.api.client.registry.category.CategoryRegistry
 import me.shedaniel.rei.api.client.registry.display.DisplayRegistry
@@ -81,15 +81,20 @@ object RagiumREIClient : REIClientPlugin {
 
         ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.forEach { (item: ItemConvertible, chance: Float) ->
             val fixedAmount: Long = (FluidConstants.BUCKET * chance).toLong()
-            val dummyRecipe = HTMachineRecipe(
-                HTMachineDefinition(RagiumMachineKeys.BIOMASS_FERMENTER, HTMachineTier.PRIMITIVE),
-                listOf(HTItemIngredient.of(item)),
-                listOf(),
-                null,
-                listOf(),
-                listOf(HTFluidResult(RagiumFluids.BIOMASS.value, fixedAmount)),
-            )
-            registry.add(HTMachineRecipeDisplay(dummyRecipe))
+            HTMachineRecipeJsonBuilder
+                .create(RagiumMachineKeys.BIOMASS_FERMENTER)
+                .itemInput(item)
+                .fluidOutput(RagiumFluids.BIOMASS, fixedAmount)
+                .transform(::HTMachineRecipeDisplay)
+                .let(registry::add)
+        }
+
+        HTEnergeticFuelRegistry.ENTRY_MAP.forEach { (ingredient: HTItemIngredient, damage: Int) ->
+            HTMachineRecipeJsonBuilder
+                .create(RagiumMachineKeys.ENERGETIC_GENERATOR)
+                .itemInput(ingredient)
+                .transform(::HTMachineRecipeDisplay)
+                .let(registry::add)
         }
         // Material Info
         RagiumAPI
