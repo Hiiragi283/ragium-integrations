@@ -2,8 +2,8 @@ package hiiragi283.ragium.integration.jade
 
 import hiiragi283.ragium.api.RagiumAPI
 import hiiragi283.ragium.api.machine.block.HTMachineBlock
-import hiiragi283.ragium.common.block.HTExporterBlock
-import hiiragi283.ragium.common.block.HTNetworkInterfaceBlock
+import hiiragi283.ragium.common.block.machine.HTNetworkInterfaceBlock
+import hiiragi283.ragium.common.block.transfer.HTExporterBlock
 import net.minecraft.util.Identifier
 import snownee.jade.api.IWailaClientRegistration
 import snownee.jade.api.IWailaCommonRegistration

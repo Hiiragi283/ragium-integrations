@@ -6,8 +6,8 @@ import hiiragi283.ragium.api.machine.HTMachineKey
 import hiiragi283.ragium.api.machine.HTMachineTier
 import hiiragi283.ragium.api.recipe.HTItemIngredient
 import hiiragi283.ragium.api.recipe.HTMachineRecipe
+import hiiragi283.ragium.common.block.machine.generator.HTEnergeticFuelRegistry
 import hiiragi283.ragium.common.init.*
-import hiiragi283.ragium.common.machine.generator.HTEnergeticFuelRegistry
 import me.shedaniel.rei.api.client.plugins.REIClientPlugin
 import me.shedaniel.rei.api.client.registry.category.CategoryRegistry
 import me.shedaniel.rei.api.client.registry.display.DisplayRegistry
