@@ -1,4 +1,4 @@
-package hiiragi283.ragium.integration.rei
+package hiiragi283.ragium.integration.rei.category
 
 import me.shedaniel.math.Point
 import me.shedaniel.math.Rectangle

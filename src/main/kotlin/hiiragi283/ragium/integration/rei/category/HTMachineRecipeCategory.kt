@@ -1,7 +1,10 @@
-package hiiragi283.ragium.integration.rei
+package hiiragi283.ragium.integration.rei.category
 
 import hiiragi283.ragium.api.machine.HTMachineKey
 import hiiragi283.ragium.api.machine.HTMachineTier
+import hiiragi283.ragium.integration.rei.HTMachineRecipeDisplay
+import hiiragi283.ragium.integration.rei.categoryId
+import hiiragi283.ragium.integration.rei.createEntryStack
 import me.shedaniel.math.Rectangle
 import me.shedaniel.rei.api.client.gui.Renderer
 import me.shedaniel.rei.api.client.gui.widgets.Widget

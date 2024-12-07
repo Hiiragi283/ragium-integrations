@@ -4,10 +4,11 @@ import hiiragi283.ragium.api.RagiumAPI
 import hiiragi283.ragium.api.data.HTMachineRecipeJsonBuilder
 import hiiragi283.ragium.api.machine.HTMachineKey
 import hiiragi283.ragium.api.machine.HTMachineTier
-import hiiragi283.ragium.api.recipe.HTItemIngredient
 import hiiragi283.ragium.api.recipe.HTMachineRecipe
-import hiiragi283.ragium.common.block.machine.generator.HTEnergeticFuelRegistry
+import hiiragi283.ragium.api.tags.RagiumFluidTags
 import hiiragi283.ragium.common.init.*
+import hiiragi283.ragium.integration.rei.category.HTMachineRecipeCategory
+import hiiragi283.ragium.integration.rei.category.HTMaterialInfoCategory
 import me.shedaniel.rei.api.client.plugins.REIClientPlugin
 import me.shedaniel.rei.api.client.registry.category.CategoryRegistry
 import me.shedaniel.rei.api.client.registry.display.DisplayRegistry
@@ -20,11 +21,15 @@ import net.fabricmc.api.Environment
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants
 import net.minecraft.block.ComposterBlock
 import net.minecraft.enchantment.Enchantment
+import net.minecraft.fluid.Fluid
 import net.minecraft.item.ItemConvertible
 import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
 import net.minecraft.recipe.RecipeEntry
+import net.minecraft.registry.Registries
 import net.minecraft.registry.RegistryKey
+import net.minecraft.registry.entry.RegistryEntry
+import net.minecraft.registry.tag.TagKey
 
 @Environment(EnvType.CLIENT)
 object RagiumREIClient : REIClientPlugin {
@@ -73,7 +78,20 @@ object RagiumREIClient : REIClientPlugin {
     }
 
     override fun registerDisplays(registry: DisplayRegistry) {
-        // Machines
+        fun registerFuels(fuelTag: TagKey<Fluid>, key: HTMachineKey, amount: Long) {
+            Registries.FLUID.iterateEntries(fuelTag).forEach { fluid: RegistryEntry<Fluid> ->
+                HTMachineRecipeJsonBuilder.create(key)
+                    .fluidInput(fluid.value(), amount)
+                    .transform(::HTMachineRecipeDisplay)
+                    .let(registry::add)
+            }
+        }
+
+        // Generator Fuels
+        registerFuels(RagiumFluidTags.NON_NITRO_FUELS, RagiumMachineKeys.COMBUSTION_GENERATOR, FluidConstants.INGOT)
+        registerFuels(RagiumFluidTags.NITRO_FUELS, RagiumMachineKeys.COMBUSTION_GENERATOR, FluidConstants.NUGGET)
+        registerFuels(RagiumFluidTags.THERMAL_FUELS, RagiumMachineKeys.THERMAL_GENERATOR, FluidConstants.INGOT)
+        // Machine Recipes
         registry.registerRecipeFiller(
             HTMachineRecipe::class.java,
             RagiumRecipeTypes.MACHINE,
@@ -85,14 +103,6 @@ object RagiumREIClient : REIClientPlugin {
                 .create(RagiumMachineKeys.BIOMASS_FERMENTER)
                 .itemInput(item)
                 .fluidOutput(RagiumFluids.BIOMASS, fixedAmount)
-                .transform(::HTMachineRecipeDisplay)
-                .let(registry::add)
-        }
-
-        HTEnergeticFuelRegistry.ENTRY_MAP.forEach { (ingredient: HTItemIngredient, damage: Int) ->
-            HTMachineRecipeJsonBuilder
-                .create(RagiumMachineKeys.ENERGETIC_GENERATOR)
-                .itemInput(ingredient)
                 .transform(::HTMachineRecipeDisplay)
                 .let(registry::add)
         }
