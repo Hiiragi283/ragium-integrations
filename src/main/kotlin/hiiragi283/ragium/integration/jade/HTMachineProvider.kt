@@ -5,7 +5,7 @@ import com.mojang.serialization.MapCodec
 import hiiragi283.ragium.api.machine.HTMachineKey
 import hiiragi283.ragium.api.machine.HTMachineTier
 import hiiragi283.ragium.api.machine.block.HTMachineBlockEntityBase
-import hiiragi283.ragium.api.machine.multiblock.HTMultiblockController
+import hiiragi283.ragium.api.machine.multiblock.HTMultiblockPatternProvider
 import hiiragi283.ragium.common.init.RagiumTranslationKeys
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.text.Text
@@ -73,8 +73,8 @@ object HTMachineProvider : IBlockComponentProvider, IServerDataProvider<BlockAcc
                 ?.let { accessor.writeData(INVENTORY, it) }*/
             accessor.writeData(TICK, machine.property.get(0))
             accessor.writeData(MAX_TICK, machine.property.get(1))
-            if (machine is HTMultiblockController) {
-                accessor.writeData(PREVIEW, machine.showPreview)
+            if (machine is HTMultiblockPatternProvider) {
+                accessor.writeData(PREVIEW, machine.multiblockManager.showPreview)
             }
         }
     }

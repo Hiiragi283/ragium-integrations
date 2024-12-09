@@ -3,7 +3,6 @@ package hiiragi283.ragium.integration.jade
 import com.mojang.serialization.MapCodec
 import hiiragi283.ragium.api.extension.asText
 import hiiragi283.ragium.api.extension.name
-import hiiragi283.ragium.common.block.transfer.HTExporterBlockEntity
 import hiiragi283.ragium.common.init.RagiumTranslationKeys
 import net.minecraft.fluid.Fluid
 import net.minecraft.item.Item
@@ -52,9 +51,9 @@ object HTExporterProvider : IBlockComponentProvider, IServerDataProvider<BlockAc
     //    IServerDataProvider    //
 
     override fun appendServerData(nbt: NbtCompound, accessor: BlockAccessor) {
-        (accessor.blockEntity as? HTExporterBlockEntity)?.let {
+        /*(accessor.blockEntity as? HTExporterBlockEntity)?.let {
             accessor.writeData(FLUID_FILTER, it.fluidFilter)
             accessor.writeData(ITEM_FILTER, it.itemFilter)
-        }
+        }*/
     }
 }

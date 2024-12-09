@@ -80,7 +80,8 @@ object RagiumREIClient : REIClientPlugin {
     override fun registerDisplays(registry: DisplayRegistry) {
         fun registerFuels(fuelTag: TagKey<Fluid>, key: HTMachineKey, amount: Long) {
             Registries.FLUID.iterateEntries(fuelTag).forEach { fluid: RegistryEntry<Fluid> ->
-                HTMachineRecipeJsonBuilder.create(key)
+                HTMachineRecipeJsonBuilder
+                    .create(key)
                     .fluidInput(fluid.value(), amount)
                     .transform(::HTMachineRecipeDisplay)
                     .let(registry::add)
