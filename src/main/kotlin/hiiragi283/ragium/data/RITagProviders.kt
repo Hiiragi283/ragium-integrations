@@ -43,6 +43,8 @@ object RITagProviders {
             }
             // Oritech
             add(RagiumFluids.CRUDE_OIL, FluidContent.STILL_OIL)
+
+            add(RagiumFluids.NITRO_FUEL, FluidContent.STILL_FUEL)
             // Tech Reborn
             add(RagiumFluids.AIR, ModFluids.COMPRESSED_AIR)
             add(RagiumFluids.BIO_FUEL, ModFluids.BIOFUEL)
@@ -55,6 +57,7 @@ object RITagProviders {
             add(RagiumFluids.REFINED_GAS, ModFluids.METHANE)
             add(RagiumFluids.SULFURIC_ACID, ModFluids.SULFURIC_ACID)
 
+            add(RagiumFluidTags.COOLANTS, ModFluids.ELECTROLYZED_WATER.fluid)
             add(RagiumFluidTags.NON_NITRO_FUELS, ModFluids.BIOFUEL.fluid)
             add(RagiumFluidTags.NON_NITRO_FUELS, ModFluids.DIESEL.fluid)
             add(RagiumFluidTags.NITRO_FUELS, ModFluids.NITROCOAL_FUEL.fluid)
