@@ -23,7 +23,7 @@
     ],
     "client": [
       {
-        "value": "hiiragi283.ragium.integration.RagiumIntegration",
+        "value": "hiiragi283.ragium.integration.RIKeyBinds",
         "adapter": "kotlin"
       }
     ],
@@ -75,7 +75,11 @@
     ]
   },
   "mixins": [
-    "ragium_integrations.mixins.json"
+    "ragium_integrations.mixins.json",
+    {
+      "config": "ragium_integrations.client.mixins.json",
+      "environment": "client"
+    }
   ],
   "depends": {
     "fabricloader": ">=0.16.4",

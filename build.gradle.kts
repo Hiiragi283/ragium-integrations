@@ -43,12 +43,11 @@ fabricApi {
 
 loom {
     // accessWidenerPath = file("src/main/resources/ht_materials.accesswidener")
-    // splitEnvironmentSourceSets()
-
+    splitEnvironmentSourceSets()
     mods {
         create("ragium_integrations") {
             sourceSet(sourceSets.main.get())
-            // sourceSet(sourceSets.getByName("client"))
+            sourceSet(sourceSets.getByName("client"))
         }
     }
     runs {

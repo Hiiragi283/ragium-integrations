@@ -4,6 +4,7 @@ import hiiragi283.ragium.api.RagiumPlugin
 import hiiragi283.ragium.api.extension.isModLoaded
 import hiiragi283.ragium.api.material.HTMaterialKey
 import hiiragi283.ragium.api.material.HTMaterialPropertyKeys
+import hiiragi283.ragium.api.material.HTMaterialType
 import hiiragi283.ragium.api.material.HTTagPrefix
 import hiiragi283.ragium.api.util.TriConsumer
 import hiiragi283.ragium.common.init.RagiumMaterialKeys
@@ -35,11 +36,11 @@ object RagiumOritechPlugin : RagiumPlugin {
 
     override fun registerMaterial(helper: RagiumPlugin.MaterialHelper) {
         // alloy
-        helper.register(ADAMANT, HTMaterialKey.Type.ALLOY, Rarity.RARE)
-        helper.register(BIOSTEEL, HTMaterialKey.Type.ALLOY, Rarity.UNCOMMON)
-        helper.register(DURATIUM, HTMaterialKey.Type.ALLOY, Rarity.RARE)
-        helper.register(ENERGITE, HTMaterialKey.Type.ALLOY, Rarity.RARE)
-        helper.register(PROMETHEUM, HTMaterialKey.Type.ALLOY, Rarity.EPIC)
+        helper.register(ADAMANT, HTMaterialType.ALLOY, Rarity.RARE)
+        helper.register(BIOSTEEL, HTMaterialType.ALLOY, Rarity.UNCOMMON)
+        helper.register(DURATIUM, HTMaterialType.ALLOY, Rarity.RARE)
+        helper.register(ENERGITE, HTMaterialType.ALLOY, Rarity.RARE)
+        helper.register(PROMETHEUM, HTMaterialType.ALLOY, Rarity.EPIC)
     }
 
     override fun setupMaterialProperties(helper: RagiumPlugin.PropertyHelper<HTMaterialKey>) {

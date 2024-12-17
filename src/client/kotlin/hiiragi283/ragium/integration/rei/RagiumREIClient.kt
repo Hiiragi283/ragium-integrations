@@ -6,7 +6,10 @@ import hiiragi283.ragium.api.machine.HTMachineKey
 import hiiragi283.ragium.api.machine.HTMachineTier
 import hiiragi283.ragium.api.recipe.HTMachineRecipe
 import hiiragi283.ragium.api.tags.RagiumFluidTags
-import hiiragi283.ragium.common.init.*
+import hiiragi283.ragium.common.init.RagiumBlocks
+import hiiragi283.ragium.common.init.RagiumFluids
+import hiiragi283.ragium.common.init.RagiumMachineKeys
+import hiiragi283.ragium.common.init.RagiumRecipeTypes
 import hiiragi283.ragium.integration.rei.category.HTMachineRecipeCategory
 import hiiragi283.ragium.integration.rei.category.HTMaterialInfoCategory
 import me.shedaniel.rei.api.client.plugins.REIClientPlugin
@@ -15,7 +18,6 @@ import me.shedaniel.rei.api.client.registry.display.DisplayRegistry
 import me.shedaniel.rei.api.common.category.CategoryIdentifier
 import me.shedaniel.rei.api.common.entry.EntryStack
 import me.shedaniel.rei.api.common.util.EntryStacks
-import me.shedaniel.rei.plugin.common.BuiltinPlugin
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants
@@ -54,13 +56,13 @@ object RagiumREIClient : REIClientPlugin {
                     registry.addWorkstations(key.categoryId, stack)
                 }
             }
-        addWorkStation(registry, RagiumMachineKeys.METAL_FORMER, RagiumBlocks.MANUAL_FORGE)
+        addWorkStation(registry, RagiumMachineKeys.COMPRESSOR, RagiumBlocks.MANUAL_FORGE)
         addWorkStation(registry, RagiumMachineKeys.GRINDER, RagiumBlocks.MANUAL_GRINDER)
         addWorkStation(registry, RagiumMachineKeys.MIXER, RagiumBlocks.MANUAL_MIXER)
         // Enchantment
-        registry.addWorkstations(BuiltinPlugin.SMELTING, createEnchantedBook(RagiumEnchantments.SMELTING))
-        addWorkStation(registry, RagiumMachineKeys.GRINDER, RagiumEnchantments.SLEDGE_HAMMER)
-        addWorkStation(registry, RagiumMachineKeys.SAW_MILL, RagiumEnchantments.BUZZ_SAW)
+        // registry.addWorkstations(BuiltinPlugin.SMELTING, createEnchantedBook(RagiumEnchantments.SMELTING))
+        // addWorkStation(registry, RagiumMachineKeys.GRINDER, RagiumEnchantments.SLEDGE_HAMMER)
+        // addWorkStation(registry, RagiumMachineKeys.CUTTING_MACHINE, RagiumEnchantments.BUZZ_SAW)
 
         // Material Info
         registry.add(HTMaterialInfoCategory)

@@ -2,10 +2,10 @@ package hiiragi283.ragium.integration.jade
 
 import com.mojang.serialization.Codec
 import com.mojang.serialization.MapCodec
+import hiiragi283.ragium.api.block.HTMachineBlockEntityBase
 import hiiragi283.ragium.api.machine.HTMachineKey
 import hiiragi283.ragium.api.machine.HTMachineTier
-import hiiragi283.ragium.api.machine.block.HTMachineBlockEntityBase
-import hiiragi283.ragium.api.machine.multiblock.HTMultiblockPatternProvider
+import hiiragi283.ragium.api.machine.multiblock.HTMultiblockProvider
 import hiiragi283.ragium.common.init.RagiumTranslationKeys
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.text.Text
@@ -23,8 +23,6 @@ object HTMachineProvider : IBlockComponentProvider, IServerDataProvider<BlockAcc
 
     @JvmField
     val TIER: MapCodec<HTMachineTier> = HTMachineTier.CODEC.fieldOf("tier")
-
-    // val INVENTORY: MapCodec<SimpleInventory> = createInventoryCodec(::SimpleInventory).fieldOf("inventory")
 
     @JvmField
     val TICK: MapCodec<Int> = Codec.INT.fieldOf("tick")
@@ -48,16 +46,6 @@ object HTMachineProvider : IBlockComponentProvider, IServerDataProvider<BlockAcc
             .readData(TIER)
             .orElse(HTMachineTier.PRIMITIVE)
         key.appendTooltip(tooltip::add, tier, false)
-        /*val progress: Int = accessor.readData(TICK).orElse(0)
-        val maxProgress: Int = accessor.readData(MAX_TICK).orElse(tier.tickRate)
-        val currentProgress: Float = progress.toFloat() / maxProgress.toFloat()
-        val helper: IElementHelper = IElementHelper.get()
-        accessor.readData(INVENTORY).ifPresent { inventory: SimpleInventory ->
-            key.entry.ifPresent(RagiumJadePlugin.INVENTORY) {
-                it(inventory, tooltip, helper, currentProgress)
-            }
-        }*/
-
         val showPreview: Boolean = accessor.readData(PREVIEW).getOrNull() ?: return
         tooltip.add(Text.translatable(RagiumTranslationKeys.MACHINE_SHOW_PREVIEW, showPreview))
     }
@@ -68,12 +56,9 @@ object HTMachineProvider : IBlockComponentProvider, IServerDataProvider<BlockAcc
         accessor.machineBlockEntity?.let { machine: HTMachineBlockEntityBase ->
             accessor.writeData(KEY, machine.key)
             accessor.writeData(TIER, machine.tier)
-            /*(machine.asInventory())
-                ?.let { it as? SimpleInventory }
-                ?.let { accessor.writeData(INVENTORY, it) }*/
             accessor.writeData(TICK, machine.property.get(0))
             accessor.writeData(MAX_TICK, machine.property.get(1))
-            if (machine is HTMultiblockPatternProvider) {
+            if (machine is HTMultiblockProvider) {
                 accessor.writeData(PREVIEW, machine.multiblockManager.showPreview)
             }
         }

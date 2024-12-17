@@ -3,6 +3,7 @@ package hiiragi283.ragium.integration
 import hiiragi283.ragium.api.RagiumPlugin
 import hiiragi283.ragium.api.extension.isModLoaded
 import hiiragi283.ragium.api.material.HTMaterialKey
+import hiiragi283.ragium.api.material.HTMaterialType
 import hiiragi283.ragium.api.material.HTTagPrefix
 import hiiragi283.ragium.api.util.TriConsumer
 import hiiragi283.ragium.common.init.RagiumMaterialKeys
@@ -31,11 +32,11 @@ object RagiumEPPlugin : RagiumPlugin {
     override fun shouldLoad(): Boolean = isModLoaded("energizedpower")
 
     override fun registerMaterial(helper: RagiumPlugin.MaterialHelper) {
-        helper.register(ADVANCED_ALLOY, HTMaterialKey.Type.ALLOY, Rarity.RARE)
-        helper.register(REDSTONE_ALLOY, HTMaterialKey.Type.ALLOY, Rarity.UNCOMMON)
+        helper.register(ADVANCED_ALLOY, HTMaterialType.ALLOY, Rarity.RARE)
+        helper.register(REDSTONE_ALLOY, HTMaterialType.ALLOY, Rarity.UNCOMMON)
 
-        helper.register(ENERGIZED_COPPER, HTMaterialKey.Type.METAL, Rarity.UNCOMMON)
-        helper.register(ENERGIZED_GOLD, HTMaterialKey.Type.METAL, Rarity.RARE)
+        helper.register(ENERGIZED_COPPER, HTMaterialType.METAL, Rarity.UNCOMMON)
+        helper.register(ENERGIZED_GOLD, HTMaterialType.METAL, Rarity.RARE)
     }
 
     override fun bindMaterialToItem(consumer: TriConsumer<HTTagPrefix, HTMaterialKey, ItemConvertible>) {

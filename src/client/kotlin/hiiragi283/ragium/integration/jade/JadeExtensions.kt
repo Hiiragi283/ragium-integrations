@@ -1,6 +1,6 @@
 package hiiragi283.ragium.integration.jade
 
-import hiiragi283.ragium.api.machine.block.HTMachineBlockEntityBase
+import hiiragi283.ragium.api.block.HTMachineBlockEntityBase
 import snownee.jade.api.BlockAccessor
 
 //    BlockAccessor    //
