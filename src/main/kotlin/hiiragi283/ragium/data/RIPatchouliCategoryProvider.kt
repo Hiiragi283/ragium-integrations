@@ -1,8 +1,8 @@
 package hiiragi283.ragium.data
 
-import hiiragi283.ragium.common.RagiumContents
 import hiiragi283.ragium.common.init.RagiumBlocks
 import hiiragi283.ragium.common.init.RagiumItems
+import hiiragi283.ragium.common.init.RagiumItemsNew
 import hiiragi283.ragium.integration.RITranslationKeys
 import hiiragi283.ragium.integration.patchouli.HTBookCategory
 import hiiragi283.ragium.integration.patchouli.HTPatchouliCategory
@@ -32,28 +32,28 @@ class RIPatchouliCategoryProvider(output: FabricDataOutput, registriesFuture: Co
             HTPatchouliCategory.TIER_1,
             RITranslationKeys.PATCHOULI_CATEGORY_TIER1,
             RITranslationKeys.PATCHOULI_CATEGORY_TIER10,
-            RagiumContents.Ingots.RAGI_ALLOY,
+            RagiumItemsNew.Ingots.RAGI_ALLOY,
         )
         registerCategory(
             consumer,
             HTPatchouliCategory.TIER_2,
             RITranslationKeys.PATCHOULI_CATEGORY_TIER2,
             RITranslationKeys.PATCHOULI_CATEGORY_TIER20,
-            RagiumContents.Ingots.RAGI_STEEL,
+            RagiumItemsNew.Ingots.RAGI_STEEL,
         )
         registerCategory(
             consumer,
             HTPatchouliCategory.TIER_3,
             RITranslationKeys.PATCHOULI_CATEGORY_TIER3,
             RITranslationKeys.PATCHOULI_CATEGORY_TIER30,
-            RagiumContents.Ingots.REFINED_RAGI_STEEL,
+            RagiumItemsNew.Ingots.REFINED_RAGI_STEEL,
         )
         registerCategory(
             consumer,
             HTPatchouliCategory.TIER_4,
             RITranslationKeys.PATCHOULI_CATEGORY_TIER4,
             RITranslationKeys.PATCHOULI_CATEGORY_TIER40,
-            RagiumContents.Gems.RAGIUM,
+            RagiumItemsNew.Gems.RAGIUM,
         )
         registerCategory(
             consumer,
@@ -67,7 +67,7 @@ class RIPatchouliCategoryProvider(output: FabricDataOutput, registriesFuture: Co
             HTPatchouliCategory.MACHINES,
             "Machines",
             "Machines",
-            RagiumContents.Hulls.PRIMITIVE,
+            RagiumBlocks.Hulls.PRIMITIVE,
         )
         registerCategory(
             consumer,

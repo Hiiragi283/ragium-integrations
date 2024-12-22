@@ -6,10 +6,7 @@ import hiiragi283.ragium.api.machine.HTMachineKey
 import hiiragi283.ragium.api.machine.HTMachineTier
 import hiiragi283.ragium.api.recipe.HTMachineRecipe
 import hiiragi283.ragium.api.tags.RagiumFluidTags
-import hiiragi283.ragium.common.init.RagiumBlocks
-import hiiragi283.ragium.common.init.RagiumFluids
-import hiiragi283.ragium.common.init.RagiumMachineKeys
-import hiiragi283.ragium.common.init.RagiumRecipeTypes
+import hiiragi283.ragium.common.init.*
 import hiiragi283.ragium.integration.rei.category.HTMachineRecipeCategory
 import hiiragi283.ragium.integration.rei.category.HTMaterialInfoCategory
 import me.shedaniel.rei.api.client.plugins.REIClientPlugin
@@ -18,6 +15,7 @@ import me.shedaniel.rei.api.client.registry.display.DisplayRegistry
 import me.shedaniel.rei.api.common.category.CategoryIdentifier
 import me.shedaniel.rei.api.common.entry.EntryStack
 import me.shedaniel.rei.api.common.util.EntryStacks
+import me.shedaniel.rei.plugin.common.DefaultPlugin
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants
@@ -44,7 +42,14 @@ object RagiumREIClient : REIClientPlugin {
 
     //    REIClientPlugin    //
 
+    @Suppress("UnstableApiUsage")
     override fun registerCategories(registry: CategoryRegistry) {
+        // Vanilla
+        HTMachineTier.entries.map(RagiumMachineKeys.MULTI_SMELTER::createEntryStack).forEach {
+            registry.addWorkstations(DefaultPlugin.SMELTING, it)
+        }
+        registry.addWorkstations(DefaultPlugin.WAXING, EntryStacks.of(RagiumItems.BEE_WAX))
+
         // Machines
         RagiumAPI
             .getInstance()

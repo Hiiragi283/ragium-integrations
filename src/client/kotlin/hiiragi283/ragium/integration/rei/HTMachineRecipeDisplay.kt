@@ -20,8 +20,6 @@ class HTMachineRecipeDisplay(val recipe: HTMachineRecipe, private val id: Identi
     private fun getFluidOutput(index: Int): EntryIngredient =
         recipe.fluidOutputs.getOrNull(index)?.entryIngredient ?: EntryIngredient.empty()
 
-    val catalyst: EntryIngredient = recipe.catalyst?.entryIngredient ?: EntryIngredient.empty()
-
     override fun getInputEntries(): List<EntryIngredient> = buildList {
         add(getItemInput(0))
         add(getItemInput(1))
@@ -29,6 +27,7 @@ class HTMachineRecipeDisplay(val recipe: HTMachineRecipe, private val id: Identi
         add(getFluidInput(0))
         add(getFluidInput(1))
         add(getFluidInput(2))
+        add(recipe.catalyst?.entryIngredient ?: EntryIngredient.empty())
     }
 
     override fun getOutputEntries(): List<EntryIngredient> = buildList {

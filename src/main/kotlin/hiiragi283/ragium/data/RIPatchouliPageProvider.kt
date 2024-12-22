@@ -1,7 +1,8 @@
 package hiiragi283.ragium.data
 
 import hiiragi283.ragium.api.RagiumAPI
-import hiiragi283.ragium.common.RagiumContents
+import hiiragi283.ragium.common.init.RagiumBlocks
+import hiiragi283.ragium.common.init.RagiumItemsNew
 import hiiragi283.ragium.integration.RITranslationKeys
 import hiiragi283.ragium.integration.patchouli.HTBookEntry
 import hiiragi283.ragium.integration.patchouli.HTPatchouliCategory
@@ -35,13 +36,13 @@ class RIPatchouliPageProvider(output: FabricDataOutput, registriesFuture: Comple
             HTPatchouliCategory.TIER_1,
             "crude_raginite",
             RITranslationKeys.PATCHOULI_CRUDE_RAGINITE_ORE,
-            RagiumContents.RawMaterials.CRUDE_RAGINITE,
+            RagiumItemsNew.RawMaterials.CRUDE_RAGINITE,
             HTSpotlightBookPage(
-                RagiumContents.Ores.CRUDE_RAGINITE,
+                RagiumBlocks.Ores.CRUDE_RAGINITE,
                 RITranslationKeys.PATCHOULI_CRUDE_RAGINITE_ORE0,
             ),
             HTSpotlightBookPage(
-                RagiumContents.RawMaterials.CRUDE_RAGINITE,
+                RagiumItemsNew.RawMaterials.CRUDE_RAGINITE,
                 RITranslationKeys.PATCHOULI_CRUDE_RAGINITE_ORE1,
             ),
         )
@@ -50,9 +51,9 @@ class RIPatchouliPageProvider(output: FabricDataOutput, registriesFuture: Comple
             HTPatchouliCategory.TIER_1,
             "ragi_alloy",
             RITranslationKeys.PATCHOULI_RAGI_ALLOY,
-            RagiumContents.Ingots.RAGI_ALLOY,
+            RagiumItemsNew.Ingots.RAGI_ALLOY,
             HTSpotlightBookPage(
-                RagiumContents.Ingots.RAGI_ALLOY,
+                RagiumItemsNew.Ingots.RAGI_ALLOY,
                 RITranslationKeys.PATCHOULI_RAGI_ALLOY0,
             ),
             HTRecipeBookPage(

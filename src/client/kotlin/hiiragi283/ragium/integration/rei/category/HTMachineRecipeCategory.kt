@@ -40,7 +40,7 @@ class HTMachineRecipeCategory(private val key: HTMachineKey) : HTDisplayCategory
         this += createSlot(bounds, 6, 1, display.outputEntries.getOrNull(4)).markOutput()
         this += createSlot(bounds, 7, 1, display.outputEntries.getOrNull(5)).markOutput()
         // catalyst
-        this += createSlot(bounds, 3.5, 1.0, display.catalyst).markInput()
+        this += createSlot(bounds, 3.5, 1.0, display.inputEntries.getOrNull(6)).markInput()
         // info
         this += Widgets
             .createLabel(getPoint(bounds, 0, 2), display.recipe.tier.recipeCostText)

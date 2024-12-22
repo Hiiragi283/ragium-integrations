@@ -7,7 +7,7 @@ import hiiragi283.ragium.api.accessory.HTAccessorySlotTypes
 import hiiragi283.ragium.api.extension.isModLoaded
 import hiiragi283.ragium.api.extension.openBackpackScreen
 import hiiragi283.ragium.common.init.RagiumComponentTypes
-import hiiragi283.ragium.common.init.RagiumItems
+import hiiragi283.ragium.common.init.RagiumItemsNew
 import io.wispforest.accessories.api.AccessoriesAPI
 import io.wispforest.accessories.api.AccessoriesCapability
 import io.wispforest.accessories.api.Accessory
@@ -34,7 +34,7 @@ object RagiumAccessoriesPlugin : RagiumPlugin {
             registerAccessory(item, HTWrappedAccessory, slot)
         }
 
-        registerAccessory(RagiumItems.BACKPACK, HTEmptyAccessory, HTAccessorySlotTypes.BACK)
+        registerAccessory(RagiumItemsNew.BACKPACK, HTEmptyAccessory, HTAccessorySlotTypes.BACK)
 
         DefaultItemComponentEvents.MODIFY.register { context: DefaultItemComponentEvents.ModifyContext ->
             context.modify(slotCache::containsKey) { builder: ComponentMap.Builder, item: Item ->
