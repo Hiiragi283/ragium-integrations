@@ -4,7 +4,7 @@ import hiiragi283.ragium.api.RagiumAPI
 import hiiragi283.ragium.api.RagiumPlugin
 import hiiragi283.ragium.api.extension.isModLoaded
 import hiiragi283.ragium.api.extension.isOf
-import hiiragi283.ragium.common.init.RagiumItemsNew
+import hiiragi283.ragium.common.init.RagiumItems
 import net.fabricmc.fabric.api.event.player.UseItemCallback
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.ItemStack
@@ -22,7 +22,7 @@ object RagiumPatchouliPlugin : RagiumPlugin {
     override fun afterRagiumInit(instance: RagiumAPI) {
         UseItemCallback.EVENT.register { player: PlayerEntity, world: World, hand: Hand ->
             val stack: ItemStack = player.getStackInHand(hand)
-            if (stack.isOf(RagiumItemsNew.GUIDE_BOOK) && player is ServerPlayerEntity) {
+            if (stack.isOf(RagiumItems.GUIDE_BOOK) && player is ServerPlayerEntity) {
                 PatchouliAPI.get().openBookGUI(player, RagiumAPI.id("ragi_wiki"))
                 TypedActionResult.success(stack, world.isClient)
             }

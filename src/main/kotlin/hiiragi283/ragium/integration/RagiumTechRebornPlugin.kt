@@ -40,6 +40,7 @@ object RagiumTechRebornPlugin : RagiumPlugin {
         }
 
         registerOre(RagiumMaterialKeys.BAUXITE, TRContent.Ores.BAUXITE)
+        registerOre(RagiumMaterialKeys.CINNABAR, TRContent.Ores.CINNABAR)
         registerOre(RagiumMaterialKeys.IRIDIUM, TRContent.Ores.IRIDIUM)
         registerOre(RagiumMaterialKeys.LEAD, TRContent.Ores.LEAD)
         registerOre(RagiumMaterialKeys.SILVER, TRContent.Ores.SILVER)

@@ -51,6 +51,7 @@ object RITagProviders {
             add(RagiumFluids.CRUDE_OIL, ModFluids.OIL)
             add(RagiumFluids.GLYCEROL, ModFluids.GLYCERYL)
             add(RagiumFluids.HYDROGEN, ModFluids.HYDROGEN)
+            add(RagiumFluids.MERCURY, ModFluids.MERCURY)
             add(RagiumFluids.NITRO_FUEL, ModFluids.NITROCOAL_FUEL)
             add(RagiumFluids.NITRO_FUEL, ModFluids.NITROFUEL)
             add(RagiumFluids.NOBLE_GAS, ModFluids.HELIUM)

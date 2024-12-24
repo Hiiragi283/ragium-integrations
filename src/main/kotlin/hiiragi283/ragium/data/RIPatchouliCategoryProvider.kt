@@ -2,7 +2,6 @@ package hiiragi283.ragium.data
 
 import hiiragi283.ragium.common.init.RagiumBlocks
 import hiiragi283.ragium.common.init.RagiumItems
-import hiiragi283.ragium.common.init.RagiumItemsNew
 import hiiragi283.ragium.integration.RITranslationKeys
 import hiiragi283.ragium.integration.patchouli.HTBookCategory
 import hiiragi283.ragium.integration.patchouli.HTPatchouliCategory
@@ -32,28 +31,28 @@ class RIPatchouliCategoryProvider(output: FabricDataOutput, registriesFuture: Co
             HTPatchouliCategory.TIER_1,
             RITranslationKeys.PATCHOULI_CATEGORY_TIER1,
             RITranslationKeys.PATCHOULI_CATEGORY_TIER10,
-            RagiumItemsNew.Ingots.RAGI_ALLOY,
+            RagiumItems.Ingots.RAGI_ALLOY,
         )
         registerCategory(
             consumer,
             HTPatchouliCategory.TIER_2,
             RITranslationKeys.PATCHOULI_CATEGORY_TIER2,
             RITranslationKeys.PATCHOULI_CATEGORY_TIER20,
-            RagiumItemsNew.Ingots.RAGI_STEEL,
+            RagiumItems.Ingots.RAGI_STEEL,
         )
         registerCategory(
             consumer,
             HTPatchouliCategory.TIER_3,
             RITranslationKeys.PATCHOULI_CATEGORY_TIER3,
             RITranslationKeys.PATCHOULI_CATEGORY_TIER30,
-            RagiumItemsNew.Ingots.REFINED_RAGI_STEEL,
+            RagiumItems.Ingots.REFINED_RAGI_STEEL,
         )
         registerCategory(
             consumer,
             HTPatchouliCategory.TIER_4,
             RITranslationKeys.PATCHOULI_CATEGORY_TIER4,
             RITranslationKeys.PATCHOULI_CATEGORY_TIER40,
-            RagiumItemsNew.Gems.RAGIUM,
+            RagiumItems.Gems.RAGIUM,
         )
         registerCategory(
             consumer,
@@ -74,7 +73,7 @@ class RIPatchouliCategoryProvider(output: FabricDataOutput, registriesFuture: Co
             HTPatchouliCategory.PETROCHEMISTRY,
             "Petro Chemistry",
             "Petro Chemistry",
-            RagiumItems.RESIDUAL_COKE,
+            RagiumItems.Ingredients.RESIDUAL_COKE,
         )
     }
 

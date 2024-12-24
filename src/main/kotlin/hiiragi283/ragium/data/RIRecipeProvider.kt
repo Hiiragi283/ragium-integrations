@@ -45,12 +45,12 @@ class RIRecipeProvider(output: FabricDataOutput, completableFuture: CompletableF
         val oritech: RecipeExporter = withConditions(exporter, ResourceConditions.allModsLoaded("oritech"))
         HTStonecuttingRecipeJsonBuilder.registerExchange(
             oritech,
-            RagiumItems.PLASTIC_PLATE,
+            RagiumItems.Ingredients.PLASTIC_PLATE,
             ItemContent.PLASTIC_SHEET,
         )
         HTStonecuttingRecipeJsonBuilder.registerExchange(
             oritech,
-            RagiumItems.POLYMER_RESIN,
+            RagiumItems.Ingredients.POLYMER_RESIN,
             ItemContent.POLYMER_RESIN,
         )
     }

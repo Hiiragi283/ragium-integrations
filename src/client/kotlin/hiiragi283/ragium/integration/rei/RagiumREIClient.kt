@@ -53,7 +53,7 @@ object RagiumREIClient : REIClientPlugin {
         HTMachineTier.entries.map(RagiumMachineKeys.MULTI_SMELTER::createEntryStack).forEach {
             registry.addWorkstations(DefaultPlugin.SMELTING, it)
         }
-        registry.addWorkstations(DefaultPlugin.WAXING, EntryStacks.of(RagiumItems.BEE_WAX))
+        registry.addWorkstations(DefaultPlugin.WAXING, EntryStacks.of(RagiumItems.Ingredients.BEE_WAX))
 
         // machine
         RagiumAPI
@@ -95,12 +95,12 @@ object RagiumREIClient : REIClientPlugin {
             .map { power: Int ->
                 DefaultSmithingDisplay(
                     listOf(
-                        EntryIngredients.of(RagiumItemsNew.Dynamites.SIMPLE),
+                        EntryIngredients.of(RagiumItems.Dynamites.SIMPLE),
                         EntryIngredients.of(Items.GUNPOWDER, power - 2),
                     ),
                     listOf(
                         EntryIngredients.of(
-                            buildItemStack(RagiumItemsNew.Dynamites.SIMPLE) {
+                            buildItemStack(RagiumItems.Dynamites.SIMPLE) {
                                 add(RagiumComponentTypes.DYNAMITE, HTExplosionComponent(power.toFloat(), true))
                             },
                         ),
