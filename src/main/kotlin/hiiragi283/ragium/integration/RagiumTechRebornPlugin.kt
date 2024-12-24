@@ -35,7 +35,7 @@ object RagiumTechRebornPlugin : RagiumPlugin {
         fun registerOre(key: HTMaterialKey, ore: TRContent.Ores, prefix: HTTagPrefix = HTTagPrefix.ORE) {
             consumer.accept(prefix, key, ore)
             ore.deepslate?.let {
-                consumer.accept(HTTagPrefix.DEEP_ORE, key, ore)
+                consumer.accept(HTTagPrefix.ORE, key, ore)
             }
         }
 

@@ -1,8 +1,8 @@
 package hiiragi283.ragium.integration.rei.category
 
 import hiiragi283.ragium.api.material.HTTagPrefix
-import hiiragi283.ragium.integration.rei.HTMaterialInfoDisplay
 import hiiragi283.ragium.integration.rei.RagiumREIClient
+import hiiragi283.ragium.integration.rei.display.HTMaterialInfoDisplay
 import me.shedaniel.math.Rectangle
 import me.shedaniel.rei.api.client.gui.Renderer
 import me.shedaniel.rei.api.client.gui.widgets.Widget

@@ -1,6 +1,8 @@
-package hiiragi283.ragium.integration.rei
+package hiiragi283.ragium.integration.rei.display
 
 import hiiragi283.ragium.api.recipe.HTMachineRecipe
+import hiiragi283.ragium.integration.rei.categoryId
+import hiiragi283.ragium.integration.rei.entryIngredient
 import me.shedaniel.rei.api.common.category.CategoryIdentifier
 import me.shedaniel.rei.api.common.display.Display
 import me.shedaniel.rei.api.common.entry.EntryIngredient

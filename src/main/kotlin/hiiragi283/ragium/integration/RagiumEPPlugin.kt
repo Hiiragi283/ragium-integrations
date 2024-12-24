@@ -40,7 +40,7 @@ object RagiumEPPlugin : RagiumPlugin {
     }
 
     override fun bindMaterialToItem(consumer: TriConsumer<HTTagPrefix, HTMaterialKey, ItemConvertible>) {
-        consumer.accept(HTTagPrefix.DEEP_ORE, RagiumMaterialKeys.TIN, EPBlocks.DEEPSLATE_TIN_ORE_ITEM)
+        consumer.accept(HTTagPrefix.ORE, RagiumMaterialKeys.TIN, EPBlocks.DEEPSLATE_TIN_ORE_ITEM)
 
         consumer.accept(HTTagPrefix.DUST, RagiumMaterialKeys.COPPER, EPItems.COPPER_DUST)
         consumer.accept(HTTagPrefix.DUST, RagiumMaterialKeys.GOLD, EPItems.GOLD_DUST)

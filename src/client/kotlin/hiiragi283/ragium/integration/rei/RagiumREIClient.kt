@@ -1,7 +1,9 @@
 package hiiragi283.ragium.integration.rei
 
 import hiiragi283.ragium.api.RagiumAPI
+import hiiragi283.ragium.api.component.HTExplosionComponent
 import hiiragi283.ragium.api.data.HTMachineRecipeJsonBuilder
+import hiiragi283.ragium.api.extension.buildItemStack
 import hiiragi283.ragium.api.machine.HTMachineKey
 import hiiragi283.ragium.api.machine.HTMachineTier
 import hiiragi283.ragium.api.recipe.HTMachineRecipe
@@ -9,28 +11,32 @@ import hiiragi283.ragium.api.tags.RagiumFluidTags
 import hiiragi283.ragium.common.init.*
 import hiiragi283.ragium.integration.rei.category.HTMachineRecipeCategory
 import hiiragi283.ragium.integration.rei.category.HTMaterialInfoCategory
+import hiiragi283.ragium.integration.rei.display.HTMachineRecipeDisplay
+import hiiragi283.ragium.integration.rei.display.HTMaterialInfoDisplay
 import me.shedaniel.rei.api.client.plugins.REIClientPlugin
 import me.shedaniel.rei.api.client.registry.category.CategoryRegistry
 import me.shedaniel.rei.api.client.registry.display.DisplayRegistry
 import me.shedaniel.rei.api.common.category.CategoryIdentifier
 import me.shedaniel.rei.api.common.entry.EntryStack
+import me.shedaniel.rei.api.common.util.EntryIngredients
 import me.shedaniel.rei.api.common.util.EntryStacks
 import me.shedaniel.rei.plugin.common.DefaultPlugin
+import me.shedaniel.rei.plugin.common.displays.DefaultSmithingDisplay
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants
 import net.minecraft.block.ComposterBlock
-import net.minecraft.enchantment.Enchantment
 import net.minecraft.fluid.Fluid
 import net.minecraft.item.ItemConvertible
 import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
 import net.minecraft.recipe.RecipeEntry
 import net.minecraft.registry.Registries
-import net.minecraft.registry.RegistryKey
 import net.minecraft.registry.entry.RegistryEntry
 import net.minecraft.registry.tag.TagKey
+import java.util.*
 
+@Suppress("UnstableApiUsage")
 @Environment(EnvType.CLIENT)
 object RagiumREIClient : REIClientPlugin {
     init {
@@ -42,15 +48,14 @@ object RagiumREIClient : REIClientPlugin {
 
     //    REIClientPlugin    //
 
-    @Suppress("UnstableApiUsage")
     override fun registerCategories(registry: CategoryRegistry) {
-        // Vanilla
+        // vanilla
         HTMachineTier.entries.map(RagiumMachineKeys.MULTI_SMELTER::createEntryStack).forEach {
             registry.addWorkstations(DefaultPlugin.SMELTING, it)
         }
         registry.addWorkstations(DefaultPlugin.WAXING, EntryStacks.of(RagiumItems.BEE_WAX))
 
-        // Machines
+        // machine
         RagiumAPI
             .getInstance()
             .machineRegistry
@@ -64,12 +69,7 @@ object RagiumREIClient : REIClientPlugin {
         addWorkStation(registry, RagiumMachineKeys.COMPRESSOR, RagiumBlocks.MANUAL_FORGE)
         addWorkStation(registry, RagiumMachineKeys.GRINDER, RagiumBlocks.MANUAL_GRINDER)
         addWorkStation(registry, RagiumMachineKeys.MIXER, RagiumBlocks.MANUAL_MIXER)
-        // Enchantment
-        // registry.addWorkstations(BuiltinPlugin.SMELTING, createEnchantedBook(RagiumEnchantments.SMELTING))
-        // addWorkStation(registry, RagiumMachineKeys.GRINDER, RagiumEnchantments.SLEDGE_HAMMER)
-        // addWorkStation(registry, RagiumMachineKeys.CUTTING_MACHINE, RagiumEnchantments.BUZZ_SAW)
-
-        // Material Info
+        // material info
         registry.add(HTMaterialInfoCategory)
         registry.addWorkstations(MATERIAL_INFO, EntryStacks.of(Items.IRON_INGOT))
     }
@@ -77,11 +77,6 @@ object RagiumREIClient : REIClientPlugin {
     @JvmStatic
     private fun addWorkStation(registry: CategoryRegistry, key: HTMachineKey, item: ItemConvertible) {
         registry.addWorkstations(key.categoryId, EntryStacks.of(item))
-    }
-
-    @JvmStatic
-    private fun addWorkStation(registry: CategoryRegistry, key: HTMachineKey, enchantKey: RegistryKey<Enchantment>) {
-        registry.addWorkstations(key.categoryId, createEnchantedBook(enchantKey))
     }
 
     override fun registerDisplays(registry: DisplayRegistry) {
@@ -95,11 +90,31 @@ object RagiumREIClient : REIClientPlugin {
             }
         }
 
-        // Generator Fuels
+        // vanilla
+        (3..16)
+            .map { power: Int ->
+                DefaultSmithingDisplay(
+                    listOf(
+                        EntryIngredients.of(RagiumItemsNew.Dynamites.SIMPLE),
+                        EntryIngredients.of(Items.GUNPOWDER, power - 2),
+                    ),
+                    listOf(
+                        EntryIngredients.of(
+                            buildItemStack(RagiumItemsNew.Dynamites.SIMPLE) {
+                                add(RagiumComponentTypes.DYNAMITE, HTExplosionComponent(power.toFloat(), true))
+                            },
+                        ),
+                    ),
+                    null,
+                    Optional.empty(),
+                )
+            }.forEach(registry::add)
+
+        // generator
         registerFuels(RagiumFluidTags.NON_NITRO_FUELS, RagiumMachineKeys.COMBUSTION_GENERATOR, FluidConstants.INGOT)
         registerFuels(RagiumFluidTags.NITRO_FUELS, RagiumMachineKeys.COMBUSTION_GENERATOR, FluidConstants.NUGGET)
         registerFuels(RagiumFluidTags.THERMAL_FUELS, RagiumMachineKeys.THERMAL_GENERATOR, FluidConstants.INGOT)
-        // Machine Recipes
+        // machine
         registry.registerRecipeFiller(
             HTMachineRecipe::class.java,
             RagiumRecipeTypes.MACHINE,
@@ -114,7 +129,7 @@ object RagiumREIClient : REIClientPlugin {
                 .transform(::HTMachineRecipeDisplay)
                 .let(registry::add)
         }
-        // Material Info
+        // material info
         RagiumAPI
             .getInstance()
             .materialRegistry

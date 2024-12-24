@@ -1,8 +1,10 @@
-package hiiragi283.ragium.integration.rei
+package hiiragi283.ragium.integration.rei.display
 
 import hiiragi283.ragium.api.material.HTMaterialKey
 import hiiragi283.ragium.api.material.HTTagPrefix
 import hiiragi283.ragium.api.recipe.HTItemIngredient
+import hiiragi283.ragium.integration.rei.RagiumREIClient
+import hiiragi283.ragium.integration.rei.entryIngredient
 import me.shedaniel.rei.api.common.category.CategoryIdentifier
 import me.shedaniel.rei.api.common.display.Display
 import me.shedaniel.rei.api.common.entry.EntryIngredient

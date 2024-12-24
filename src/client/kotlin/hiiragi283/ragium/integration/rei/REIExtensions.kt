@@ -8,6 +8,7 @@ import hiiragi283.ragium.api.recipe.HTFluidResult
 import hiiragi283.ragium.api.recipe.HTItemIngredient
 import hiiragi283.ragium.api.recipe.HTItemResult
 import hiiragi283.ragium.integration.RITranslationKeys
+import hiiragi283.ragium.integration.rei.display.HTMachineRecipeDisplay
 import me.shedaniel.rei.api.common.category.CategoryIdentifier
 import me.shedaniel.rei.api.common.entry.EntryIngredient
 import me.shedaniel.rei.api.common.entry.EntryStack
