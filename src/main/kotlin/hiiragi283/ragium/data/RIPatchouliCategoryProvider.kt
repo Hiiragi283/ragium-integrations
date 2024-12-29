@@ -73,7 +73,7 @@ class RIPatchouliCategoryProvider(output: FabricDataOutput, registriesFuture: Co
             HTPatchouliCategory.PETROCHEMISTRY,
             "Petro Chemistry",
             "Petro Chemistry",
-            RagiumItems.Ingredients.RESIDUAL_COKE,
+            RagiumItems.RESIDUAL_COKE,
         )
     }
 

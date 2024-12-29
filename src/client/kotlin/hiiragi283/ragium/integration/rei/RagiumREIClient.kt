@@ -40,7 +40,7 @@ import java.util.*
 @Environment(EnvType.CLIENT)
 object RagiumREIClient : REIClientPlugin {
     init {
-        RagiumAPI.log { info("REI Integration enabled!") }
+        RagiumAPI.LOGGER.info("REI Integration enabled!")
     }
 
     @JvmField
@@ -53,7 +53,7 @@ object RagiumREIClient : REIClientPlugin {
         HTMachineTier.entries.map(RagiumMachineKeys.MULTI_SMELTER::createEntryStack).forEach {
             registry.addWorkstations(DefaultPlugin.SMELTING, it)
         }
-        registry.addWorkstations(DefaultPlugin.WAXING, EntryStacks.of(RagiumItems.Ingredients.BEE_WAX))
+        registry.addWorkstations(DefaultPlugin.WAXING, EntryStacks.of(RagiumItems.BEE_WAX))
 
         // machine
         RagiumAPI

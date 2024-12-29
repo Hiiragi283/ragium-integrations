@@ -54,7 +54,7 @@ object HTMachineProvider : IBlockComponentProvider, IServerDataProvider<BlockAcc
 
     override fun appendServerData(nbt: NbtCompound, accessor: BlockAccessor) {
         accessor.machineBlockEntity?.let { machine: HTMachineBlockEntityBase ->
-            accessor.writeData(KEY, machine.key)
+            accessor.writeData(KEY, machine.machineKey)
             accessor.writeData(TIER, machine.tier)
             accessor.writeData(TICK, machine.property.get(0))
             accessor.writeData(MAX_TICK, machine.property.get(1))

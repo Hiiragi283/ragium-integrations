@@ -61,7 +61,7 @@ object RagiumAccessoriesPlugin : RagiumPlugin {
                 ?.let { stack: ItemStack -> openBackpackScreen(world, player, stack) }
         }
 
-        RagiumAPI.log { info("Accessories integration loaded!") }
+        RagiumAPI.LOGGER.info("Accessories integration loaded!")
     }
 
     @JvmStatic
