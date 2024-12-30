@@ -6,9 +6,9 @@ import hiiragi283.ragium.api.data.HTMachineRecipeJsonBuilder
 import hiiragi283.ragium.api.extension.buildItemStack
 import hiiragi283.ragium.api.machine.HTMachineKey
 import hiiragi283.ragium.api.machine.HTMachineTier
-import hiiragi283.ragium.api.recipe.HTMachineRecipe
 import hiiragi283.ragium.api.tags.RagiumFluidTags
 import hiiragi283.ragium.common.init.*
+import hiiragi283.ragium.common.recipe.HTMachineRecipe
 import hiiragi283.ragium.integration.rei.category.HTMachineRecipeCategory
 import hiiragi283.ragium.integration.rei.category.HTMaterialInfoCategory
 import hiiragi283.ragium.integration.rei.display.HTMachineRecipeDisplay
@@ -30,7 +30,6 @@ import net.minecraft.fluid.Fluid
 import net.minecraft.item.ItemConvertible
 import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
-import net.minecraft.recipe.RecipeEntry
 import net.minecraft.registry.Registries
 import net.minecraft.registry.entry.RegistryEntry
 import net.minecraft.registry.tag.TagKey
@@ -118,7 +117,8 @@ object RagiumREIClient : REIClientPlugin {
         registry.registerRecipeFiller(
             HTMachineRecipe::class.java,
             RagiumRecipeTypes.MACHINE,
-        ) { entry: RecipeEntry<HTMachineRecipe> -> HTMachineRecipeDisplay(entry.value, entry.id) }
+            ::HTMachineRecipeDisplay,
+        )
 
         ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.forEach { (item: ItemConvertible, chance: Float) ->
             val fixedAmount: Long = (FluidConstants.BUCKET * chance).toLong()

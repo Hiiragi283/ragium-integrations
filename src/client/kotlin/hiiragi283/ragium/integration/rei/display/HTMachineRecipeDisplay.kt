@@ -1,6 +1,6 @@
 package hiiragi283.ragium.integration.rei.display
 
-import hiiragi283.ragium.api.recipe.HTMachineRecipe
+import hiiragi283.ragium.api.recipe.HTMachineRecipeBase
 import hiiragi283.ragium.integration.rei.categoryId
 import hiiragi283.ragium.integration.rei.entryIngredient
 import me.shedaniel.rei.api.common.category.CategoryIdentifier
@@ -8,19 +8,21 @@ import me.shedaniel.rei.api.common.display.Display
 import me.shedaniel.rei.api.common.entry.EntryIngredient
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
+import net.minecraft.recipe.RecipeEntry
 import net.minecraft.util.Identifier
 import java.util.*
 
 @Environment(EnvType.CLIENT)
-class HTMachineRecipeDisplay(val recipe: HTMachineRecipe, private val id: Identifier? = null) : Display {
-    private fun getItemInput(index: Int): EntryIngredient = recipe.itemInputs.getOrNull(index)?.entryIngredient ?: EntryIngredient.empty()
+class HTMachineRecipeDisplay(val recipe: HTMachineRecipeBase, private val id: Identifier? = null) : Display {
+    constructor(entry: RecipeEntry<out HTMachineRecipeBase>) : this(entry.value, entry.id)
 
-    private fun getFluidInput(index: Int): EntryIngredient = recipe.fluidInputs.getOrNull(index)?.entryIngredient ?: EntryIngredient.empty()
+    private fun getItemInput(index: Int): EntryIngredient = recipe.getItemIngredient(index)?.entryIngredient ?: EntryIngredient.empty()
 
-    private fun getItemOutput(index: Int): EntryIngredient = recipe.itemOutputs.getOrNull(index)?.entryIngredient ?: EntryIngredient.empty()
+    private fun getFluidInput(index: Int): EntryIngredient = recipe.getFluidIngredient(index)?.entryIngredient ?: EntryIngredient.empty()
 
-    private fun getFluidOutput(index: Int): EntryIngredient =
-        recipe.fluidOutputs.getOrNull(index)?.entryIngredient ?: EntryIngredient.empty()
+    private fun getItemOutput(index: Int): EntryIngredient = recipe.getItemResult(index)?.entryIngredient ?: EntryIngredient.empty()
+
+    private fun getFluidOutput(index: Int): EntryIngredient = recipe.getFluidResult(index)?.entryIngredient ?: EntryIngredient.empty()
 
     override fun getInputEntries(): List<EntryIngredient> = buildList {
         add(getItemInput(0))
