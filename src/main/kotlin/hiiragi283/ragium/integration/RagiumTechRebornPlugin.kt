@@ -3,6 +3,7 @@ package hiiragi283.ragium.integration
 import hiiragi283.ragium.api.RagiumPlugin
 import hiiragi283.ragium.api.extension.isModLoaded
 import hiiragi283.ragium.api.material.HTMaterialKey
+import hiiragi283.ragium.api.material.HTMaterialPropertyKeys
 import hiiragi283.ragium.api.material.HTTagPrefix
 import hiiragi283.ragium.api.util.TriConsumer
 import hiiragi283.ragium.common.init.RagiumMaterialKeys
@@ -15,6 +16,13 @@ object RagiumTechRebornPlugin : RagiumPlugin {
     override val priority: Int = 0
 
     override fun shouldLoad(): Boolean = isModLoaded("techreborn")
+
+    override fun setupMaterialProperties(helper: RagiumPlugin.PropertyHelper<HTMaterialKey>) {
+        // mineral
+        helper.modify(RagiumMaterialKeys.BAUXITE) {
+            set(HTMaterialPropertyKeys.ORE_SUB_PRODUCT, TRContent.SmallDusts.TITANIUM)
+        }
+    }
 
     override fun bindMaterialToItem(consumer: TriConsumer<HTTagPrefix, HTMaterialKey, ItemConvertible>) {
         fun <T> registerContents(prefix: HTTagPrefix, entries: List<T>) where T : ItemConvertible, T : TagConvertible<Item> {
