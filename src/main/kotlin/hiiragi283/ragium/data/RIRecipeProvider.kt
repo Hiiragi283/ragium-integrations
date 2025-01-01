@@ -24,32 +24,41 @@ class RIRecipeProvider(output: FabricDataOutput, completableFuture: CompletableF
     override fun getRecipeIdentifier(identifier: Identifier): Identifier = RagiumAPI.id(identifier.path)
 
     override fun generate(exporter: RecipeExporter) {
-        // energized power
-        val energizedPower: RecipeExporter =
-            withConditions(exporter, ResourceConditions.allModsLoaded("energizedpower"))
+        generateEP(withConditions(exporter, ResourceConditions.allModsLoaded("energizedpower")))
+        generateOT(withConditions(exporter, ResourceConditions.allModsLoaded("oritech")))
+    }
+
+    //    Energized Power    //
+
+    private fun generateEP(exporter: RecipeExporter) {
+        // alloys
         HTMachineRecipeJsonBuilder
             .create(RagiumMachineKeys.BLAST_FURNACE)
             .itemInput(ConventionalItemTags.IRON_INGOTS)
             .itemInput(RagiumItemTags.SILICON)
             .itemInput(ConventionalItemTags.COPPER_INGOTS)
             .itemOutput(EPItems.REDSTONE_ALLOY_INGOT)
-            .offerTo(energizedPower, EPItems.REDSTONE_ALLOY_INGOT)
+            .offerTo(exporter, EPItems.REDSTONE_ALLOY_INGOT)
         HTMachineRecipeJsonBuilder
             .create(RagiumMachineKeys.BLAST_FURNACE)
             .itemInput(ConventionalItemTags.IRON_INGOTS, 3)
             .itemInput(ConventionalItemTags.COPPER_INGOTS, 3)
             .itemInput(HTTagPrefix.INGOT, RagiumMaterialKeys.TIN, 3)
             .itemOutput(EPItems.ADVANCED_ALLOY_INGOT)
-            .offerTo(energizedPower, EPItems.ADVANCED_ALLOY_INGOT)
-        // oritech
-        val oritech: RecipeExporter = withConditions(exporter, ResourceConditions.allModsLoaded("oritech"))
+            .offerTo(exporter, EPItems.ADVANCED_ALLOY_INGOT)
+    }
+
+    //    Oritech    //
+
+    private fun generateOT(exporter: RecipeExporter) {
+        // plastics
         HTStonecuttingRecipeJsonBuilder.registerExchange(
-            oritech,
+            exporter,
             RagiumItems.PLASTIC_PLATE,
             ItemContent.PLASTIC_SHEET,
         )
         HTStonecuttingRecipeJsonBuilder.registerExchange(
-            oritech,
+            exporter,
             RagiumItems.POLYMER_RESIN,
             ItemContent.POLYMER_RESIN,
         )

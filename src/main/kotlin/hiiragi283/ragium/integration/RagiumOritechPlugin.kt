@@ -57,11 +57,15 @@ object RagiumOritechPlugin : RagiumPlugin {
         consumer.accept(HTTagPrefix.DUST, RagiumMaterialKeys.IRON, ItemContent.IRON_DUST)
         consumer.accept(HTTagPrefix.DUST, RagiumMaterialKeys.NICKEL, ItemContent.NICKEL_DUST)
         consumer.accept(HTTagPrefix.DUST, RagiumMaterialKeys.PLATINUM, ItemContent.PLATINUM_DUST)
+        consumer.accept(HTTagPrefix.DUST, RagiumMaterialKeys.PLUTONIUM, ItemContent.PLUTONIUM_DUST)
+        consumer.accept(HTTagPrefix.DUST, RagiumMaterialKeys.URANIUM, ItemContent.URANIUM_DUST)
         consumer.accept(HTTagPrefix.DUST, RagiumMaterialKeys.STEEL, ItemContent.STEEL_DUST)
         consumer.accept(HTTagPrefix.DUST, ADAMANT, ItemContent.ADAMANT_DUST)
         consumer.accept(HTTagPrefix.DUST, BIOSTEEL, ItemContent.BIOSTEEL_DUST)
         consumer.accept(HTTagPrefix.DUST, DURATIUM, ItemContent.DURATIUM_DUST)
         consumer.accept(HTTagPrefix.DUST, ENERGITE, ItemContent.ENERGITE_DUST)
+
+        consumer.accept(HTTagPrefix.GEM, RagiumMaterialKeys.URANIUM, ItemContent.URANIUM_GEM)
 
         consumer.accept(HTTagPrefix.INGOT, RagiumMaterialKeys.ELECTRUM, ItemContent.ELECTRUM_INGOT)
         consumer.accept(HTTagPrefix.INGOT, RagiumMaterialKeys.NICKEL, ItemContent.NICKEL_INGOT)
@@ -73,6 +77,7 @@ object RagiumOritechPlugin : RagiumPlugin {
         consumer.accept(HTTagPrefix.INGOT, ENERGITE, ItemContent.ENERGITE_INGOT)
         consumer.accept(HTTagPrefix.INGOT, PROMETHEUM, ItemContent.PROMETHEUM_INGOT)
 
+        consumer.accept(HTTagPrefix.DUST, RagiumMaterialKeys.URANIUM, ItemContent.RAW_URANIUM)
         consumer.accept(HTTagPrefix.RAW_MATERIAL, RagiumMaterialKeys.NICKEL, ItemContent.RAW_NICKEL)
         consumer.accept(HTTagPrefix.RAW_MATERIAL, RagiumMaterialKeys.PLATINUM, ItemContent.RAW_PLATINUM)
     }
