@@ -17,6 +17,7 @@ import net.minecraft.registry.tag.TagKey
 import rearth.oritech.init.FluidContent
 import techreborn.init.ModFluids
 import java.util.concurrent.CompletableFuture
+import java.util.function.Supplier
 
 object RITagProviders {
     @JvmStatic
@@ -40,6 +41,10 @@ object RITagProviders {
 
             fun add(tagKey: RagiumFluids, fluid: ModFluids) {
                 add(tagKey, fluid.fluid)
+            }
+
+            fun add(tagKey: RagiumFluids, fluid: Supplier<out Fluid>) {
+                add(tagKey, fluid.get())
             }
             // Oritech
             add(RagiumFluids.CRUDE_OIL, FluidContent.STILL_OIL)
