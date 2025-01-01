@@ -10,6 +10,7 @@ import hiiragi283.ragium.api.util.TriConsumer
 import hiiragi283.ragium.common.init.RagiumMaterialKeys
 import net.minecraft.item.ItemConvertible
 import net.minecraft.util.Rarity
+import rearth.oritech.init.BlockContent
 import rearth.oritech.init.ItemContent
 
 object RagiumOritechPlugin : RagiumPlugin {
@@ -50,6 +51,15 @@ object RagiumOritechPlugin : RagiumPlugin {
     }
 
     override fun bindMaterialToItem(consumer: TriConsumer<HTTagPrefix, HTMaterialKey, ItemConvertible>) {
+        consumer.accept(HTTagPrefix.STORAGE_BLOCK, RagiumMaterialKeys.ELECTRUM, BlockContent.ELECTRUM_BLOCK)
+        consumer.accept(HTTagPrefix.STORAGE_BLOCK, RagiumMaterialKeys.NICKEL, BlockContent.NICKEL_BLOCK)
+        consumer.accept(HTTagPrefix.STORAGE_BLOCK, RagiumMaterialKeys.PLATINUM, BlockContent.PLATINUM_BLOCK)
+        consumer.accept(HTTagPrefix.STORAGE_BLOCK, RagiumMaterialKeys.STEEL, BlockContent.STEEL_BLOCK)
+        consumer.accept(HTTagPrefix.STORAGE_BLOCK, ADAMANT, BlockContent.ADAMANT_BLOCK)
+        consumer.accept(HTTagPrefix.STORAGE_BLOCK, BIOSTEEL, BlockContent.BIOSTEEL_BLOCK)
+        consumer.accept(HTTagPrefix.STORAGE_BLOCK, DURATIUM, BlockContent.DURATIUM_BLOCK)
+        consumer.accept(HTTagPrefix.STORAGE_BLOCK, ENERGITE, BlockContent.ENERGITE_BLOCK)
+
         consumer.accept(HTTagPrefix.DUST, RagiumMaterialKeys.COAL, ItemContent.COAL_DUST)
         consumer.accept(HTTagPrefix.DUST, RagiumMaterialKeys.COPPER, ItemContent.COPPER_DUST)
         consumer.accept(HTTagPrefix.DUST, RagiumMaterialKeys.ELECTRUM, ItemContent.ELECTRUM_DUST)
@@ -77,8 +87,14 @@ object RagiumOritechPlugin : RagiumPlugin {
         consumer.accept(HTTagPrefix.INGOT, ENERGITE, ItemContent.ENERGITE_INGOT)
         consumer.accept(HTTagPrefix.INGOT, PROMETHEUM, ItemContent.PROMETHEUM_INGOT)
 
-        consumer.accept(HTTagPrefix.DUST, RagiumMaterialKeys.URANIUM, ItemContent.RAW_URANIUM)
+        consumer.accept(HTTagPrefix.ORE, RagiumMaterialKeys.NICKEL, BlockContent.DEEPSLATE_NICKEL_ORE)
+        consumer.accept(HTTagPrefix.ORE, RagiumMaterialKeys.NICKEL, BlockContent.NICKEL_ORE)
+        consumer.accept(HTTagPrefix.ORE, RagiumMaterialKeys.PLATINUM, BlockContent.DEEPSLATE_PLATINUM_ORE)
+        consumer.accept(HTTagPrefix.ORE, RagiumMaterialKeys.PLATINUM, BlockContent.ENDSTONE_PLATINUM_ORE)
+        consumer.accept(HTTagPrefix.ORE, RagiumMaterialKeys.URANIUM, BlockContent.DEEPSLATE_URANIUM_ORE)
+
         consumer.accept(HTTagPrefix.RAW_MATERIAL, RagiumMaterialKeys.NICKEL, ItemContent.RAW_NICKEL)
         consumer.accept(HTTagPrefix.RAW_MATERIAL, RagiumMaterialKeys.PLATINUM, ItemContent.RAW_PLATINUM)
+        consumer.accept(HTTagPrefix.RAW_MATERIAL, RagiumMaterialKeys.URANIUM, ItemContent.RAW_URANIUM)
     }
 }
