@@ -10,14 +10,6 @@ plugins {
 group = "hiiragi283.ragium"
 version = "0.11.0.2+121x"
 
-sourceSets {
-    main {
-        resources {
-            srcDir("src/main/generated")
-        }
-    }
-}
-
 repositories {
     mavenCentral()
     maven(url = "https://cursemaven.com") {
@@ -42,7 +34,6 @@ fabricApi {
 }
 
 loom {
-    // accessWidenerPath = file("src/main/resources/ht_materials.accesswidener")
     splitEnvironmentSourceSets()
     mods {
         create("ragium_integrations") {
@@ -60,7 +51,7 @@ loom {
         }
         getByName("datagen") {
             vmArg("-Dfabric-api.datagen")
-            vmArg("-Dfabric-api.datagen.output-dir=${file("src/main/generated")}")
+            vmArg("-Dfabric-api.datagen.output-dir=${file("../ragium/src/main/generated")}")
             vmArg("-Dfabric-api.datagen.modid=ragium_integrations")
         }
     }

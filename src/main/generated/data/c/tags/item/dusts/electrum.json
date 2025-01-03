@@ -1,8 +1,0 @@
-{
-  "values": [
-    {
-      "id": "oritech:electrum_dust",
-      "required": false
-    }
-  ]
-}

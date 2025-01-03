@@ -29,7 +29,7 @@
     ],
     "fabric-datagen": [
       {
-        "value": "hiiragi283.ragium.data.RIDataGenerator",
+        "value": "hiiragi283.ragium.data.RagiumDataGenerator",
         "adapter": "kotlin"
       }
     ],
