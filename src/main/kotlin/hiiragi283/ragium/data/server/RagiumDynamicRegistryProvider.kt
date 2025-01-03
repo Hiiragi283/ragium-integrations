@@ -35,13 +35,13 @@ class RagiumDynamicRegistryProvider(output: FabricDataOutput, registriesFuture: 
 
     private fun registerPlaced(entries: Entries) {
         val lookup: RegistryEntryLookup<ConfiguredFeature<*, *>> = entries.getLookup(RegistryKeys.CONFIGURED_FEATURE)
-        registerFeature(
+        /*registerFeature(
             entries,
             lookup,
             RagiumFeatures.ORE_ASPHALT,
             CountPlacementModifier.of(2),
             HeightRangePlacementModifier.uniform(YOffset.getBottom(), YOffset.fixed(0)),
-        )
+        )*/
         registerFeature(
             entries,
             lookup,
@@ -187,7 +187,7 @@ class RagiumDynamicRegistryProvider(output: FabricDataOutput, registriesFuture: 
 
         @JvmStatic
         fun registerConfigured(register: (RegistryKey<ConfiguredFeature<*, *>>, ConfiguredFeature<*, *>) -> Unit) {
-            registerOre(
+            /*registerOre(
                 register,
                 RagiumFeatures.ORE_ASPHALT,
                 listOf(
@@ -199,7 +199,7 @@ class RagiumDynamicRegistryProvider(output: FabricDataOutput, registriesFuture: 
                     ),
                 ),
                 64,
-            )
+            )*/
             registerOre(
                 register,
                 RagiumFeatures.ORE_GYPSUM,

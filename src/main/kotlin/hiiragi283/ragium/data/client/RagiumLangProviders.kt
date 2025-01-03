@@ -272,7 +272,6 @@ object RagiumLangProviders {
 
             builder.add(RagiumItems.AMBROSIA, "Ambrosia")
 
-            builder.add(RagiumItems.BASALT_MESH, "Basalt Mesh")
             builder.add(RagiumItems.BEE_WAX, "Bee Wax")
             builder.add(RagiumItems.BLAZING_CARBON_ELECTRODE, "Blazing Carbon Electrode")
             builder.add(RagiumItems.CARBON_ELECTRODE, "Carbon Electrode")
@@ -295,6 +294,7 @@ object RagiumLangProviders {
             builder.add(RagiumItems.RAGI_ALLOY_COMPOUND, "Ragi-Alloy Compound")
             builder.add(RagiumItems.REFINED_SILICON, "Refined Silicon")
             builder.add(RagiumItems.RESIDUAL_COKE, "Residual Coke")
+            builder.add(RagiumItems.ROCK_WOOL, "Rock Wool")
             builder.add(RagiumItems.SILICON, "Silicon")
             builder.add(RagiumItems.SLAG, "Slag")
             builder.add(RagiumItems.SOAP, "Soap")
@@ -766,7 +766,6 @@ object RagiumLangProviders {
 
             builder.add(RagiumItems.AMBROSIA, "アンブロシア")
 
-            builder.add(RagiumItems.BASALT_MESH, "玄武岩メッシュ")
             builder.add(RagiumItems.BEE_WAX, "蜜蠟")
             builder.add(RagiumItems.BLAZING_CARBON_ELECTRODE, "燃え盛る炭素電極")
             builder.add(RagiumItems.CARBON_ELECTRODE, "炭素電極")
@@ -789,6 +788,7 @@ object RagiumLangProviders {
             builder.add(RagiumItems.RAGI_ALLOY_COMPOUND, "ラギ合金混合物")
             builder.add(RagiumItems.REFINED_SILICON, "精製シリコン")
             builder.add(RagiumItems.RESIDUAL_COKE, "残渣油コークス")
+            builder.add(RagiumItems.ROCK_WOOL, "ロックウール")
             builder.add(RagiumItems.SILICON, "シリコン")
             builder.add(RagiumItems.SLAG, "スラグ")
             builder.add(RagiumItems.SOAP, "石鹸")

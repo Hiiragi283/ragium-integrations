@@ -238,9 +238,9 @@ class RagiumChemicalRecipeProvider(output: FabricDataOutput, registriesFuture: C
 
         HTMachineRecipeJsonBuilder
             .create(RagiumMachineKeys.CHEMICAL_REACTOR)
-            .itemInput(RagiumItems.BASALT_MESH)
             .itemInput(RagiumItems.POLYMER_RESIN, 4)
-            .catalyst(RagiumItems.BASALT_MESH)
+            .itemInput(RagiumItems.ROCK_WOOL, 4)
+            .catalyst(RagiumItems.ROCK_WOOL)
             .itemOutput(RagiumItems.ENGINEERING_PLASTIC_PLATE)
             .offerTo(exporter, RagiumItems.ENGINEERING_PLASTIC_PLATE)
 
@@ -694,6 +694,13 @@ class RagiumChemicalRecipeProvider(output: FabricDataOutput, registriesFuture: C
             .fluidInput(RagiumFluids.HONEY, FluidConstants.BUCKET * 128)
             .itemOutput(RagiumItems.AMBROSIA)
             .offerTo(exporter, RagiumItems.AMBROSIA)
+
+        HTMachineRecipeJsonBuilder
+            .create(RagiumMachineKeys.MIXER)
+            .itemInput(RagiumItems.SLAG, 4)
+            .fluidInput(RagiumFluids.RESIDUAL_OIL, FluidConstants.BOTTLE)
+            .itemOutput(RagiumBlocks.Stones.ASPHALT)
+            .offerTo(exporter, RagiumBlocks.Stones.ASPHALT)
         // washing
         HTMachineRecipeJsonBuilder
             .create(RagiumMachineKeys.MIXER)

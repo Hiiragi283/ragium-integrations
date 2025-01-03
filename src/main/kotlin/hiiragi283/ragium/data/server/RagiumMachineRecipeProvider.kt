@@ -230,12 +230,6 @@ class RagiumMachineRecipeProvider(output: FabricDataOutput, registriesFuture: Co
             .itemInput(RagiumBlocks.Glasses.OBSIDIAN)
             .itemOutput(RagiumBlocks.Glasses.RAGIUM)
             .offerTo(exporter, RagiumBlocks.Glasses.RAGIUM)
-        // basalt
-        HTMachineRecipeJsonBuilder
-            .create(RagiumMachineKeys.BLAST_FURNACE, HTMachineTier.BASIC)
-            .itemInput(Items.SMOOTH_BASALT)
-            .fluidOutput(RagiumFluids.BASALT)
-            .offerTo(exporter, RagiumFluids.BASALT)
     }
 
     //    Compressor    //
@@ -268,12 +262,6 @@ class RagiumMachineRecipeProvider(output: FabricDataOutput, registriesFuture: Co
             .catalyst(RagiumItems.PressMolds.ROD)
             .itemOutput(Items.BREEZE_ROD)
             .offerTo(exporter, Items.BREEZE_ROD)
-
-        HTMachineRecipeJsonBuilder
-            .create(RagiumMachineKeys.COMPRESSOR)
-            .fluidInput(RagiumFluids.BASALT)
-            .itemOutput(RagiumItems.BASALT_MESH)
-            .offerTo(exporter, RagiumItems.BASALT_MESH)
         // snow, ice
         HTMachineRecipeJsonBuilder
             .create(RagiumMachineKeys.COMPRESSOR)
@@ -417,7 +405,7 @@ class RagiumMachineRecipeProvider(output: FabricDataOutput, registriesFuture: Co
         registerGrinder(exporter, ItemTags.WOODEN_TRAPDOORS to 1, RagiumItems.PULP to 3, suffix = "_from_trap_door")
         registerGrinder(exporter, ItemTags.WOOL to 1, Items.STRING to 4)
         registerGrinder(exporter, RagiumItems.CINNAMON_STICK to 1, RagiumItems.CINNAMON_POWDER to 2)
-        registerGrinder(exporter, RagiumItems.SLAG to 1, Items.GRAVEL to 1, "_from_slag")
+        registerGrinder(exporter, RagiumItems.SLAG to 1, RagiumItems.ROCK_WOOL to 1)
         registerGrinder(exporter, RagiumItemTags.PROTEIN_FOODS to 1, RagiumItems.MINCED_MEAT to 1)
 
         HTMachineRecipeJsonBuilder
@@ -436,10 +424,17 @@ class RagiumMachineRecipeProvider(output: FabricDataOutput, registriesFuture: Co
 
         HTMachineRecipeJsonBuilder
             .create(RagiumMachineKeys.GRINDER)
+            .itemInput(RagiumItems.SLAG)
+            .itemOutput(Items.GRAVEL)
+            .catalyst(Items.GRAVEL)
+            .offerTo(exporter, Items.GRAVEL, "_from_slag")
+
+        HTMachineRecipeJsonBuilder
+            .create(RagiumMachineKeys.GRINDER)
             .itemInput(Items.NETHERRACK, 8)
             .itemOutput(RagiumItems.Dusts.BAUXITE, 2)
             .itemOutput(RagiumItems.Dusts.SULFUR)
-            .offerTo(exporter, Items.GRAVEL, "_from_nether")
+            .offerTo(exporter, Items.NETHERRACK)
 
         HTMachineRecipeJsonBuilder
             .create(RagiumMachineKeys.GRINDER)
