@@ -216,13 +216,14 @@ class RagiumMachineRecipeProvider(output: FabricDataOutput, registriesFuture: Co
             .itemInput(ConventionalItemTags.GLASS_BLOCKS)
             .fluidOutput(RagiumFluids.GLASS)
             .offerTo(exporter, RagiumFluids.GLASS, "_from_glass")
-
+        // advanced glass
         HTMachineRecipeJsonBuilder
             .create(RagiumMachineKeys.BLAST_FURNACE)
             .itemInput(ConventionalItemTags.OBSIDIANS)
             .itemInput(RagiumBlocks.Glasses.STEEL)
             .itemOutput(RagiumBlocks.Glasses.OBSIDIAN)
             .offerTo(exporter, RagiumBlocks.Glasses.OBSIDIAN)
+
         HTMachineRecipeJsonBuilder
             .create(RagiumMachineKeys.BLAST_FURNACE)
             .itemInput(RagiumItems.Gems.RAGIUM)
@@ -273,6 +274,24 @@ class RagiumMachineRecipeProvider(output: FabricDataOutput, registriesFuture: Co
             .fluidInput(RagiumFluids.BASALT)
             .itemOutput(RagiumItems.BASALT_MESH)
             .offerTo(exporter, RagiumItems.BASALT_MESH)
+        // snow, ice
+        HTMachineRecipeJsonBuilder
+            .create(RagiumMachineKeys.COMPRESSOR)
+            .fluidInput(Fluids.WATER)
+            .itemOutput(Items.SNOW_BLOCK)
+            .offerTo(exporter, Items.SNOW_BLOCK)
+
+        HTMachineRecipeJsonBuilder
+            .create(RagiumMachineKeys.COMPRESSOR)
+            .itemInput(Items.SNOW_BLOCK)
+            .itemOutput(Items.ICE)
+            .offerTo(exporter, Items.ICE)
+
+        HTMachineRecipeJsonBuilder
+            .create(RagiumMachineKeys.COMPRESSOR)
+            .itemInput(Items.SNOWBALL, 4)
+            .itemOutput(Items.ICE)
+            .offerTo(exporter, Items.ICE, "_from_snowball")
         // polymer
         HTMachineRecipeJsonBuilder
             .create(RagiumMachineKeys.COMPRESSOR)

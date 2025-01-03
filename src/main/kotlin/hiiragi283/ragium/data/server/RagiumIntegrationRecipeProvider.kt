@@ -34,7 +34,7 @@ class RagiumIntegrationRecipeProvider(output: FabricDataOutput, completableFutur
             .input(ConventionalItemTags.IRON_INGOTS)
             .unlockedBy(RagiumItems.RawMaterials.CRUDE_RAGINITE)
             .offerTo(withConditions(exporter, ResourceConditions.allModsLoaded("patchouli")))
-        
+
         generateEP(withConditions(exporter, ResourceConditions.allModsLoaded("energizedpower")))
         generateOT(withConditions(exporter, ResourceConditions.allModsLoaded("oritech")))
     }

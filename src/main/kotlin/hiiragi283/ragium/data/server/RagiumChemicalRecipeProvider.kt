@@ -474,6 +474,12 @@ class RagiumChemicalRecipeProvider(output: FabricDataOutput, registriesFuture: C
             .itemInput(RagiumItems.Gems.CINNABAR)
             .fluidOutput(RagiumFluids.MERCURY)
             .offerTo(exporter, RagiumFluids.MERCURY)
+
+        HTMachineRecipeJsonBuilder
+            .create(RagiumMachineKeys.INFUSER)
+            .itemInput(Items.MUD)
+            .itemOutput(Items.CLAY)
+            .offerTo(exporter, Items.CLAY)
         // milk
         HTMachineRecipeJsonBuilder
             .create(RagiumMachineKeys.EXTRACTOR)
@@ -563,6 +569,20 @@ class RagiumChemicalRecipeProvider(output: FabricDataOutput, registriesFuture: C
             .itemInput(HTTagPrefix.PLATE, RagiumMaterialKeys.IRON)
             .itemOutput(RagiumItems.CANNED_COOKED_MEAT, 8)
             .offerTo(exporter, RagiumItems.CANNED_COOKED_MEAT)
+
+        HTMachineRecipeJsonBuilder
+            .create(RagiumMachineKeys.INFUSER, HTMachineTier.BASIC)
+            .itemInput(Items.SNOWBALL)
+            .fluidInput(RagiumFluids.AIR)
+            .itemOutput(Items.WIND_CHARGE)
+            .offerTo(exporter, Items.WIND_CHARGE)
+
+        HTMachineRecipeJsonBuilder
+            .create(RagiumMachineKeys.INFUSER)
+            .itemInput(Items.DIRT)
+            .fluidInput(Fluids.WATER, FluidConstants.BOTTLE)
+            .itemOutput(Items.MUD)
+            .offerTo(exporter, Items.MUD)
         // bottle
         HTMachineRecipeJsonBuilder
             .create(RagiumMachineKeys.INFUSER)
@@ -674,6 +694,39 @@ class RagiumChemicalRecipeProvider(output: FabricDataOutput, registriesFuture: C
             .fluidInput(RagiumFluids.HONEY, FluidConstants.BUCKET * 128)
             .itemOutput(RagiumItems.AMBROSIA)
             .offerTo(exporter, RagiumItems.AMBROSIA)
+        // washing
+        HTMachineRecipeJsonBuilder
+            .create(RagiumMachineKeys.MIXER)
+            .itemInput(Items.SAND, 8)
+            .fluidInput(Fluids.WATER)
+            .itemOutput(RagiumItems.GLASS_SHARD, 8)
+            .itemOutput(Items.IRON_NUGGET)
+            .offerTo(exporter, RagiumItems.GLASS_SHARD)
+
+        HTMachineRecipeJsonBuilder
+            .create(RagiumMachineKeys.MIXER)
+            .itemInput(Items.RED_SAND, 8)
+            .fluidInput(Fluids.WATER)
+            .itemOutput(RagiumItems.GLASS_SHARD, 8)
+            .itemOutput(RagiumItems.Dusts.BAUXITE)
+            .offerTo(exporter, RagiumItems.Dusts.BAUXITE)
+
+        HTMachineRecipeJsonBuilder
+            .create(RagiumMachineKeys.MIXER)
+            .itemInput(Items.CLAY_BALL, 8)
+            .fluidInput(Fluids.WATER)
+            .itemOutput(Items.SAND, 2)
+            .itemOutput(RagiumItems.Dusts.SALT, 4)
+            .itemOutput(RagiumItems.Dusts.BAUXITE)
+            .offerTo(exporter, RagiumItems.Dusts.SALT)
+
+        HTMachineRecipeJsonBuilder
+            .create(RagiumMachineKeys.MIXER)
+            .itemInput(Items.SOUL_SAND, 4)
+            .fluidInput(Fluids.WATER)
+            .itemOutput(Items.SAND, 4)
+            .itemOutput(Items.QUARTZ)
+            .offerTo(exporter, Items.QUARTZ)
         // acids
         HTMachineRecipeJsonBuilder
             .create(RagiumMachineKeys.MIXER)

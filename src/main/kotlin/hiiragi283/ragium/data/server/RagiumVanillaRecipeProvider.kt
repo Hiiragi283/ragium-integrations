@@ -2,10 +2,9 @@ package hiiragi283.ragium.data.server
 
 import hiiragi283.ragium.api.RagiumAPI
 import hiiragi283.ragium.api.data.*
-import hiiragi283.ragium.common.init.RagiumBlocks
-import hiiragi283.ragium.common.init.RagiumFluids
-import hiiragi283.ragium.common.init.RagiumItems
-import hiiragi283.ragium.common.init.RagiumMachineKeys
+import hiiragi283.ragium.api.material.HTMaterialKey
+import hiiragi283.ragium.api.material.HTTagPrefix
+import hiiragi283.ragium.common.init.*
 import hiiragi283.ragium.common.item.HTBackpackItem
 import hiiragi283.ragium.common.recipe.HTDynamiteUpgradingRecipe
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
@@ -82,17 +81,122 @@ class RagiumVanillaRecipeProvider(output: FabricDataOutput, registriesFuture: Co
             .unlockedBy(RagiumItems.BEE_WAX)
             .offerTo(exporter)
 
-        HTShapelessRecipeJsonBuilder
-            .create(Items.AMETHYST_SHARD, 4)
-            .input(Items.AMETHYST_BLOCK)
-            .unlockedBy(Items.AMETHYST_BLOCK)
-            .offerTo(exporter)
+        decompose4(exporter, Items.AMETHYST_SHARD, Items.AMETHYST_BLOCK)
+        decompose4(exporter, Items.SNOWBALL, Items.SNOW_BLOCK)
 
+        decompose9(exporter, Items.NETHER_WART, Items.NETHER_WART_BLOCK)
+
+        addIronAlternative(exporter, RagiumMaterialKeys.STEEL, 2)
+        addIronAlternative(exporter, RagiumMaterialKeys.ALUMINUM, 3)
+        addIronAlternative(exporter, RagiumMaterialKeys.DEEP_STEEL, 4)
+    }
+
+    private fun decompose4(exporter: RecipeExporter, output: ItemConvertible, input: ItemConvertible) {
         HTShapelessRecipeJsonBuilder
-            .create(Items.NETHER_WART, 9)
-            .input(Items.NETHER_WART_BLOCK)
-            .unlockedBy(Items.NETHER_WART_BLOCK)
+            .create(output, 4)
+            .input(input)
+            .unlockedBy(input)
             .offerTo(exporter)
+    }
+
+    private fun decompose9(exporter: RecipeExporter, output: ItemConvertible, input: ItemConvertible) {
+        HTShapelessRecipeJsonBuilder
+            .create(output, 9)
+            .input(input)
+            .unlockedBy(input)
+            .offerTo(exporter)
+    }
+
+    private fun addIronAlternative(exporter: RecipeExporter, material: HTMaterialKey, multiplier: Int) {
+        // rail
+        HTShapedRecipeJsonBuilder
+            .create(Items.RAIL, 16 * multiplier)
+            .patterns(
+                "A A",
+                "ABA",
+                "A A",
+            ).input('A', HTTagPrefix.INGOT, material)
+            .input('B', ConventionalItemTags.WOODEN_RODS)
+            .unlockedBy(HTTagPrefix.INGOT, material)
+            .offerSuffix(exporter, "_from_${material.name}")
+        // activator rail
+        HTShapedRecipeJsonBuilder
+            .create(Items.ACTIVATOR_RAIL, 6 * multiplier)
+            .patterns(
+                "ACA",
+                "ABA",
+                "ACA",
+            ).input('A', HTTagPrefix.INGOT, material)
+            .input('B', Items.REDSTONE_TORCH)
+            .input('C', ConventionalItemTags.WOODEN_RODS)
+            .unlockedBy(HTTagPrefix.INGOT, material)
+            .offerSuffix(exporter, "_from_${material.name}")
+        // detector rail
+        HTShapedRecipeJsonBuilder
+            .create(Items.DETECTOR_RAIL, 6 * multiplier)
+            .patterns(
+                "A A",
+                "ABA",
+                "ACA",
+            ).input('A', HTTagPrefix.INGOT, material)
+            .input('B', Items.STONE_PRESSURE_PLATE)
+            .input('C', ConventionalItemTags.REDSTONE_DUSTS)
+            .unlockedBy(HTTagPrefix.INGOT, material)
+            .offerSuffix(exporter, "_from_${material.name}")
+        // piston
+        HTShapedRecipeJsonBuilder
+            .create(Items.PISTON, multiplier)
+            .patterns(
+                "AAA",
+                "BCB",
+                "BDB",
+            ).input('A', ItemTags.PLANKS)
+            .input('B', ItemTags.STONE_CRAFTING_MATERIALS)
+            .input('C', HTTagPrefix.INGOT, material)
+            .input('D', ConventionalItemTags.REDSTONE_DUSTS)
+            .unlockedBy(HTTagPrefix.INGOT, material)
+            .offerSuffix(exporter, "_from_${material.name}")
+        // hopper
+        HTShapedRecipeJsonBuilder
+            .create(Items.HOPPER, multiplier)
+            .patterns(
+                "A A",
+                "ABA",
+                " A ",
+            ).input('A', HTTagPrefix.INGOT, material)
+            .input('B', Items.CHEST)
+            .unlockedBy(HTTagPrefix.INGOT, material)
+            .offerSuffix(exporter, "_from_${material.name}")
+        // chain
+        HTShapedRecipeJsonBuilder
+            .create(Items.CHAIN, multiplier)
+            .patterns(
+                "A",
+                "B",
+                "A",
+            ).input('A', ConventionalItemTags.IRON_NUGGETS)
+            .input('B', HTTagPrefix.INGOT, material)
+            .unlockedBy(HTTagPrefix.INGOT, material)
+            .offerSuffix(exporter, "_from_${material.name}")
+        // cauldron
+        HTShapedRecipeJsonBuilder
+            .create(Items.CAULDRON, multiplier)
+            .patterns(
+                "A A",
+                "A A",
+                "AAA",
+            ).input('A', HTTagPrefix.INGOT, material)
+            .unlockedBy(HTTagPrefix.INGOT, material)
+            .offerSuffix(exporter, "_from_${material.name}")
+        // bucket
+        HTShapedRecipeJsonBuilder
+            .create(Items.BUCKET, multiplier)
+            .patterns(
+                "A A",
+                " A ",
+            ).input('A', HTTagPrefix.INGOT, material)
+            .unlockedBy(HTTagPrefix.INGOT, material)
+            .offerSuffix(exporter, "_from_${material.name}")
     }
 
     //    Crafting - Armors    //
@@ -578,6 +682,7 @@ class RagiumVanillaRecipeProvider(output: FabricDataOutput, registriesFuture: Co
     //    Cooking   //
 
     private fun cookingRecipes(exporter: RecipeExporter) {
+        // blasting
         HTCookingRecipeJsonBuilder.smeltAndBlast(
             exporter,
             RagiumItems.RAGI_ALLOY_COMPOUND,
@@ -598,7 +703,12 @@ class RagiumVanillaRecipeProvider(output: FabricDataOutput, registriesFuture: Co
             RagiumItems.Dusts.QUARTZ.prefixedTagKey,
             RagiumItems.CRUDE_SILICON,
         )
-
+        HTCookingRecipeJsonBuilder.smeltAndBlast(
+            exporter,
+            RagiumItems.GLASS_SHARD,
+            Items.GLASS,
+        )
+        // smoking
         HTCookingRecipeJsonBuilder.smeltAndSmoke(
             exporter,
             RagiumItems.DOUGH,
