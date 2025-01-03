@@ -172,10 +172,6 @@ object RagiumLangProviders {
 
             builder.add(RagiumTranslationKeys.CRATE_CAPACITY, "Capacity: %s Items")
 
-            builder.add(RagiumTranslationKeys.DRUM_AMOUNT, "Amount: %s Unit")
-            builder.add(RagiumTranslationKeys.DRUM_CAPACITY, "Capacity: %s Unit")
-            builder.add(RagiumTranslationKeys.DRUM_FLUID, "Fluid: %s")
-
             builder.add(RagiumTranslationKeys.TRANSPORTER_FLUID_SPEED, "Fluid Speed: %s Units/s")
             builder.add(RagiumTranslationKeys.TRANSPORTER_ITEM_SPEED, "Item Speed: %s /s")
 
@@ -200,6 +196,11 @@ object RagiumLangProviders {
             builder.add(RagiumEntityTypes.BEDROCK_DYNAMITE, "Bedrock Dynamite")
             builder.add(RagiumEntityTypes.FLATTENING_DYNAMITE, "Flattening Dynamite")
             builder.add(RagiumEntityTypes.FROSTING_DYNAMITE, "Frosting Dynamite")
+            // Fluid
+            builder.add(RagiumTranslationKeys.FLUID_AMOUNT, "Amount: %s")
+            builder.add(RagiumTranslationKeys.FLUID_CAPACITY, "Capacity: %s")
+            builder.add(RagiumTranslationKeys.FLUID_TITLE, "Fluid: %s")
+            builder.add(RagiumTranslationKeys.FORMATTED_FLUID, "%s B, %s Units")
             // Item
             builder.add(RagiumItems.SteelArmors.HELMET, "Steel Helmet")
             builder.add(RagiumItems.SteelArmors.CHESTPLATE, "Steel Chestplate")
@@ -241,7 +242,6 @@ object RagiumLangProviders {
             builder.add(RagiumItems.FLUID_FILTER, "Fluid Filter")
             builder.add(RagiumItems.FORGE_HAMMER, "Forge Hammer")
             builder.add(RagiumItems.GIGANT_HAMMER, "Gigant Hammer")
-            builder.add(RagiumItems.GUIDE_BOOK, "Guide Book")
             builder.add(RagiumItems.ITEM_FILTER, "Item Filter")
             builder.add(RagiumItems.RAGI_WRENCH, "Ragi-Wrench")
             builder.add(RagiumItems.RAGIUM_SABER, "Ragium Saber")
@@ -349,12 +349,9 @@ object RagiumLangProviders {
             // Machine
             builder.add(RagiumTranslationKeys.MACHINE_NAME, "Name: %s")
             builder.add(RagiumTranslationKeys.MACHINE_TIER, "Tier: %s")
-            builder.add(RagiumTranslationKeys.MACHINE_FLUID_AMOUNT, "Amount: %s B, %s Units")
             builder.add(RagiumTranslationKeys.MACHINE_NETWORK_ENERGY, "Network Energy: %s Units")
             builder.add(RagiumTranslationKeys.MACHINE_RECIPE_COST, "Recipe cost: %s E")
             builder.add(RagiumTranslationKeys.MACHINE_SHOW_PREVIEW, "Show preview: %s")
-            builder.add(RagiumTranslationKeys.MACHINE_SLOT_COUNTS, "Input/Output Slots: %s")
-            builder.add(RagiumTranslationKeys.MACHINE_TANK_CAPACITY, "Each Tank Capacity: %s Buckets")
 
             builder.add(RagiumTranslationKeys.MULTI_SHAPE_ERROR, "Not matching condition; %s at %ss")
             builder.add(RagiumTranslationKeys.MULTI_SHAPE_SUCCESS, "The structure is valid!")
@@ -668,10 +665,6 @@ object RagiumLangProviders {
 
             builder.add(RagiumTranslationKeys.CRATE_CAPACITY, "容量: %s 個")
 
-            builder.add(RagiumTranslationKeys.DRUM_AMOUNT, "液体量: %s ユニット")
-            builder.add(RagiumTranslationKeys.DRUM_CAPACITY, "容量: %s ユニット")
-            builder.add(RagiumTranslationKeys.DRUM_FLUID, "液体: %s")
-
             builder.add(RagiumTranslationKeys.TRANSPORTER_FLUID_SPEED, "液体速度: %s ユニット/秒")
             builder.add(RagiumTranslationKeys.TRANSPORTER_ITEM_SPEED, "アイテム速度: %s個/秒")
 
@@ -689,10 +682,6 @@ object RagiumLangProviders {
             builder.add(RagiumTranslationKeys.EXPORTER, "搬出機")
             builder.add(RagiumTranslationKeys.GRATE, "格子")
             builder.add(RagiumTranslationKeys.HULL, "筐体")
-            // Enchantment
-            // builder.add(RagiumEnchantments.SMELTING, "精錬")
-            // builder.add(RagiumEnchantments.SLEDGE_HAMMER, "粉砕")
-            // builder.add(RagiumEnchantments.BUZZ_SAW, "製材")
             // Entity
             builder.add(RagiumEntityTypes.DYNAMITE, "ダイナマイト")
             builder.add(RagiumEntityTypes.ANVIL_DYNAMITE, "金床ダイナマイト")
@@ -700,6 +689,11 @@ object RagiumLangProviders {
             builder.add(RagiumEntityTypes.BEDROCK_DYNAMITE, "岩盤ダイナマイト")
             builder.add(RagiumEntityTypes.FLATTENING_DYNAMITE, "整地用ダイナマイト")
             builder.add(RagiumEntityTypes.FROSTING_DYNAMITE, "凍えるダイナマイト")
+            // Fluid
+            builder.add(RagiumTranslationKeys.FLUID_AMOUNT, "液体量: %s")
+            builder.add(RagiumTranslationKeys.FLUID_CAPACITY, "容量: %s")
+            builder.add(RagiumTranslationKeys.FLUID_TITLE, "液体名: %s")
+            builder.add(RagiumTranslationKeys.FORMATTED_FLUID, "%s B, %s ユニット")
             // Item
             builder.add(RagiumItems.SteelArmors.HELMET, "スチールのヘルメット")
             builder.add(RagiumItems.SteelArmors.CHESTPLATE, "スチールのチェストプレート")
@@ -741,7 +735,6 @@ object RagiumLangProviders {
             builder.add(RagiumItems.FLUID_FILTER, "液体フィルタ")
             builder.add(RagiumItems.FORGE_HAMMER, "鍛造ハンマー")
             builder.add(RagiumItems.GIGANT_HAMMER, "ギガントハンマー")
-            builder.add(RagiumItems.GUIDE_BOOK, "ガイドブック")
             builder.add(RagiumItems.ITEM_FILTER, "アイテムフィルタ")
             builder.add(RagiumItems.RAGI_WRENCH, "らぎレンチ")
             builder.add(RagiumItems.RAGIUM_SABER, "ラギウムセイバー")
@@ -846,12 +839,9 @@ object RagiumLangProviders {
             // Machine
             builder.add(RagiumTranslationKeys.MACHINE_NAME, "名称: %s")
             builder.add(RagiumTranslationKeys.MACHINE_TIER, "ティア: %s")
-            builder.add(RagiumTranslationKeys.MACHINE_FLUID_AMOUNT, "液体量: %s B, %s ユニット")
             builder.add(RagiumTranslationKeys.MACHINE_NETWORK_ENERGY, "ネットワーク上のエネルギー量: %s ユニット")
             builder.add(RagiumTranslationKeys.MACHINE_RECIPE_COST, "処理コスト: %s E")
             builder.add(RagiumTranslationKeys.MACHINE_SHOW_PREVIEW, "プレビューの表示: %s")
-            builder.add(RagiumTranslationKeys.MACHINE_SLOT_COUNTS, "入力/出力スロット数: %s")
-            builder.add(RagiumTranslationKeys.MACHINE_TANK_CAPACITY, "各液体タンクの容量: %s バケツ")
 
             builder.add(RagiumTranslationKeys.MULTI_SHAPE_ERROR, "次の条件を満たしていません: %s (座標: %s)")
             builder.add(RagiumTranslationKeys.MULTI_SHAPE_SUCCESS, "構造物は有効です！")

@@ -59,10 +59,6 @@
         "adapter": "kotlin"
       },
       {
-        "value": "hiiragi283.ragium.integration.patchouli.RagiumPatchouliPlugin",
-        "adapter": "kotlin"
-      },
-      {
         "value": "hiiragi283.ragium.integration.RagiumTechRebornPlugin",
         "adapter": "kotlin"
       }

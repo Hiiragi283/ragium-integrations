@@ -474,7 +474,6 @@ class RagiumModelProvider(output: FabricDataOutput) : FabricModelProvider(output
             add(RagiumItems.BACKPACK)
             add(RagiumItems.FLUID_FILTER)
             add(RagiumItems.FORGE_HAMMER)
-            add(RagiumItems.GUIDE_BOOK)
             add(RagiumItems.ITEM_FILTER)
             add(RagiumItems.RAGI_WRENCH)
             add(RagiumItems.RAGIUM_SABER)

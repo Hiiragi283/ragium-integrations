@@ -293,14 +293,6 @@ class RagiumVanillaRecipeProvider(output: FabricDataOutput, registriesFuture: Co
             ).input('A', RagiumItems.Ingots.RAGI_ALLOY)
             .unlockedBy(RagiumItems.Ingots.RAGI_ALLOY)
             .offerTo(exporter)
-        // patchouli
-        HTShapelessRecipeJsonBuilder
-            .create(RagiumItems.GUIDE_BOOK)
-            .input(Items.BOOK)
-            .input(RagiumItems.RawMaterials.CRUDE_RAGINITE)
-            .input(ConventionalItemTags.IRON_INGOTS)
-            .unlockedBy(RagiumItems.RawMaterials.CRUDE_RAGINITE)
-            .offerTo(exporter)
         // dynamites
         mapOf(
             RagiumItems.Dynamites.ANVIL to Items.ANVIL,
