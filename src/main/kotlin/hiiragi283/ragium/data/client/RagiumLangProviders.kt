@@ -344,9 +344,10 @@ object RagiumLangProviders {
             builder.add(RagiumTranslationKeys.RADIOACTIVITY, "Radioactivity Level: %s")
             builder.add(RagiumTranslationKeys.WARPED_CRYSTAL_DESTINATION, "Destination: %s")
             // Item Group
-            builder.add(RagiumItemGroup.ITEM_KEY, "Ragium - Items")
-            builder.add(RagiumItemGroup.FLUID_KEY, "Ragium - Fluids")
-            builder.add(RagiumItemGroup.MACHINE_KEY, "Ragium - Machines")
+            builder.add(RagiumItemGroup.ITEM, "Ragium - Items")
+            builder.add(RagiumItemGroup.FLUID, "Ragium - Fluids")
+            builder.add(RagiumItemGroup.MACHINE, "Ragium - Machines")
+            builder.add(RagiumItemGroup.TRANSFER, "Ragium - Transfer")
             // Machine
             builder.add(RagiumTranslationKeys.MACHINE_NAME, "Name: %s")
             builder.add(RagiumTranslationKeys.MACHINE_TIER, "Tier: %s")
@@ -835,9 +836,10 @@ object RagiumLangProviders {
             builder.add(RagiumTranslationKeys.RADIOACTIVITY, "放射能レベル: %s")
             builder.add(RagiumTranslationKeys.WARPED_CRYSTAL_DESTINATION, "座標: %s")
             // Item Group
-            builder.add(RagiumItemGroup.ITEM_KEY, "Ragium - アイテム")
-            builder.add(RagiumItemGroup.FLUID_KEY, "Ragium - 液体")
-            builder.add(RagiumItemGroup.MACHINE_KEY, "Ragium - 機械")
+            builder.add(RagiumItemGroup.ITEM, "Ragium - アイテム")
+            builder.add(RagiumItemGroup.FLUID, "Ragium - 液体")
+            builder.add(RagiumItemGroup.MACHINE, "Ragium - 機械")
+            builder.add(RagiumItemGroup.TRANSFER, "Ragium - 輸送")
             // Machine
             builder.add(RagiumTranslationKeys.MACHINE_NAME, "名称: %s")
             builder.add(RagiumTranslationKeys.MACHINE_TIER, "ティア: %s")

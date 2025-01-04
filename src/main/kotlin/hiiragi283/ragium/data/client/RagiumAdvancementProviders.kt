@@ -228,6 +228,7 @@ object RagiumAdvancementProviders {
 
     private fun Advancement.Builder.hasFluid(content: HTFluidContent): Advancement.Builder = hasFluid(content.get())
 
+    @Suppress("DEPRECATION")
     private fun Advancement.Builder.hasFluid(fluid: Fluid): Advancement.Builder = criterion(
         "has_fluids",
         InventoryChangedCriterion.Conditions.items(
@@ -237,7 +238,7 @@ object RagiumAdvancementProviders {
                 .component(
                     ComponentPredicate
                         .builder()
-                        .add(RagiumComponentTypes.FLUID, fluid)
+                        .add(RagiumComponentTypes.FLUID, fluid.registryEntry)
                         .build(),
                 ),
         ),

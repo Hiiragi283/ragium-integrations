@@ -4,6 +4,8 @@ import com.mojang.datafixers.kinds.App
 import com.mojang.serialization.Codec
 import com.mojang.serialization.codecs.RecordCodecBuilder
 import hiiragi283.ragium.api.RagiumAPI
+import hiiragi283.ragium.api.extension.getEntryOrNull
+import hiiragi283.ragium.api.extension.id
 import net.minecraft.item.Item
 import net.minecraft.registry.Registries
 import net.minecraft.registry.Registry
@@ -18,7 +20,6 @@ import vazkii.patchouli.client.book.page.PageSpotlight
 import vazkii.patchouli.client.book.page.PageText
 import vazkii.patchouli.client.book.page.abstr.PageDoubleRecipe
 import java.util.*
-import kotlin.jvm.optionals.getOrNull
 
 object HTBookPageSerializers {
     @JvmField
@@ -28,14 +29,11 @@ object HTBookPageSerializers {
                 .split(",")
                 .map(Identifier::of)
                 .map { RegistryKey.of(RegistryKeys.ITEM, it) }
-                .map(Registries.ITEM::getEntry)
-                .mapNotNull(Optional<RegistryEntry.Reference<Item>>::getOrNull)
+                .mapNotNull(Registries.ITEM::getEntryOrNull)
         },
         {
             it
-                .map(RegistryEntry<Item>::getKey)
-                .mapNotNull(Optional<RegistryKey<Item>>::getOrNull)
-                .map(RegistryKey<Item>::getValue)
+                .mapNotNull(RegistryEntry<Item>::id)
                 .joinToString(separator = ",", transform = Identifier::toString)
         },
     )

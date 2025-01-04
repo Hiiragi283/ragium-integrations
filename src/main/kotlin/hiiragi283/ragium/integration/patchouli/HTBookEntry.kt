@@ -2,11 +2,11 @@ package hiiragi283.ragium.integration.patchouli
 
 import com.mojang.serialization.Codec
 import com.mojang.serialization.codecs.RecordCodecBuilder
+import hiiragi283.ragium.api.extension.id
 import hiiragi283.ragium.integration.patchouli.page.HTBookPage
 import net.minecraft.item.Item
 import net.minecraft.registry.entry.RegistryEntry
 import net.minecraft.util.Identifier
-import kotlin.jvm.optionals.getOrNull
 
 class HTBookEntry private constructor(
     val name: String,
@@ -36,10 +36,7 @@ class HTBookEntry private constructor(
             category: Identifier,
             pages: List<HTBookPage<*, *>>,
         ): HTBookEntry? {
-            val iconId: String = icon.key
-                .getOrNull()
-                ?.value
-                ?.toString() ?: return null
+            val iconId: String = icon.id?.toString() ?: return null
             return HTBookEntry(name, iconId, category, pages)
         }
     }
