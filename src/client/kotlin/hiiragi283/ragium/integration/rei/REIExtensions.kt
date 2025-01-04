@@ -7,7 +7,7 @@ import hiiragi283.ragium.api.recipe.HTFluidIngredient
 import hiiragi283.ragium.api.recipe.HTFluidResult
 import hiiragi283.ragium.api.recipe.HTItemIngredient
 import hiiragi283.ragium.api.recipe.HTItemResult
-import hiiragi283.ragium.integration.RITranslationKeys
+import hiiragi283.ragium.common.init.RagiumTranslationKeys
 import hiiragi283.ragium.integration.rei.display.HTMachineRecipeDisplay
 import me.shedaniel.rei.api.common.category.CategoryIdentifier
 import me.shedaniel.rei.api.common.entry.EntryIngredient
@@ -57,7 +57,7 @@ fun getDummyIngredient(entryText: Text): EntryIngredient = EntryIngredients.of(
         add(
             DataComponentTypes.ITEM_NAME,
             Text
-                .translatable(RITranslationKeys.REI_ENTRY_NO_MATCHING, entryText)
+                .translatable(RagiumTranslationKeys.REI_ENTRY_NO_MATCHING, entryText)
                 .formatted(Formatting.RED),
         )
     },
@@ -73,7 +73,7 @@ val HTItemIngredient.entryIngredient: EntryIngredient
         if (consumeType == HTItemIngredient.ConsumeType.DAMAGE) {
             stack.tooltip(
                 Text
-                    .translatable(RITranslationKeys.REI_ENTRY_APPLY_DAMAGE, count)
+                    .translatable(RagiumTranslationKeys.REI_ENTRY_APPLY_DAMAGE, count)
                     .formatted(Formatting.YELLOW),
             )
         }

@@ -163,23 +163,15 @@ class RagiumMachineRecipeProvider(output: FabricDataOutput, registriesFuture: Co
         // silicon
         HTMachineRecipeJsonBuilder
             .create(RagiumMachineKeys.BLAST_FURNACE, HTMachineTier.BASIC)
-            .itemInput(RagiumItems.Dusts.QUARTZ, 2)
-            .itemInput(ItemTags.COALS, 4)
-            .itemOutput(RagiumItems.SILICON)
-            .itemOutput(RagiumItems.SLAG, 2)
-            .offerTo(exporter, RagiumItems.SILICON, "_from_quartz")
-
-        HTMachineRecipeJsonBuilder
-            .create(RagiumMachineKeys.BLAST_FURNACE, HTMachineTier.BASIC)
             .itemInput(RagiumItemTags.SILICON, 2)
-            .itemInput(ItemTags.COALS, 2)
+            .itemInput(ItemTags.COALS)
             .itemOutput(RagiumItems.SILICON)
             .itemOutput(RagiumItems.SLAG)
-            .offerTo(exporter, RagiumItems.SILICON, "_from_crude")
+            .offerTo(exporter, RagiumItems.SILICON)
         // aluminum
         HTMachineRecipeJsonBuilder
             .create(RagiumMachineKeys.BLAST_FURNACE, HTMachineTier.BASIC)
-            .itemInput(ItemTags.COALS, 8)
+            .itemInput(ItemTags.COALS, 4)
             .fluidInput(RagiumFluids.ALUMINA_SOLUTION)
             .itemOutput(RagiumItems.Ingots.ALUMINUM)
             .offerTo(exporter, RagiumItems.Ingots.ALUMINUM, "_with_coal")
@@ -417,17 +409,10 @@ class RagiumMachineRecipeProvider(output: FabricDataOutput, registriesFuture: Co
 
         HTMachineRecipeJsonBuilder
             .create(RagiumMachineKeys.GRINDER)
-            .itemInput(Items.GRAVEL)
+            .itemInput(Items.GRAVEL, RagiumItems.SLAG)
             .itemOutput(Items.SAND)
             .catalyst(Items.SAND)
-            .offerTo(exporter, Items.SAND, "_from_gravel")
-
-        HTMachineRecipeJsonBuilder
-            .create(RagiumMachineKeys.GRINDER)
-            .itemInput(RagiumItems.SLAG)
-            .itemOutput(Items.GRAVEL)
-            .catalyst(Items.GRAVEL)
-            .offerTo(exporter, Items.GRAVEL, "_from_slag")
+            .offerTo(exporter, Items.SAND)
 
         HTMachineRecipeJsonBuilder
             .create(RagiumMachineKeys.GRINDER)
@@ -441,7 +426,7 @@ class RagiumMachineRecipeProvider(output: FabricDataOutput, registriesFuture: Co
             .itemInput(ConventionalItemTags.UNCOLORED_SANDSTONE_BLOCKS)
             .itemOutput(Items.SAND, 4)
             .itemOutput(RagiumItems.Dusts.NITER)
-            .offerTo(exporter, Items.SAND)
+            .offerTo(exporter, Items.SAND, "_from_sandstone")
 
         HTMachineRecipeJsonBuilder
             .create(RagiumMachineKeys.GRINDER)
