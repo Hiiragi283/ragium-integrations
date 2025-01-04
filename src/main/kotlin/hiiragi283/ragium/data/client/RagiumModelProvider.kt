@@ -63,8 +63,8 @@ class RagiumModelProvider(output: FabricDataOutput) : FabricModelProvider(output
         blockGenerator.registerSingleton(content.get(), TexturedModel.makeFactory(getter, model))
     }
 
-    fun registerSimple(content: HTBlockContent, id: Identifier = content.id.withPrefixedPath("block/")) {
-        blockGenerator.registerSingleton(content.get()) { TexturedModel.getCubeAll(id) }
+    fun registerSimple(content: HTBlockContent, textureId: Identifier = content.id.withPrefixedPath("block/")) {
+        blockGenerator.registerSingleton(content.get()) { TexturedModel.getCubeAll(textureId) }
     }
 
     fun registerLayered(content: HTBlockContent, layer0: Identifier, layer1: Identifier) {
@@ -185,6 +185,21 @@ class RagiumModelProvider(output: FabricDataOutput) : FabricModelProvider(output
         blockGenerator.excludeFromSimpleItemModelGeneration(RagiumBlocks.WhiteLines.CROSS.get())
         registerFactory(RagiumBlocks.WhiteLines.CROSS, RagiumModels.SURFACE) {
             HTTextureMapBuilder.of(TextureKey.TOP, RagiumBlocks.WhiteLines.CROSS)
+        }
+        // decoration
+        registerSimple(RagiumBlocks.PLASTIC_BLOCK)
+        RagiumBlocks.Decorations.entries.forEach { decoration: RagiumBlocks.Decorations ->
+            val block: Block = decoration.get()
+            val modelId: Identifier = decoration.id.withPath { "block/" + it.removeSuffix("_decoration") }
+            generator.excludeFromSimpleItemModelGeneration(block)
+            when (decoration.isPillar) {
+                true -> {
+                    register(decoration) { blockGenerator.registerAxisRotated(it, modelId) }
+                }
+
+                false -> registerStaticModel(decoration, modelId)
+            }
+            generator.registerParentedItemModel(block, modelId)
         }
         // ore
         RagiumBlocks.Ores.entries.forEach { ore: RagiumBlocks.Ores ->

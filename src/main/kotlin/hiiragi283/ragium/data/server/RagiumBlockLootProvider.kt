@@ -54,14 +54,10 @@ class RagiumBlockLootProvider(dataOutput: FabricDataOutput, registryLookup: Comp
     }
 
     override fun generate() {
-        addDrop(RagiumBlocks.MUTATED_SOIL)
         addDrop(RagiumBlocks.POROUS_NETHERRACK) { block: Block -> withSilkTouch(block, Items.NETHERRACK) }
 
-        RagiumBlocks.Stones.entries.forEach(::addDrop)
         RagiumBlocks.Slabs.entries.forEach { addDrop(it, ::slabDrops) }
-        RagiumBlocks.Stairs.entries.forEach(::addDrop)
 
-        addDrop(RagiumBlocks.SPONGE_CAKE)
         addDrop(
             RagiumBlocks.SWEET_BERRIES_CAKE,
             drops(
@@ -74,24 +70,27 @@ class RagiumBlockLootProvider(dataOutput: FabricDataOutput, registryLookup: Comp
         RagiumBlocks.Ores.entries.forEach(::dropOre)
 
         buildList {
-            addAll(RagiumBlocks.StorageBlocks.entries)
-
-            addAll(RagiumBlocks.Grates.entries)
+            add(RagiumBlocks.MUTATED_SOIL)
+            add(RagiumBlocks.PLASTIC_BLOCK)
+            add(RagiumBlocks.SPONGE_CAKE)
             addAll(RagiumBlocks.Casings.entries)
-            addAll(RagiumBlocks.Hulls.entries)
             addAll(RagiumBlocks.Coils.entries)
-
-            addAll(RagiumBlocks.Exporters.entries)
-            addAll(RagiumBlocks.Pipes.entries)
-            addAll(RagiumBlocks.CrossPipes.entries)
-            addAll(RagiumBlocks.PipeStations.entries)
-            addAll(RagiumBlocks.FilteringPipes.entries)
-
             addAll(RagiumBlocks.Creatives.entries)
-            addAll(RagiumBlocks.WhiteLines.entries)
+            addAll(RagiumBlocks.CrossPipes.entries)
+            addAll(RagiumBlocks.Decorations.entries)
+            addAll(RagiumBlocks.Exporters.entries)
+            addAll(RagiumBlocks.FilteringPipes.entries)
             addAll(RagiumBlocks.Glasses.entries)
+            addAll(RagiumBlocks.Grates.entries)
+            addAll(RagiumBlocks.Hulls.entries)
             addAll(RagiumBlocks.MECHANICS)
             addAll(RagiumBlocks.MISC)
+            addAll(RagiumBlocks.Pipes.entries)
+            addAll(RagiumBlocks.PipeStations.entries)
+            addAll(RagiumBlocks.Stairs.entries)
+            addAll(RagiumBlocks.Stones.entries)
+            addAll(RagiumBlocks.StorageBlocks.entries)
+            addAll(RagiumBlocks.WhiteLines.entries)
         }.forEach(::addDrop)
 
         RagiumBlocks.Crates.entries.forEach { dropWithComponent(it, RagiumComponentTypes.CRATE) }

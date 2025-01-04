@@ -23,10 +23,11 @@ object RagiumDataGenerator : DataGeneratorEntrypoint {
         RagiumAdvancementProviders.init(pack)
         RagiumTagProviders.init(pack)
         // client
+        pack.addProvider(::RagiumEnglishLangProvider)
+        pack.addProvider(::RagiumJapaneseLangProvider)
         pack.addProvider(::RagiumModelProvider)
         pack.addProvider(::RIPatchouliCategoryProvider)
         pack.addProvider(::RIPatchouliPageProvider)
-        RagiumLangProviders.init(pack)
 
         RagiumAPI.LOGGER.info("Ragium data generation is done!")
     }

@@ -267,6 +267,24 @@ class RagiumVanillaRecipeProvider(output: FabricDataOutput, registriesFuture: Co
     //    Crafting - Buildings    //
 
     private fun craftingBuildings(exporter: RecipeExporter) {
+        HTShapedRecipeJsonBuilder
+            .create(RagiumBlocks.PLASTIC_BLOCK, 4)
+            .patterns(
+                "AA",
+                "AA",
+            ).input('A', RagiumItems.PLASTIC_PLATE)
+            .unlockedBy(RagiumItems.PLASTIC_PLATE)
+            .offerTo(exporter)
+
+        HTShapedRecipeJsonBuilder
+            .create(RagiumBlocks.PLASTIC_BLOCK, 16)
+            .patterns(
+                "AA",
+                "AA",
+            ).input('A', RagiumItems.ENGINEERING_PLASTIC_PLATE)
+            .unlockedBy(RagiumItems.ENGINEERING_PLASTIC_PLATE)
+            .offerSuffix(exporter, "_from_engineering")
+
         // slabs
         RagiumBlocks.Slabs.entries.forEach { slabs: RagiumBlocks.Slabs ->
             registerSlab(exporter, slabs, slabs.baseStone)
@@ -730,5 +748,14 @@ class RagiumVanillaRecipeProvider(output: FabricDataOutput, registriesFuture: Co
             RagiumItems.COAL_CHIP,
             8,
         )
+        // decoration
+        RagiumBlocks.Decorations.entries.forEach { decoration: RagiumBlocks.Decorations ->
+            HTStonecuttingRecipeJsonBuilder.register(
+                exporter,
+                RagiumBlocks.PLASTIC_BLOCK,
+                decoration,
+                category = RecipeCategory.BUILDING_BLOCKS,
+            )
+        }
     }
 }
