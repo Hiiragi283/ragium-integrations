@@ -1,15 +1,16 @@
 package hiiragi283.ragium.integration.rei
 
 import hiiragi283.ragium.api.RagiumAPI
+import hiiragi283.ragium.api.RagiumConfig
 import hiiragi283.ragium.api.component.HTExplosionComponent
 import hiiragi283.ragium.api.data.HTMachineRecipeJsonBuilder
 import hiiragi283.ragium.api.extension.buildItemStack
 import hiiragi283.ragium.api.machine.HTMachineKey
+import hiiragi283.ragium.api.machine.HTMachineRegistry
 import hiiragi283.ragium.api.machine.HTMachineTier
 import hiiragi283.ragium.api.tags.RagiumFluidTags
 import hiiragi283.ragium.common.init.*
 import hiiragi283.ragium.common.recipe.HTMachineRecipe
-import hiiragi283.ragium.integration.rei.category.HTMachineRecipeCategory
 import hiiragi283.ragium.integration.rei.category.HTMaterialInfoCategory
 import hiiragi283.ragium.integration.rei.display.HTMachineRecipeDisplay
 import hiiragi283.ragium.integration.rei.display.HTMaterialInfoDisplay
@@ -27,6 +28,7 @@ import net.fabricmc.api.Environment
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants
 import net.minecraft.block.ComposterBlock
 import net.minecraft.fluid.Fluid
+import net.minecraft.fluid.Fluids
 import net.minecraft.item.ItemConvertible
 import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
@@ -58,9 +60,9 @@ object RagiumREIClient : REIClientPlugin {
         RagiumAPI
             .getInstance()
             .machineRegistry
-            .keys
-            .forEach { key: HTMachineKey ->
-                registry.add(HTMachineRecipeCategory(key))
+            .entryMap
+            .forEach { (key: HTMachineKey, entry: HTMachineRegistry.Entry) ->
+                registry.add(entry.getOrDefault(REIMachinePropertyKeys.RECIPE_CATEGORY)(key))
                 HTMachineTier.entries.map(key::createEntryStack).forEach { stack: EntryStack<ItemStack> ->
                     registry.addWorkstations(key.categoryId, stack)
                 }
@@ -79,6 +81,10 @@ object RagiumREIClient : REIClientPlugin {
     }
 
     override fun registerDisplays(registry: DisplayRegistry) {
+        val config: RagiumConfig.Generator = RagiumAPI
+            .getInstance()
+            .config.machine.generator
+
         fun registerFuels(fuelTag: TagKey<Fluid>, key: HTMachineKey, amount: Long) {
             Registries.FLUID.iterateEntries(fuelTag).forEach { fluid: RegistryEntry<Fluid> ->
                 HTMachineRecipeJsonBuilder
@@ -110,16 +116,41 @@ object RagiumREIClient : REIClientPlugin {
             }.forEach(registry::add)
 
         // generator
-        registerFuels(RagiumFluidTags.NON_NITRO_FUELS, RagiumMachineKeys.COMBUSTION_GENERATOR, FluidConstants.INGOT)
-        registerFuels(RagiumFluidTags.NITRO_FUELS, RagiumMachineKeys.COMBUSTION_GENERATOR, FluidConstants.NUGGET)
-        registerFuels(RagiumFluidTags.THERMAL_FUELS, RagiumMachineKeys.THERMAL_GENERATOR, FluidConstants.INGOT)
+        registerFuels(RagiumFluidTags.NON_NITRO_FUELS, RagiumMachineKeys.COMBUSTION_GENERATOR, config.nonNitroFuel)
+        registerFuels(RagiumFluidTags.NITRO_FUELS, RagiumMachineKeys.COMBUSTION_GENERATOR, config.nitroFuel)
+        registerFuels(RagiumFluidTags.THERMAL_FUELS, RagiumMachineKeys.THERMAL_GENERATOR, config.thermalFuel)
+        // steam
+        HTMachineRecipeJsonBuilder
+            .create(RagiumMachineKeys.STEAM_GENERATOR)
+            .itemInput(RagiumItems.COAL_CHIP)
+            .fluidInput(Fluids.WATER, config.steamWater)
+            .itemOutput(RagiumItems.Dusts.ASH)
+            .transform(::HTMachineRecipeDisplay)
+            .let(registry::add)
+        // nuclear
+        HTMachineRecipeJsonBuilder
+            .create(RagiumMachineKeys.NUCLEAR_REACTOR)
+            .itemInput(RagiumItems.Radioactives.URANIUM_FUEL)
+            .fluidInput(RagiumFluidTags.COOLANTS, config.coolant)
+            .itemOutput(RagiumItems.Radioactives.NUCLEAR_WASTE)
+            .transform(::HTMachineRecipeDisplay)
+            .let(registry::add)
+
+        HTMachineRecipeJsonBuilder
+            .create(RagiumMachineKeys.NUCLEAR_REACTOR)
+            .itemInput(RagiumItems.Radioactives.PLUTONIUM_FUEL)
+            .fluidInput(RagiumFluidTags.COOLANTS, config.coolant)
+            .itemOutput(RagiumItems.SLAG)
+            .transform(::HTMachineRecipeDisplay)
+            .let(registry::add)
+
         // machine
         registry.registerRecipeFiller(
             HTMachineRecipe::class.java,
             RagiumRecipeTypes.MACHINE,
             ::HTMachineRecipeDisplay,
         )
-
+        // biomass
         ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.forEach { (item: ItemConvertible, chance: Float) ->
             val fixedAmount: Long = (FluidConstants.BUCKET * chance).toLong()
             HTMachineRecipeJsonBuilder

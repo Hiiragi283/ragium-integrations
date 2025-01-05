@@ -7,6 +7,8 @@ import hiiragi283.ragium.api.machine.HTMachineKey
 import hiiragi283.ragium.api.machine.HTMachineTier
 import hiiragi283.ragium.api.machine.multiblock.HTMultiblockProvider
 import hiiragi283.ragium.common.init.RagiumTranslationKeys
+import net.fabricmc.api.EnvType
+import net.fabricmc.api.Environment
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.text.Text
 import net.minecraft.util.Identifier
@@ -17,6 +19,7 @@ import snownee.jade.api.ITooltip
 import snownee.jade.api.config.IPluginConfig
 import kotlin.jvm.optionals.getOrNull
 
+@Environment(EnvType.CLIENT)
 object HTMachineProvider : IBlockComponentProvider, IServerDataProvider<BlockAccessor> {
     @JvmField
     val KEY: MapCodec<HTMachineKey> = HTMachineKey.CODEC.fieldOf("key")

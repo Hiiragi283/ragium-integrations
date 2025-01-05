@@ -369,7 +369,8 @@ class RagiumEnglishLangProvider(output: FabricDataOutput, registryLookup: Comple
             "Generate energy from hot fluids",
         )
 
-        builder.add(RagiumMachineKeys.ASSEMBLER, "Assembler", "Dr.Doom, Assemble!")
+        builder.add(RagiumMachineKeys.ASSEMBLER, "Assembler", "I am Dr.Doom")
+        builder.add(RagiumMachineKeys.ASSEMBLY_LINE, "Assembly Line", "I am Dr.Dooooooooom")
         builder.add(RagiumMachineKeys.BLAST_FURNACE, "Large Blast Furnace", "Smelt multiple ingredients into one")
         builder.add(RagiumMachineKeys.CHEMICAL_REACTOR, "Chemical Reactor", "Are You Ready?")
         builder.add(RagiumMachineKeys.COMPRESSOR, "Compressor", "saves.zip.zip")

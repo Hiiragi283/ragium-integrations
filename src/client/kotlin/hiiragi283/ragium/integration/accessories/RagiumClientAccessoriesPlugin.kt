@@ -7,10 +7,13 @@ import hiiragi283.ragium.api.extension.isModLoaded
 import hiiragi283.ragium.common.init.RagiumItems
 import hiiragi283.ragium.integration.RIKeyBinds
 import io.wispforest.accessories.api.AccessoriesCapability
+import net.fabricmc.api.EnvType
+import net.fabricmc.api.Environment
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking
 import net.minecraft.client.MinecraftClient
 
+@Environment(EnvType.CLIENT)
 object RagiumClientAccessoriesPlugin : RagiumPlugin {
     override val priority: Int = 0
 

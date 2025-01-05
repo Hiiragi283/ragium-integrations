@@ -4,6 +4,8 @@ import com.mojang.serialization.MapCodec
 import hiiragi283.ragium.api.extension.asText
 import hiiragi283.ragium.api.extension.name
 import hiiragi283.ragium.common.init.RagiumTranslationKeys
+import net.fabricmc.api.EnvType
+import net.fabricmc.api.Environment
 import net.minecraft.fluid.Fluid
 import net.minecraft.item.Item
 import net.minecraft.nbt.NbtCompound
@@ -18,6 +20,7 @@ import snownee.jade.api.IServerDataProvider
 import snownee.jade.api.ITooltip
 import snownee.jade.api.config.IPluginConfig
 
+@Environment(EnvType.CLIENT)
 object HTExporterProvider : IBlockComponentProvider, IServerDataProvider<BlockAccessor> {
     @JvmField
     val FLUID_FILTER: MapCodec<RegistryEntryList<Fluid>> = RegistryCodecs.entryList(RegistryKeys.FLUID).fieldOf("fluid")

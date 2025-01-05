@@ -4,11 +4,14 @@ import hiiragi283.ragium.api.RagiumAPI
 import hiiragi283.ragium.api.block.HTMachineBlock
 import hiiragi283.ragium.common.block.machine.HTNetworkInterfaceBlock
 import hiiragi283.ragium.common.block.transfer.HTExporterBlock
+import net.fabricmc.api.EnvType
+import net.fabricmc.api.Environment
 import net.minecraft.util.Identifier
 import snownee.jade.api.IWailaClientRegistration
 import snownee.jade.api.IWailaCommonRegistration
 import snownee.jade.api.IWailaPlugin
 
+@Environment(EnvType.CLIENT)
 object RagiumJadeCompat : IWailaPlugin {
     @JvmField
     val EXPORTER: Identifier = RagiumAPI.id("exporter")

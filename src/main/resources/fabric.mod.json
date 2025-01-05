@@ -67,6 +67,10 @@
       {
         "value": "hiiragi283.ragium.integration.accessories.RagiumClientAccessoriesPlugin",
         "adapter": "kotlin"
+      },
+      {
+        "value": "hiiragi283.ragium.integration.rei.RagiumREIPlugin",
+        "adapter": "kotlin"
       }
     ]
   },
