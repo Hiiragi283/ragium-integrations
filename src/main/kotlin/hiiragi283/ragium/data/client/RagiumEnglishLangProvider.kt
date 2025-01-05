@@ -272,6 +272,7 @@ class RagiumEnglishLangProvider(output: FabricDataOutput, registryLookup: Comple
         builder.add(RagiumItems.PressMolds.PIPE, "Press Mold (Pipe)")
         builder.add(RagiumItems.PressMolds.PLATE, "Press Mold (Plate)")
         builder.add(RagiumItems.PressMolds.ROD, "Press Mold (Rod)")
+        builder.add(RagiumItems.PressMolds.WIRE, "Press Mold (Wire)")
 
         builder.add(RagiumTranslationKeys.ANVIL_DYNAMITE, "Place Anvil when hit")
         builder.add(RagiumTranslationKeys.BACKPACK, "Shares inventory between the same color")
@@ -447,6 +448,7 @@ class RagiumEnglishLangProvider(output: FabricDataOutput, registryLookup: Comple
         builder.add(HTTagPrefix.RAW_MATERIAL, "Raw %s")
         builder.add(HTTagPrefix.ROD, "%s Rod")
         builder.add(HTTagPrefix.STORAGE_BLOCK, "Block of %s")
+        builder.add(HTTagPrefix.WIRE, "%s Wire")
         // World
         builder.addWorld(World.OVERWORLD, "Overworld")
         builder.addWorld(World.NETHER, "Nether")

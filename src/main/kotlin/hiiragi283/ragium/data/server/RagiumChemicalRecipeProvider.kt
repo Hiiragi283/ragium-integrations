@@ -48,7 +48,7 @@ class RagiumChemicalRecipeProvider(output: FabricDataOutput, registriesFuture: C
         HTMachineRecipeJsonBuilder
             .create(RagiumMachineKeys.CHEMICAL_REACTOR)
             .itemInput(Items.DEEPSLATE, 4)
-            .fluidInput(RagiumFluids.AQUA_REGIA)
+            .fluidInput(RagiumFluids.AQUA_REGIA, FluidConstants.BOTTLE)
             .itemOutput(RagiumItems.DEEPANT)
             .offerTo(exporter, RagiumItems.DEEPANT)
         // uranium enrichment
@@ -711,8 +711,8 @@ class RagiumChemicalRecipeProvider(output: FabricDataOutput, registriesFuture: C
 
         HTMachineRecipeJsonBuilder
             .create(RagiumMachineKeys.MIXER)
-            .itemInput(RagiumItems.SLAG, 4)
-            .fluidInput(RagiumFluids.RESIDUAL_OIL, FluidConstants.BOTTLE)
+            .itemInput(RagiumItems.SLAG)
+            .fluidInput(RagiumFluids.RESIDUAL_OIL, FluidConstants.INGOT)
             .itemOutput(RagiumBlocks.Stones.ASPHALT)
             .offerTo(exporter, RagiumBlocks.Stones.ASPHALT)
         // washing

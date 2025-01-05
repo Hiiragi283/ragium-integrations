@@ -272,6 +272,7 @@ class RagiumJapaneseLangProvider(output: FabricDataOutput, registryLookup: Compl
         builder.add(RagiumItems.PressMolds.PIPE, "プレス型（パイプ）")
         builder.add(RagiumItems.PressMolds.PLATE, "プレス型（板材）")
         builder.add(RagiumItems.PressMolds.ROD, "プレス型（棒材）")
+        builder.add(RagiumItems.PressMolds.WIRE, "プレス型（ワイヤ）")
 
         builder.add(RagiumTranslationKeys.ANVIL_DYNAMITE, "着弾点に金床を設置する")
         builder.add(RagiumTranslationKeys.BACKPACK, "同じ色同士でインベントリを共有する")
@@ -404,6 +405,7 @@ class RagiumJapaneseLangProvider(output: FabricDataOutput, registryLookup: Compl
         builder.add(HTTagPrefix.RAW_MATERIAL, "%sの原石")
         builder.add(HTTagPrefix.ROD, "%s棒")
         builder.add(HTTagPrefix.STORAGE_BLOCK, "%sブロック")
+        builder.add(HTTagPrefix.WIRE, "%sワイヤ")
         // World
         builder.addWorld(World.OVERWORLD, "オーバーワールド")
         builder.addWorld(World.NETHER, "ネザー")

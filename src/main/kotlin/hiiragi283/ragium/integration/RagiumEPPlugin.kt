@@ -3,6 +3,7 @@ package hiiragi283.ragium.integration
 import hiiragi283.ragium.api.RagiumPlugin
 import hiiragi283.ragium.api.extension.isModLoaded
 import hiiragi283.ragium.api.material.HTMaterialKey
+import hiiragi283.ragium.api.material.HTMaterialPropertyKeys
 import hiiragi283.ragium.api.material.HTMaterialType
 import hiiragi283.ragium.api.material.HTTagPrefix
 import hiiragi283.ragium.api.util.TriConsumer
@@ -37,6 +38,12 @@ object RagiumEPPlugin : RagiumPlugin {
 
         helper.register(ENERGIZED_COPPER, HTMaterialType.METAL, Rarity.UNCOMMON)
         helper.register(ENERGIZED_GOLD, HTMaterialType.METAL, Rarity.RARE)
+    }
+
+    override fun setupMaterialProperties(helper: RagiumPlugin.PropertyHelper<HTMaterialKey>) {
+        helper.modify(ADVANCED_ALLOY, REDSTONE_ALLOY, ENERGIZED_COPPER, ENERGIZED_GOLD) {
+            add(HTMaterialPropertyKeys.DISABLE_BLOCK_CRAFTING)
+        }
     }
 
     override fun bindMaterialToItem(consumer: TriConsumer<HTTagPrefix, HTMaterialKey, ItemConvertible>) {
@@ -74,5 +81,11 @@ object RagiumEPPlugin : RagiumPlugin {
         consumer.accept(HTTagPrefix.ROD, RagiumMaterialKeys.IRON, EPItems.IRON_ROD)
 
         consumer.accept(HTTagPrefix.STORAGE_BLOCK, RagiumMaterialKeys.TIN, EPBlocks.TIN_BLOCK_ITEM)
+
+        consumer.accept(HTTagPrefix.WIRE, RagiumMaterialKeys.COPPER, EPItems.COPPER_WIRE)
+        consumer.accept(HTTagPrefix.WIRE, RagiumMaterialKeys.GOLD, EPItems.GOLD_WIRE)
+        consumer.accept(HTTagPrefix.WIRE, RagiumMaterialKeys.TIN, EPItems.TIN_WIRE)
+        consumer.accept(HTTagPrefix.WIRE, ENERGIZED_COPPER, EPItems.ENERGIZED_COPPER_WIRE)
+        consumer.accept(HTTagPrefix.WIRE, ENERGIZED_GOLD, EPItems.ENERGIZED_GOLD_WIRE)
     }
 }

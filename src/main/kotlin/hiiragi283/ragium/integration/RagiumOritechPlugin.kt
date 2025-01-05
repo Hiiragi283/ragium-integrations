@@ -103,5 +103,7 @@ object RagiumOritechPlugin : RagiumPlugin {
         consumer.accept(HTTagPrefix.RAW_MATERIAL, RagiumMaterialKeys.NICKEL, ItemContent.RAW_NICKEL)
         consumer.accept(HTTagPrefix.RAW_MATERIAL, RagiumMaterialKeys.PLATINUM, ItemContent.RAW_PLATINUM)
         consumer.accept(HTTagPrefix.RAW_MATERIAL, RagiumMaterialKeys.URANIUM, ItemContent.RAW_URANIUM)
+
+        consumer.accept(HTTagPrefix.WIRE, RagiumMaterialKeys.NICKEL, ItemContent.INSULATED_WIRE)
     }
 }

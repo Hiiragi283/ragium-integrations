@@ -4,6 +4,7 @@ import hiiragi283.ragium.api.RagiumAPI
 import hiiragi283.ragium.api.data.HTMachineRecipeJsonBuilder
 import hiiragi283.ragium.api.data.HTShapelessRecipeJsonBuilder
 import hiiragi283.ragium.api.material.HTTagPrefix
+import hiiragi283.ragium.api.recipe.HTItemIngredient
 import hiiragi283.ragium.api.tags.RagiumItemTags
 import hiiragi283.ragium.common.init.RagiumItems
 import hiiragi283.ragium.common.init.RagiumMachineKeys
@@ -16,6 +17,7 @@ import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags
 import net.minecraft.data.server.recipe.RecipeExporter
 import net.minecraft.item.Items
 import net.minecraft.registry.RegistryWrapper
+import net.minecraft.registry.tag.ItemTags
 import net.minecraft.util.Identifier
 import vazkii.patchouli.common.item.ItemModBook
 import java.util.concurrent.CompletableFuture
@@ -41,20 +43,27 @@ class RagiumIntegrationRecipeProvider(output: FabricDataOutput, completableFutur
 
     private fun generateEP(exporter: RecipeExporter) {
         // alloys
-        HTMachineRecipeJsonBuilder.Companion
+        HTMachineRecipeJsonBuilder
             .create(RagiumMachineKeys.BLAST_FURNACE)
-            .itemInput(ConventionalItemTags.IRON_INGOTS)
+            .itemInput(HTTagPrefix.INGOT, RagiumMaterialKeys.TIN)
             .itemInput(RagiumItemTags.SILICON)
-            .itemInput(ConventionalItemTags.COPPER_INGOTS)
+            .itemInput(ConventionalItemTags.REDSTONE_DUSTS, 2)
             .itemOutput(EPItems.REDSTONE_ALLOY_INGOT)
             .offerTo(exporter, EPItems.REDSTONE_ALLOY_INGOT)
-        HTMachineRecipeJsonBuilder.Companion
+        HTMachineRecipeJsonBuilder
             .create(RagiumMachineKeys.BLAST_FURNACE)
-            .itemInput(ConventionalItemTags.IRON_INGOTS, 3)
+            .itemInput(HTTagPrefix.INGOT, RagiumMaterialKeys.STEEL, 3)
             .itemInput(ConventionalItemTags.COPPER_INGOTS, 3)
             .itemInput(HTTagPrefix.INGOT, RagiumMaterialKeys.TIN, 3)
             .itemOutput(EPItems.ADVANCED_ALLOY_INGOT)
             .offerTo(exporter, EPItems.ADVANCED_ALLOY_INGOT)
+        // cable insulator
+        HTMachineRecipeJsonBuilder
+            .create(RagiumMachineKeys.ASSEMBLER)
+            .itemInput(ItemTags.WOOL)
+            .itemInput(Items.SHEARS, consumeType = HTItemIngredient.ConsumeType.DAMAGE)
+            .itemOutput(EPItems.CABLE_INSULATOR, 18)
+            .offerTo(exporter, EPItems.CABLE_INSULATOR)
     }
 
     //    Oritech    //
