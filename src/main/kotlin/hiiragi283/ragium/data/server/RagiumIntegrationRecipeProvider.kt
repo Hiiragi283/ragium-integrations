@@ -3,7 +3,6 @@ package hiiragi283.ragium.data.server
 import hiiragi283.ragium.api.RagiumAPI
 import hiiragi283.ragium.api.data.HTMachineRecipeJsonBuilder
 import hiiragi283.ragium.api.data.HTShapelessRecipeJsonBuilder
-import hiiragi283.ragium.api.data.HTStonecuttingRecipeJsonBuilder
 import hiiragi283.ragium.api.material.HTTagPrefix
 import hiiragi283.ragium.api.tags.RagiumItemTags
 import hiiragi283.ragium.common.init.RagiumItems
@@ -18,7 +17,6 @@ import net.minecraft.data.server.recipe.RecipeExporter
 import net.minecraft.item.Items
 import net.minecraft.registry.RegistryWrapper
 import net.minecraft.util.Identifier
-import rearth.oritech.init.ItemContent
 import vazkii.patchouli.common.item.ItemModBook
 import java.util.concurrent.CompletableFuture
 
@@ -62,16 +60,5 @@ class RagiumIntegrationRecipeProvider(output: FabricDataOutput, completableFutur
     //    Oritech    //
 
     private fun generateOT(exporter: RecipeExporter) {
-        // plastics
-        HTStonecuttingRecipeJsonBuilder.registerExchange(
-            exporter,
-            RagiumItems.PLASTIC_PLATE,
-            ItemContent.PLASTIC_SHEET,
-        )
-        HTStonecuttingRecipeJsonBuilder.registerExchange(
-            exporter,
-            RagiumItems.POLYMER_RESIN,
-            ItemContent.POLYMER_RESIN,
-        )
     }
 }

@@ -33,6 +33,7 @@ import net.minecraft.registry.tag.EntityTypeTags
 import net.minecraft.registry.tag.ItemTags
 import net.minecraft.registry.tag.TagKey
 import rearth.oritech.init.FluidContent
+import rearth.oritech.init.ItemContent
 import techreborn.init.ModFluids
 import java.util.concurrent.CompletableFuture
 import java.util.function.Supplier
@@ -57,7 +58,7 @@ object RagiumTagProviders {
                 blockCache.put(tagKey, content.get())
             }
 
-            // vanilla
+            // Vanilla
             add(BlockTags.SHOVEL_MINEABLE, RagiumBlocks.MUTATED_SOIL)
             add(BlockTags.PICKAXE_MINEABLE, RagiumBlocks.POROUS_NETHERRACK)
 
@@ -108,7 +109,7 @@ object RagiumTagProviders {
             RagiumBlocks.Ores.entries.forEach { ore: RagiumBlocks.Ores ->
                 add(BlockTags.DRAGON_IMMUNE, ore)
             }
-
+            // Ragium
             buildList {
                 addAll(RagiumBlocks.Exporters.entries)
                 addAll(RagiumBlocks.Pipes.entries)
@@ -133,6 +134,7 @@ object RagiumTagProviders {
     private class EntityProvider(output: FabricDataOutput, completableFuture: CompletableFuture<RegistryWrapper.WrapperLookup>) :
         FabricTagProvider.EntityTypeTagProvider(output, completableFuture) {
         override fun configure(wrapperLookup: RegistryWrapper.WrapperLookup) {
+            // Fabric
             RagiumEntityTypes.DYNAMITES.forEach { entityType: EntityType<out ThrownItemEntity> ->
                 getOrCreateTagBuilder(EntityTypeTags.IMPACT_PROJECTILES).add(entityType)
                 getOrCreateTagBuilder(ConventionalEntityTypeTags.CAPTURING_NOT_SUPPORTED).add(entityType)
@@ -170,6 +172,7 @@ object RagiumTagProviders {
                 addOptional(ragiumFluid.tagKey, fluid.get())
             }
 
+            // Fabric
             add(ConventionalFluidTags.MILK, RagiumFluids.MILK)
             add(ConventionalFluidTags.HONEY, RagiumFluids.HONEY)
             add(ConventionalFluidTags.EXPERIENCE, RagiumFluids.EXPERIENCE)
@@ -188,7 +191,7 @@ object RagiumTagProviders {
             add(ConventionalFluidTags.GASEOUS, RagiumFluids.NOBLE_GAS)
             add(ConventionalFluidTags.GASEOUS, RagiumFluids.URANIUM_HEXAFLUORIDE)
             add(ConventionalFluidTags.GASEOUS, RagiumFluids.ENRICHED_URANIUM_HEXAFLUORIDE)
-
+            // Ragium
             add(RagiumFluidTags.COOLANTS, Fluids.WATER)
 
             add(RagiumFluidTags.FUELS, RagiumFluidTags.NITRO_FUELS)
@@ -240,6 +243,10 @@ object RagiumTagProviders {
                 itemCache.put(tagKey, item1)
             }
 
+            fun FabricTagBuilder.addOptional(item: ItemConvertible) {
+                Registries.ITEM.getKey(item.asItem()).ifPresent(::addOptional)
+            }
+
             RagiumItems.SteelArmors.entries.forEach {
                 add(it.armorType.armorTag, it)
             }
@@ -255,7 +262,7 @@ object RagiumTagProviders {
             RagiumItems.DeepSteelTools.entries.forEach {
                 add(it.toolType.toolTag, it)
             }
-
+            // Vanilla
             add(ItemTags.AXES, RagiumItems.GIGANT_HAMMER)
             add(ItemTags.HOES, RagiumItems.GIGANT_HAMMER)
             add(ItemTags.PICKAXES, RagiumItems.GIGANT_HAMMER)
@@ -265,7 +272,7 @@ object RagiumTagProviders {
 
             add(ItemTags.PLANKS, RagiumItems.Plates.WOOD)
             add(ItemTags.COALS, RagiumItems.RESIDUAL_COKE)
-            // ragium
+            // Ragium
             add(RagiumItemTags.ALKALI, RagiumItems.Dusts.ALKALI)
             add(RagiumItemTags.ALKALI, RagiumItems.Dusts.ASH)
 
@@ -286,6 +293,14 @@ object RagiumTagProviders {
                 .addOptionalTag(ConventionalItemTags.COOKED_MEAT_FOODS)
                 .addOptionalTag(ConventionalItemTags.RAW_FISH_FOODS)
                 .addOptionalTag(ConventionalItemTags.COOKED_FISH_FOODS)
+
+            RagiumItems.Plastics.entries.forEach { plastic: RagiumItems.Plastics ->
+                add(plastic.tagKey, plastic)
+            }
+
+            // Oritech
+            getOrCreateTagBuilder(RagiumItems.Plastics.PRIMITIVE.tagKey)
+                .addOptional(ItemContent.PLASTIC_SHEET)
 
             itemCache.asMap().forEach { (tagKey: TagKey<Item>, items: Collection<Item>) ->
                 items.sortedBy(Registries.ITEM::getId).forEach { item: Item ->

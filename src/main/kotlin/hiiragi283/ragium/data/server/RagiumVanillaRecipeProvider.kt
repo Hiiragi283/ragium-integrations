@@ -1,10 +1,16 @@
 package hiiragi283.ragium.data.server
 
 import hiiragi283.ragium.api.RagiumAPI
-import hiiragi283.ragium.api.data.*
+import hiiragi283.ragium.api.data.HTCookingRecipeJsonBuilder
+import hiiragi283.ragium.api.data.HTShapedRecipeJsonBuilder
+import hiiragi283.ragium.api.data.HTShapelessRecipeJsonBuilder
+import hiiragi283.ragium.api.data.HTStonecuttingRecipeJsonBuilder
 import hiiragi283.ragium.api.material.HTMaterialKey
 import hiiragi283.ragium.api.material.HTTagPrefix
-import hiiragi283.ragium.common.init.*
+import hiiragi283.ragium.common.init.RagiumBlocks
+import hiiragi283.ragium.common.init.RagiumFluids
+import hiiragi283.ragium.common.init.RagiumItems
+import hiiragi283.ragium.common.init.RagiumMaterialKeys
 import hiiragi283.ragium.common.item.HTBackpackItem
 import hiiragi283.ragium.common.recipe.HTDynamiteUpgradingRecipe
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
@@ -267,24 +273,6 @@ class RagiumVanillaRecipeProvider(output: FabricDataOutput, registriesFuture: Co
     //    Crafting - Buildings    //
 
     private fun craftingBuildings(exporter: RecipeExporter) {
-        HTShapedRecipeJsonBuilder
-            .create(RagiumBlocks.PLASTIC_BLOCK, 4)
-            .patterns(
-                "AA",
-                "AA",
-            ).input('A', RagiumItems.PLASTIC_PLATE)
-            .unlockedBy(RagiumItems.PLASTIC_PLATE)
-            .offerTo(exporter)
-
-        HTShapedRecipeJsonBuilder
-            .create(RagiumBlocks.PLASTIC_BLOCK, 16)
-            .patterns(
-                "AA",
-                "AA",
-            ).input('A', RagiumItems.ENGINEERING_PLASTIC_PLATE)
-            .unlockedBy(RagiumItems.ENGINEERING_PLASTIC_PLATE)
-            .offerSuffix(exporter, "_from_engineering")
-
         // slabs
         RagiumBlocks.Slabs.entries.forEach { slabs: RagiumBlocks.Slabs ->
             registerSlab(exporter, slabs, slabs.baseStone)
@@ -653,10 +641,21 @@ class RagiumVanillaRecipeProvider(output: FabricDataOutput, registriesFuture: Co
             .input('B', RagiumItems.Circuits.ADVANCED)
             .input('C', RagiumItems.STELLA_PLATE)
             .offerTo(exporter)
-        // fluid cubes
-        createEmptyFluidCube(exporter, Items.GLASS_PANE, 4)
-        createEmptyFluidCube(exporter, RagiumItems.PLASTIC_PLATE, 8, "_pe")
-        createEmptyFluidCube(exporter, RagiumItems.ENGINEERING_PLASTIC_PLATE, 16, "_pvc")
+        // plastic
+        registerPlastic(exporter, RagiumItems.Plastics.PRIMITIVE, 1, "primitive_")
+        registerPlastic(exporter, RagiumItems.Plastics.BASIC, 2, "basic_")
+        registerPlastic(exporter, RagiumItems.Plastics.ADVANCED, 4, "advanced_")
+
+        // fluid cube
+        HTShapedRecipeJsonBuilder
+            .create(RagiumItems.EMPTY_FLUID_CUBE, 4)
+            .patterns(
+                " A ",
+                "A A",
+                " A ",
+            ).input('A', ConventionalItemTags.GLASS_PANES)
+            .unlockedBy(ConventionalItemTags.GLASS_PANES)
+            .offerTo(exporter)
 
         HTShapelessRecipeJsonBuilder
             .create(RagiumItems.EMPTY_FLUID_CUBE)
@@ -671,30 +670,30 @@ class RagiumVanillaRecipeProvider(output: FabricDataOutput, registriesFuture: Co
             .offerTo(exporter, RagiumAPI.id("clear_filled_fluid_cube"))
     }
 
-    private fun createEmptyFluidCube(
+    private fun registerPlastic(
         exporter: RecipeExporter,
-        input: ItemConvertible,
-        count: Int,
-        suffix: String? = null,
+        plastic: RagiumItems.Plastics,
+        multiplier: Int,
+        prefix: String,
     ) {
-        val id: Identifier = RagiumAPI.id("empty_fluid_cube$suffix")
-        // shaped crafting
+        val tagKey: TagKey<Item> = plastic.tagKey
+        // fluid cube
         HTShapedRecipeJsonBuilder
-            .create(RagiumItems.EMPTY_FLUID_CUBE, count)
+            .create(RagiumItems.EMPTY_FLUID_CUBE, 4 * multiplier)
             .patterns(
                 " A ",
                 "A A",
                 " A ",
-            ).input('A', input)
-            .unlockedBy(input)
-            .offerTo(exporter, id)
-        // assembler
-        HTMachineRecipeJsonBuilder
-            .create(RagiumMachineKeys.ASSEMBLER)
-            .itemInput(input, 4)
-            .catalyst(RagiumItems.EMPTY_FLUID_CUBE)
-            .itemOutput(RagiumItems.EMPTY_FLUID_CUBE, count)
-            .offerTo(exporter, id)
+            ).input('A', tagKey)
+            .unlockedBy(tagKey)
+            .offerPrefix(exporter, prefix)
+        // plastic block
+        HTShapedRecipeJsonBuilder
+            .create(RagiumBlocks.PLASTIC_BLOCK, 4 * multiplier)
+            .pattern2x2()
+            .input('A', tagKey)
+            .unlockedBy(tagKey)
+            .offerPrefix(exporter, prefix)
     }
 
     //    Cooking   //

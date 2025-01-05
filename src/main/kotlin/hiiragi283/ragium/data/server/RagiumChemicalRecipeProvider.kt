@@ -226,30 +226,44 @@ class RagiumChemicalRecipeProvider(output: FabricDataOutput, registriesFuture: C
         HTMachineRecipeJsonBuilder
             .create(RagiumMachineKeys.CHEMICAL_REACTOR)
             .itemInput(RagiumItems.POLYMER_RESIN)
-            .itemOutput(RagiumItems.PLASTIC_PLATE)
-            .offerTo(exporter, RagiumItems.PLASTIC_PLATE)
+            .itemOutput(RagiumItems.Plastics.PRIMITIVE)
+            .offerTo(exporter, RagiumItems.Plastics.PRIMITIVE)
 
         HTMachineRecipeJsonBuilder
             .create(RagiumMachineKeys.CHEMICAL_REACTOR)
             .itemInput(RagiumItems.POLYMER_RESIN)
             .fluidInput(RagiumFluids.OXYGEN)
-            .itemOutput(RagiumItems.PLASTIC_PLATE, 2)
-            .offerTo(exporter, RagiumItems.PLASTIC_PLATE, "_with_oxygen")
+            .itemOutput(RagiumItems.Plastics.PRIMITIVE, 2)
+            .offerTo(exporter, RagiumItems.Plastics.PRIMITIVE, "_with_oxygen")
 
         HTMachineRecipeJsonBuilder
             .create(RagiumMachineKeys.CHEMICAL_REACTOR)
-            .itemInput(RagiumItems.POLYMER_RESIN, 4)
-            .itemInput(RagiumItems.ROCK_WOOL, 4)
-            .catalyst(RagiumItems.ROCK_WOOL)
-            .itemOutput(RagiumItems.ENGINEERING_PLASTIC_PLATE)
-            .offerTo(exporter, RagiumItems.ENGINEERING_PLASTIC_PLATE)
+            .itemInput(RagiumItems.POLYMER_RESIN)
+            .fluidInput(RagiumFluids.HYDROCHLORIC_ACID)
+            .itemOutput(RagiumItems.Plastics.BASIC)
+            .offerTo(exporter, RagiumItems.Plastics.BASIC)
 
         HTMachineRecipeJsonBuilder
             .create(RagiumMachineKeys.CHEMICAL_REACTOR)
-            .fluidInput(RagiumFluids.AROMATIC_COMPOUNDS)
-            .fluidInput(RagiumFluids.OXYGEN, FluidConstants.BOTTLE)
-            .itemOutput(RagiumItems.ENGINEERING_PLASTIC_PLATE)
-            .offerTo(exporter, RagiumItems.ENGINEERING_PLASTIC_PLATE, "_from_aromatic")
+            .itemInput(RagiumItems.POLYMER_RESIN)
+            .fluidInput(RagiumFluids.HYDROCHLORIC_ACID)
+            .fluidInput(RagiumFluids.OXYGEN)
+            .itemOutput(RagiumItems.Plastics.BASIC, 2)
+            .offerTo(exporter, RagiumItems.Plastics.BASIC, "_with_oxygen")
+
+        HTMachineRecipeJsonBuilder
+            .create(RagiumMachineKeys.CHEMICAL_REACTOR)
+            .itemInput(RagiumItems.POLYMER_RESIN, 2)
+            .fluidInput(RagiumFluids.AROMATIC_COMPOUNDS, FluidConstants.INGOT)
+            .itemOutput(RagiumItems.Plastics.ADVANCED)
+            .offerTo(exporter, RagiumItems.Plastics.ADVANCED)
+
+        HTMachineRecipeJsonBuilder
+            .create(RagiumMachineKeys.CHEMICAL_REACTOR)
+            .itemInput(RagiumItems.POLYMER_RESIN, 2)
+            .fluidInput(RagiumFluids.AROMATIC_COMPOUNDS, FluidConstants.INGOT)
+            .itemOutput(RagiumItems.Plastics.ADVANCED, 2)
+            .offerTo(exporter, RagiumItems.Plastics.ADVANCED, "_with_oxygen")
         // oxidization
         registerOxidize(exporter, Items.CHISELED_COPPER, Items.OXIDIZED_CHISELED_COPPER)
         registerOxidize(exporter, Items.COPPER_BLOCK, Items.OXIDIZED_COPPER)

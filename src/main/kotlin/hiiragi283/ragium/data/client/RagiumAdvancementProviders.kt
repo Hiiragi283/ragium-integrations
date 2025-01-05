@@ -773,13 +773,25 @@ object RagiumAdvancementProviders {
                 distillation,
                 RagiumItems.POLYMER_RESIN,
             ) { hasAllItems(RagiumItems.POLYMER_RESIN) }
-            val engineeringPlastic: AdvancementEntry = createChild(
+            val plastic1: AdvancementEntry = createChild(
                 consumer,
-                "petro_chemistry/engineering_plastic",
+                "petro_chemistry/plastic1",
                 polymerResin,
-                RagiumItems.ENGINEERING_PLASTIC_PLATE,
+                RagiumItems.Plastics.PRIMITIVE,
+            ) { hasAnyItems(RagiumItems.Plastics.PRIMITIVE.tagKey) }
+            val plastic2: AdvancementEntry = createChild(
+                consumer,
+                "petro_chemistry/plastic2",
+                plastic1,
+                RagiumItems.Plastics.BASIC,
+            ) { hasAnyItems(RagiumItems.Plastics.BASIC.tagKey) }
+            val plastic3: AdvancementEntry = createChild(
+                consumer,
+                "petro_chemistry/plastic3",
+                plastic2,
+                RagiumItems.Plastics.ADVANCED,
                 frame = AdvancementFrame.GOAL,
-            ) { hasAllItems(RagiumItems.ENGINEERING_PLASTIC_PLATE) }
+            ) { hasAnyItems(RagiumItems.Plastics.ADVANCED.tagKey) }
             // refined gas
             val refinedGas: AdvancementEntry = createFluidChild(
                 consumer,
