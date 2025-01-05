@@ -48,6 +48,13 @@ object RagiumOritechPlugin : RagiumPlugin {
         helper.modify(ADAMANT, DURATIUM, ENERGITE, PROMETHEUM) {
             add(HTMaterialPropertyKeys.DISABLE_BLOCK_CRAFTING)
         }
+
+        helper.modify(RagiumMaterialKeys.PLATINUM) {
+            set(HTMaterialPropertyKeys.ORE_SUB_PRODUCT, ItemContent.FLUXITE)
+        }
+        helper.modify(RagiumMaterialKeys.URANIUM) {
+            set(HTMaterialPropertyKeys.ORE_SUB_PRODUCT, ItemContent.SMALL_PLUTONIUM_DUST)
+        }
     }
 
     override fun bindMaterialToItem(consumer: TriConsumer<HTTagPrefix, HTMaterialKey, ItemConvertible>) {
