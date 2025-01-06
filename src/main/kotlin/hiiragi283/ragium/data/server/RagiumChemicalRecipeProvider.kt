@@ -35,6 +35,7 @@ class RagiumChemicalRecipeProvider(output: FabricDataOutput, registriesFuture: C
 
     override fun generate(exporter: RecipeExporter) {
         chemicalReactor(exporter)
+        largeChemicalReactor(exporter)
         distillation(exporter)
         electrolyzer(exporter)
         extractor(exporter)
@@ -284,7 +285,81 @@ class RagiumChemicalRecipeProvider(output: FabricDataOutput, registriesFuture: C
             .itemOutput(after)
             .offerTo(exporter, after)
     }
+    
+    //    LCR    //
 
+    private fun largeChemicalReactor(exporter: RecipeExporter) {
+        // aqua regia
+        HTMachineRecipeJsonBuilder
+            .create(RagiumMachineKeys.LARGE_CHEMICAL_REACTOR, HTMachineTier.BASIC)
+            .fluidInput(Fluids.WATER, FluidConstants.BUCKET * 4)
+            .fluidInput(RagiumFluids.NITROGEN, FluidConstants.BUCKET * 3)
+            .fluidInput(RagiumFluids.HYDROGEN_CHLORIDE)
+            .fluidOutput(RagiumFluids.AQUA_REGIA, FluidConstants.BUCKET * 4)
+            .offerTo(exporter, RagiumFluids.AQUA_REGIA, "_from_nitrogen")
+        
+        HTMachineRecipeJsonBuilder
+            .create(RagiumMachineKeys.LARGE_CHEMICAL_REACTOR, HTMachineTier.BASIC)
+            .itemInput(RagiumItems.Dusts.NITER, 3)
+            .fluidInput(Fluids.WATER, FluidConstants.BUCKET * 4)
+            .fluidInput(RagiumFluids.HYDROGEN_CHLORIDE)
+            .fluidOutput(RagiumFluids.AQUA_REGIA, FluidConstants.BUCKET * 4)
+            .offerTo(exporter, RagiumFluids.AQUA_REGIA, "_from_niter")
+        // mixture acid
+        HTMachineRecipeJsonBuilder
+            .create(RagiumMachineKeys.LARGE_CHEMICAL_REACTOR, HTMachineTier.BASIC)
+            .itemInput(RagiumItems.Dusts.NITER)
+            .itemInput(RagiumItems.Dusts.SULFUR)
+            .fluidInput(Fluids.WATER, FluidConstants.BUCKET * 2)
+            .fluidOutput(RagiumFluids.MIXTURE_ACID, FluidConstants.BUCKET * 2)
+            .offerTo(exporter, RagiumFluids.MIXTURE_ACID, "_from_dusts")
+
+        HTMachineRecipeJsonBuilder
+            .create(RagiumMachineKeys.LARGE_CHEMICAL_REACTOR, HTMachineTier.BASIC)
+            .itemInput(RagiumItems.Dusts.SULFUR)
+            .fluidInput(Fluids.WATER, FluidConstants.BUCKET * 2)
+            .fluidInput(RagiumFluids.NITROGEN)
+            .fluidOutput(RagiumFluids.MIXTURE_ACID, FluidConstants.BUCKET * 2)
+            .offerTo(exporter, RagiumFluids.MIXTURE_ACID, "_from_nitrogen")
+        // oil
+        HTMachineRecipeJsonBuilder
+            .create(RagiumMachineKeys.LARGE_CHEMICAL_REACTOR, HTMachineTier.ADVANCED)
+            .fluidInput(RagiumFluids.CRUDE_OIL)
+            .itemOutput(RagiumItems.RESIDUAL_COKE)
+            .fluidOutput(RagiumFluids.ALCOHOL)
+            .fluidOutput(RagiumFluids.NOBLE_GAS)
+            .fluidOutput(RagiumFluids.FUEL)
+            .fluidOutput(RagiumFluids.AROMATIC_COMPOUNDS)
+            .offerTo(exporter, RagiumFluids.CRUDE_OIL)
+        // refined silicon
+        HTMachineRecipeJsonBuilder
+            .create(RagiumMachineKeys.LARGE_CHEMICAL_REACTOR, HTMachineTier.BASIC)
+            .itemInput(RagiumItemTags.SILICON_PLATES)
+            .fluidInput(RagiumFluids.HYDROGEN_CHLORIDE, FluidConstants.BUCKET * 4)
+            .itemOutput(RagiumItems.REFINED_SILICON)
+            .fluidOutput(RagiumFluids.HYDROGEN_CHLORIDE, FluidConstants.BUCKET * 3)
+            .offerTo(exporter, RagiumItems.REFINED_SILICON)
+
+        HTMachineRecipeJsonBuilder
+            .create(RagiumMachineKeys.LARGE_CHEMICAL_REACTOR, HTMachineTier.ADVANCED)
+            .itemInput(RagiumItemTags.SILICON, 2)
+            .fluidInput(RagiumFluids.HYDROGEN_CHLORIDE, FluidConstants.BUCKET * 4)
+            .fluidInput(RagiumFluids.OXYGEN, FluidConstants.BUCKET * 2)
+            .itemOutput(RagiumItems.REFINED_SILICON)
+            .fluidOutput(RagiumFluids.HYDROGEN_CHLORIDE, FluidConstants.BUCKET * 3)
+            .offerTo(exporter, RagiumItems.REFINED_SILICON, "_from_raw")
+        // cryolite
+        HTMachineRecipeJsonBuilder
+            .create(RagiumMachineKeys.LARGE_CHEMICAL_REACTOR, HTMachineTier.BASIC)
+            .itemInput(RagiumItems.Gems.FLUORITE, 2)
+            .itemInput(RagiumItems.Dusts.ALUMINUM, 2)
+            .fluidInput(RagiumFluids.SULFURIC_ACID, FluidConstants.BUCKET)
+            .fluidInput(RagiumFluids.ALKALI_SOLUTION, FluidConstants.BUCKET)
+            .itemOutput(RagiumItems.Gems.CRYOLITE, 4)
+            .itemOutput(RagiumBlocks.Stones.GYPSUM, 2)
+            .offerTo(exporter, RagiumItems.Gems.CRYOLITE)
+    }
+    
     //    Distillation Tower    //
 
     private fun distillation(exporter: RecipeExporter) {

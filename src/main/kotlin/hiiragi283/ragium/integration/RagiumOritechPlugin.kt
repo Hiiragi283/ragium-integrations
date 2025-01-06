@@ -27,7 +27,7 @@ object RagiumOritechPlugin : RagiumPlugin {
     val ENERGITE: HTMaterialKey = HTMaterialKey.of("energite")
 
     @JvmField
-    val PROMETHEUM: HTMaterialKey = HTMaterialKey.of("prometheum")
+    val FLUXITE: HTMaterialKey = HTMaterialKey.of("fluxite")
 
     //    RagiumPlugin    //
 
@@ -41,11 +41,13 @@ object RagiumOritechPlugin : RagiumPlugin {
         helper.register(BIOSTEEL, HTMaterialType.ALLOY, Rarity.UNCOMMON)
         helper.register(DURATIUM, HTMaterialType.ALLOY, Rarity.RARE)
         helper.register(ENERGITE, HTMaterialType.ALLOY, Rarity.RARE)
-        helper.register(PROMETHEUM, HTMaterialType.ALLOY, Rarity.EPIC)
+        // helper.register(PROMETHEUM, HTMaterialType.ALLOY, Rarity.EPIC)
+        // gem
+        helper.register(FLUXITE, HTMaterialType.GEM, Rarity.EPIC)
     }
 
     override fun setupMaterialProperties(helper: RagiumPlugin.PropertyHelper<HTMaterialKey>) {
-        helper.modify(ADAMANT, DURATIUM, ENERGITE, PROMETHEUM) {
+        helper.modify(ADAMANT, DURATIUM, ENERGITE) {
             add(HTMaterialPropertyKeys.DISABLE_BLOCK_CRAFTING)
         }
 
@@ -66,6 +68,7 @@ object RagiumOritechPlugin : RagiumPlugin {
         consumer.accept(HTTagPrefix.STORAGE_BLOCK, BIOSTEEL, BlockContent.BIOSTEEL_BLOCK)
         consumer.accept(HTTagPrefix.STORAGE_BLOCK, DURATIUM, BlockContent.DURATIUM_BLOCK)
         consumer.accept(HTTagPrefix.STORAGE_BLOCK, ENERGITE, BlockContent.ENERGITE_BLOCK)
+        consumer.accept(HTTagPrefix.STORAGE_BLOCK, FLUXITE, BlockContent.FLUXITE_BLOCK)
 
         consumer.accept(HTTagPrefix.DUST, RagiumMaterialKeys.COAL, ItemContent.COAL_DUST)
         consumer.accept(HTTagPrefix.DUST, RagiumMaterialKeys.COPPER, ItemContent.COPPER_DUST)
@@ -83,6 +86,7 @@ object RagiumOritechPlugin : RagiumPlugin {
         consumer.accept(HTTagPrefix.DUST, ENERGITE, ItemContent.ENERGITE_DUST)
 
         consumer.accept(HTTagPrefix.GEM, RagiumMaterialKeys.URANIUM, ItemContent.URANIUM_GEM)
+        consumer.accept(HTTagPrefix.GEM, FLUXITE, ItemContent.FLUXITE)
 
         consumer.accept(HTTagPrefix.INGOT, RagiumMaterialKeys.ELECTRUM, ItemContent.ELECTRUM_INGOT)
         consumer.accept(HTTagPrefix.INGOT, RagiumMaterialKeys.NICKEL, ItemContent.NICKEL_INGOT)
@@ -92,7 +96,7 @@ object RagiumOritechPlugin : RagiumPlugin {
         consumer.accept(HTTagPrefix.INGOT, BIOSTEEL, ItemContent.BIOSTEEL_INGOT)
         consumer.accept(HTTagPrefix.INGOT, DURATIUM, ItemContent.DURATIUM_INGOT)
         consumer.accept(HTTagPrefix.INGOT, ENERGITE, ItemContent.ENERGITE_INGOT)
-        consumer.accept(HTTagPrefix.INGOT, PROMETHEUM, ItemContent.PROMETHEUM_INGOT)
+        // consumer.accept(HTTagPrefix.INGOT, PROMETHEUM, ItemContent.PROMETHEUM_INGOT)
 
         consumer.accept(HTTagPrefix.ORE, RagiumMaterialKeys.NICKEL, BlockContent.DEEPSLATE_NICKEL_ORE)
         consumer.accept(HTTagPrefix.ORE, RagiumMaterialKeys.NICKEL, BlockContent.NICKEL_ORE)

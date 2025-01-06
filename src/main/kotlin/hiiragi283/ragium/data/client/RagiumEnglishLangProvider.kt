@@ -370,7 +370,6 @@ class RagiumEnglishLangProvider(output: FabricDataOutput, registryLookup: Comple
         )
 
         builder.add(RagiumMachineKeys.ASSEMBLER, "Assembler", "I am Dr.Doom")
-        builder.add(RagiumMachineKeys.ASSEMBLY_LINE, "Assembly Line", "I am Dr.Dooooooooom")
         builder.add(RagiumMachineKeys.BLAST_FURNACE, "Large Blast Furnace", "Smelt multiple ingredients into one")
         builder.add(RagiumMachineKeys.CHEMICAL_REACTOR, "Chemical Reactor", "Are You Ready?")
         builder.add(RagiumMachineKeys.COMPRESSOR, "Compressor", "saves.zip.zip")
@@ -382,6 +381,7 @@ class RagiumEnglishLangProvider(output: FabricDataOutput, registryLookup: Comple
         builder.add(RagiumMachineKeys.GROWTH_CHAMBER, "Growth Chamber")
         builder.add(RagiumMachineKeys.INFUSER, "Infuser", "Something not like Centrifuge")
         builder.add(RagiumMachineKeys.LASER_TRANSFORMER, "Laser Transformer")
+        builder.add(RagiumMachineKeys.LARGE_CHEMICAL_REACTOR, "large Chemical Reactor", "larger than you think")
         builder.add(RagiumMachineKeys.MIXER, "Mixer", "Genomix...")
         builder.add(RagiumMachineKeys.MULTI_SMELTER, "Multi Smelter", "Smelt multiple items at once")
         // Material

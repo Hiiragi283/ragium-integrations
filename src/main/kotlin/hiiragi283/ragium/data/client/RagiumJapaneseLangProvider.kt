@@ -327,7 +327,6 @@ class RagiumJapaneseLangProvider(output: FabricDataOutput, registryLookup: Compl
         builder.add(RagiumMachineKeys.THERMAL_GENERATOR, "地熱発電機", "高温の液体から発電する")
 
         builder.add(RagiumMachineKeys.ASSEMBLER, "組立機", "おれぁ悪魔博士だよ")
-        builder.add(RagiumMachineKeys.ASSEMBLY_LINE, "組立ライン", "鉄より硬いブリキだぞオメェ！")
         builder.add(RagiumMachineKeys.BLAST_FURNACE, "大型高炉", "複数の素材を一つに焼き上げる")
         builder.add(RagiumMachineKeys.CHEMICAL_REACTOR, "化学反応槽", "Are You Ready?")
         builder.add(RagiumMachineKeys.COMPRESSOR, "圧縮機", "saves.zip.zip")
@@ -338,6 +337,7 @@ class RagiumJapaneseLangProvider(output: FabricDataOutput, registryLookup: Compl
         builder.add(RagiumMachineKeys.GRINDER, "粉砕機", "クラッシュ・アップ")
         builder.add(RagiumMachineKeys.GROWTH_CHAMBER, "成長チャンバー")
         builder.add(RagiumMachineKeys.INFUSER, "注入機", "遠心分離機じゃないみたいなやつ")
+        builder.add(RagiumMachineKeys.LARGE_CHEMICAL_REACTOR, "大型化学反応槽", "大は小を兼ねません")
         builder.add(RagiumMachineKeys.LASER_TRANSFORMER, "レーザー変換機")
         builder.add(RagiumMachineKeys.MULTI_SMELTER, "並列精錬機", "複数のアイテムを一度に製錬する")
         builder.add(RagiumMachineKeys.MIXER, "ミキサー", "ゲノミクス...")

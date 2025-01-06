@@ -5,9 +5,9 @@ import hiiragi283.ragium.api.extension.isClientEnv
 import hiiragi283.ragium.api.extension.isModLoaded
 import hiiragi283.ragium.api.machine.HTMachineKey
 import hiiragi283.ragium.common.init.RagiumMachineKeys
-import hiiragi283.ragium.integration.rei.category.HTAssemblyLineCategory
 import hiiragi283.ragium.integration.rei.category.HTDistillationTowerCategory
 import hiiragi283.ragium.integration.rei.category.HTGeneratorCategory
+import hiiragi283.ragium.integration.rei.category.HTLargeChemicalReactorCategory
 import hiiragi283.ragium.integration.rei.category.HTRockGeneratorCategory
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
@@ -36,11 +36,11 @@ object RagiumREIPlugin : RagiumPlugin {
             set(REIMachinePropertyKeys.RECIPE_CATEGORY, ::HTGeneratorCategory)
         }
         // processor
-        helper.modify(RagiumMachineKeys.ASSEMBLY_LINE) {
-            set(REIMachinePropertyKeys.RECIPE_CATEGORY, ::HTAssemblyLineCategory)
-        }
         helper.modify(RagiumMachineKeys.DISTILLATION_TOWER) {
             set(REIMachinePropertyKeys.RECIPE_CATEGORY, ::HTDistillationTowerCategory)
+        }
+        helper.modify(RagiumMachineKeys.LARGE_CHEMICAL_REACTOR) {
+            set(REIMachinePropertyKeys.RECIPE_CATEGORY, ::HTLargeChemicalReactorCategory)
         }
     }
 }
