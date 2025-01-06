@@ -1,4 +1,4 @@
-package hiiragi283.ragium.data.client
+package hiiragi283.ragium.data.server
 
 import hiiragi283.ragium.api.RagiumAPI
 import hiiragi283.ragium.api.content.HTFluidContent
@@ -7,7 +7,12 @@ import hiiragi283.ragium.api.extension.name
 import hiiragi283.ragium.api.machine.HTMachineKey
 import hiiragi283.ragium.api.machine.HTMachineTier
 import hiiragi283.ragium.api.material.HTMaterialProvider
-import hiiragi283.ragium.common.init.*
+import hiiragi283.ragium.common.init.RagiumBlocks
+import hiiragi283.ragium.common.init.RagiumComponentTypes
+import hiiragi283.ragium.common.init.RagiumFluids
+import hiiragi283.ragium.common.init.RagiumItems
+import hiiragi283.ragium.common.init.RagiumMachineKeys
+import hiiragi283.ragium.common.init.RagiumTranslationKeys
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricAdvancementProvider
@@ -46,7 +51,7 @@ object RagiumAdvancementProviders {
     ): AdvancementEntry = Advancement.Builder
         .create()
         .apply(builderAction)
-        .build(consumer, RagiumAPI.id(path).toString())
+        .build(consumer, RagiumAPI.Companion.id(path).toString())
 
     private fun createRoot(
         consumer: Consumer<AdvancementEntry>,
@@ -170,7 +175,7 @@ object RagiumAdvancementProviders {
     ): AdvancementEntry = createAdvancement(consumer, path) {
         parent(parent)
         display(
-            RagiumAPI.getInstance().createFilledCube(fluid),
+            RagiumAPI.Companion.getInstance().createFilledCube(fluid),
             title,
             desc,
             null,
@@ -211,7 +216,7 @@ object RagiumAdvancementProviders {
 
     private fun Advancement.Builder.interactMachine(key: HTMachineKey, minTier: HTMachineTier): Advancement.Builder = criterion(
         "interact_machine",
-        RagiumAPI.getInstance().createInteractMachineCriterion(key, minTier),
+        RagiumAPI.Companion.getInstance().createInteractMachineCriterion(key, minTier),
     )
 
     private fun Advancement.Builder.hasAllItems(vararg items: ItemConvertible): Advancement.Builder = criterion(
@@ -256,7 +261,7 @@ object RagiumAdvancementProviders {
                 consumer,
                 "progress/root",
                 RagiumBlocks.Ores.CRUDE_RAGINITE,
-                Text.literal(RagiumAPI.MOD_NAME),
+                Text.literal(RagiumAPI.Companion.MOD_NAME),
                 Text.empty(),
                 Identifier.of("textures/block/bricks.png"),
             ) { hasAnyItems(RagiumItems.RawMaterials.CRUDE_RAGINITE) }
@@ -367,7 +372,7 @@ object RagiumAdvancementProviders {
                 title = Text.translatable(RagiumTranslationKeys.ADVANCEMENT_STELLA_SUIT),
                 frame = AdvancementFrame.CHALLENGE,
             ) {
-                hasAllItems(*RagiumItems.StellaSuits.values())
+                hasAllItems(*RagiumItems.StellaSuits.entries.toTypedArray())
             }
         }
     }
@@ -754,7 +759,7 @@ object RagiumAdvancementProviders {
             val root: AdvancementEntry = createRoot(
                 consumer,
                 "petro_chemistry/root",
-                RagiumAPI.getInstance().createFilledCube(RagiumFluids.CRUDE_OIL),
+                RagiumAPI.Companion.getInstance().createFilledCube(RagiumFluids.CRUDE_OIL),
                 Text.literal("Petro Chemistry"),
                 Text.empty(),
                 Identifier.of("textures/block/blast_furnace_top.png"),
