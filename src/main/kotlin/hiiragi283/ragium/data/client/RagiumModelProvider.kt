@@ -36,22 +36,21 @@ class RagiumModelProvider(output: FabricDataOutput) : FabricModelProvider(output
         blockGenerator.blockStateCollector.accept(supplier)
     }
 
-    fun registerDirectional(content: HTBlockContent, model: BlockStateVariant = stateVariantOf(content)) {
-        registerSupplier(
-            content,
-            VariantsBlockStateSupplier
-                .create(content.get(), model)
-                .coordinate(BlockStateModelGenerator.createNorthDefaultRotationStates()),
-        )
-    }
-
-    fun registerHorizontal(content: HTBlockContent, modelId: Identifier = content.id.withPrefixedPath("block/")) {
+    fun registerDirectional(content: HTBlockContent, modelId: Identifier, variantMap: BlockStateVariantMap) {
         registerSupplier(
             content,
             VariantsBlockStateSupplier
                 .create(content.get(), stateVariantOf(modelId))
-                .coordinate(BlockStateModelGenerator.createNorthDefaultHorizontalRotationStates()),
+                .coordinate(variantMap),
         )
+    }
+
+    fun registerFacing(content: HTBlockContent, modelId: Identifier = content.id.withPrefixedPath("block/")) {
+        registerDirectional(content, modelId, BlockStateModelGenerator.createNorthDefaultRotationStates())
+    }
+
+    fun registerHorizontal(content: HTBlockContent, modelId: Identifier = content.id.withPrefixedPath("block/")) {
+        registerDirectional(content, modelId, BlockStateModelGenerator.createNorthDefaultHorizontalRotationStates())
     }
 
     // model-based
@@ -140,17 +139,15 @@ class RagiumModelProvider(output: FabricDataOutput) : FabricModelProvider(output
             RagiumAPI.id("block/crate_overlay"),
         )
         registerFactory(RagiumBlocks.Creatives.DRUM, TexturedModel.CUBE_COLUMN)
-        registerDirectional(
+        registerFacing(
             RagiumBlocks.Creatives.EXPORTER,
-            stateVariantOf(
-                RagiumModels.EXPORTER.upload(
-                    RagiumBlocks.Creatives.EXPORTER,
-                    HTTextureMapBuilder.create {
-                        put(TextureKey.TOP, RagiumAPI.id("block/creative_coil_top"))
-                        put(TextureKey.SIDE, RagiumAPI.id("block/creative_coil_side"))
-                    },
-                    modelCollector,
-                ),
+            RagiumModels.EXPORTER.upload(
+                RagiumBlocks.Creatives.EXPORTER,
+                HTTextureMapBuilder.create {
+                    put(TextureKey.TOP, RagiumAPI.id("block/creative_coil_top"))
+                    put(TextureKey.SIDE, RagiumAPI.id("block/creative_coil_side"))
+                },
+                modelCollector,
             ),
         )
         registerSimple(RagiumBlocks.Creatives.SOURCE)
@@ -267,17 +264,15 @@ class RagiumModelProvider(output: FabricDataOutput) : FabricModelProvider(output
         RagiumBlocks.Exporters.entries.forEach { exporter: RagiumBlocks.Exporters ->
             val block: Block = exporter.get()
             val coil: Block = exporter.tier.getCoil().get()
-            registerDirectional(
+            registerFacing(
                 exporter,
-                stateVariantOf(
-                    RagiumModels.EXPORTER.upload(
-                        block,
-                        HTTextureMapBuilder.create {
-                            put(TextureKey.TOP, coil, "_top")
-                            put(TextureKey.SIDE, coil, "_side")
-                        },
-                        modelCollector,
-                    ),
+                RagiumModels.EXPORTER.upload(
+                    block,
+                    HTTextureMapBuilder.create {
+                        put(TextureKey.TOP, coil, "_top")
+                        put(TextureKey.SIDE, coil, "_side")
+                    },
+                    modelCollector,
                 ),
             )
         }
@@ -376,13 +371,16 @@ class RagiumModelProvider(output: FabricDataOutput) : FabricModelProvider(output
             add(RagiumBlocks.TELEPORT_ANCHOR)
         }.forEach(::registerSimple)
 
-        // blockGenerator.excludeFromSimpleItemModelGeneration(RagiumBlocks.ROPE.get())
         buildList {
             add(RagiumBlocks.MANUAL_FORGE)
             add(RagiumBlocks.MANUAL_MIXER)
-            // add(RagiumBlocks.ROPE)
             add(RagiumBlocks.SWEET_BERRIES_CAKE)
         }.forEach(::registerStaticModel)
+
+        registerFacing(
+            RagiumBlocks.MACHINE_INTERFACE,
+            TexturedModel.CUBE_ALL.upload(RagiumBlocks.MACHINE_INTERFACE.get(), modelCollector),
+        )
 
         registerHorizontal(
             RagiumBlocks.EXTENDED_PROCESSOR,

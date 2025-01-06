@@ -84,6 +84,7 @@ class RagiumJapaneseLangProvider(output: FabricDataOutput, registryLookup: Compl
         builder.add(RagiumBlocks.MANUAL_FORGE, "らぎ金床")
         builder.add(RagiumBlocks.MANUAL_GRINDER, "らぎ臼")
         builder.add(RagiumBlocks.MANUAL_MIXER, "らぎ釜")
+        builder.add(RagiumBlocks.MACHINE_INTERFACE, "E.M.I.")
         builder.add(RagiumBlocks.NETWORK_INTERFACE, "E.N.I.")
         builder.add(RagiumBlocks.OPEN_CRATE, "オープンクレート")
         builder.add(RagiumBlocks.SHAFT, "シャフト")
@@ -106,6 +107,7 @@ class RagiumJapaneseLangProvider(output: FabricDataOutput, registryLookup: Compl
         builder.add(RagiumBlocks.FilteringPipes.FLUID, "液体フィルタリングパイプ")
 
         builder.add(RagiumTranslationKeys.AUTO_ILLUMINATOR, "半径%sブロックの範囲に光源を自動で設置する")
+        builder.add(RagiumTranslationKeys.MACHINE_INTERFACE, "正面にある機械の搬入出を拡張する")
         builder.add(RagiumTranslationKeys.LARGE_PROCESSOR, "マルチブロック内の加工機械を拡張する")
         builder.add(RagiumTranslationKeys.MANUAL_GRINDER, "ホッパーなどでアイテムを搬入できる")
         builder.add(RagiumTranslationKeys.MUTATED_SOIL, "成長チャンバーで使用")

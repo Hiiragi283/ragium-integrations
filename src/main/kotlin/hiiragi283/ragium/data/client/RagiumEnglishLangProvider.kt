@@ -84,6 +84,7 @@ class RagiumEnglishLangProvider(output: FabricDataOutput, registryLookup: Comple
         builder.add(RagiumBlocks.MANUAL_FORGE, "Ragi-Anvil")
         builder.add(RagiumBlocks.MANUAL_GRINDER, "Ragi-Grinder")
         builder.add(RagiumBlocks.MANUAL_MIXER, "Ragi-Basin")
+        builder.add(RagiumBlocks.MACHINE_INTERFACE, "E.M.I.")
         builder.add(RagiumBlocks.NETWORK_INTERFACE, "E.N.I.")
         builder.add(RagiumBlocks.OPEN_CRATE, "Open Crate")
         builder.add(RagiumBlocks.SHAFT, "Shaft")
@@ -106,6 +107,7 @@ class RagiumEnglishLangProvider(output: FabricDataOutput, registryLookup: Comple
         builder.add(RagiumBlocks.FilteringPipes.FLUID, "Fluid Filtering Pipe")
 
         builder.add(RagiumTranslationKeys.AUTO_ILLUMINATOR, "Place lights in area of %s block radius")
+        builder.add(RagiumTranslationKeys.MACHINE_INTERFACE, "Extend the adjacent side for front machine")
         builder.add(RagiumTranslationKeys.LARGE_PROCESSOR, "Extend processor machine inside the multiblock")
         builder.add(RagiumTranslationKeys.MANUAL_GRINDER, "Insert items by hopper or something else")
         builder.add(RagiumTranslationKeys.MUTATED_SOIL, "Used for Growth Chamber")
