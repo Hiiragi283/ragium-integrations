@@ -5,16 +5,16 @@ import net.minecraft.util.Identifier
 import net.minecraft.util.StringIdentifiable
 
 enum class HTPatchouliCategory : StringIdentifiable {
-    TIER_1,
-    TIER_2,
-    TIER_3,
-    TIER_4,
     FOOD,
-    MACHINES,
+    MACHINE,
+    MATERIAL,
     PETROCHEMISTRY,
+    UTILITY,
     ;
 
     val id: Identifier = RagiumAPI.id(asString())
+    val translationKey = "ragium.category.${asString()}"
+    val descKey = "ragium.category.${asString()}0"
 
     override fun asString(): String = name.lowercase()
 }

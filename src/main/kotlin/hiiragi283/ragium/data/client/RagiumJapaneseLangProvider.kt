@@ -11,6 +11,7 @@ import hiiragi283.ragium.common.init.RagiumItems
 import hiiragi283.ragium.common.init.RagiumMachineKeys
 import hiiragi283.ragium.common.init.RagiumMaterialKeys
 import hiiragi283.ragium.common.init.RagiumTranslationKeys
+import hiiragi283.ragium.integration.patchouli.HTPatchouliCategory
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider
 import net.minecraft.registry.RegistryWrapper
@@ -449,14 +450,11 @@ class RagiumJapaneseLangProvider(output: FabricDataOutput, registryLookup: Compl
 
         builder.add(RagiumTranslationKeys.PROVIDER_JADE_NETWORK_INTERFACE, "エネルギー量: %s E")
         // Patchouli
-        builder.add(RagiumTranslationKeys.PATCHOULI_CATEGORY_TIER1, "Tier 1")
-        builder.add(RagiumTranslationKeys.PATCHOULI_CATEGORY_TIER10, "最初のステージ")
-        builder.add(RagiumTranslationKeys.PATCHOULI_CATEGORY_TIER2, "Tier 2")
-        builder.add(RagiumTranslationKeys.PATCHOULI_CATEGORY_TIER20, "次なるステージ")
-        builder.add(RagiumTranslationKeys.PATCHOULI_CATEGORY_TIER3, "Tier 3")
-        builder.add(RagiumTranslationKeys.PATCHOULI_CATEGORY_TIER30, "さらなるステージ")
-        builder.add(RagiumTranslationKeys.PATCHOULI_CATEGORY_TIER4, "Tier 4")
-        builder.add(RagiumTranslationKeys.PATCHOULI_CATEGORY_TIER40, "最後のステージ")
+        builder.add(HTPatchouliCategory.FOOD, "食べ物", "GregTechがあなたを待っている…")
+        builder.add(HTPatchouliCategory.MACHINE, "機械", "破壊！豪快！奇々怪々！")
+        builder.add(HTPatchouliCategory.MATERIAL, "素材", "らぎマテリアル")
+        builder.add(HTPatchouliCategory.PETROCHEMISTRY, "石油化学", "アスファルト タイヤを切り付けながら")
+        builder.add(HTPatchouliCategory.UTILITY, "ユーティリティ", "エクストラかもしれない")
 
         builder.add(RagiumTranslationKeys.PATCHOULI_CRUDE_RAGINITE_ORE, "粗製ラギナイトを見つけよう")
         builder.add(

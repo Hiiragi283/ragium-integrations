@@ -602,7 +602,7 @@ class RagiumChemicalRecipeProvider(output: FabricDataOutput, registriesFuture: C
             .offerTo(exporter, RagiumItems.LUMINESCENCE_DUST)
 
         HTMachineRecipeJsonBuilder
-            .create(RagiumMachineKeys.INFUSER)
+            .create(RagiumMachineKeys.EXTRACTOR)
             .itemInput(Items.MUD)
             .itemOutput(Items.CLAY)
             .offerTo(exporter, Items.CLAY)

@@ -1,19 +1,17 @@
 package hiiragi283.ragium.data.client
 
 import hiiragi283.ragium.api.RagiumAPI
-import hiiragi283.ragium.common.init.RagiumBlocks
+import hiiragi283.ragium.api.material.HTMaterialKey
 import hiiragi283.ragium.common.init.RagiumItems
-import hiiragi283.ragium.common.init.RagiumTranslationKeys
+import hiiragi283.ragium.common.init.RagiumMaterialKeys
 import hiiragi283.ragium.integration.patchouli.HTBookEntry
 import hiiragi283.ragium.integration.patchouli.HTPatchouliCategory
 import hiiragi283.ragium.integration.patchouli.page.HTBookPage
-import hiiragi283.ragium.integration.patchouli.page.HTRecipeBookPage
 import hiiragi283.ragium.integration.patchouli.page.HTSpotlightBookPage
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricCodecDataProvider
 import net.minecraft.data.DataOutput
 import net.minecraft.item.ItemConvertible
-import net.minecraft.recipe.RecipeType
 import net.minecraft.registry.Registries
 import net.minecraft.registry.RegistryWrapper
 import net.minecraft.util.Identifier
@@ -30,54 +28,13 @@ class RIPatchouliPageProvider(output: FabricDataOutput, registriesFuture: Comple
     ) {
     override fun getName(): String = "Patchouli/Pages"
 
-    override fun configure(consumer: BiConsumer<Identifier, HTBookEntry>, wrapperLookup: RegistryWrapper.WrapperLookup) {
-        registerPage(
-            consumer,
-            HTPatchouliCategory.TIER_1,
-            "crude_raginite",
-            RagiumTranslationKeys.PATCHOULI_CRUDE_RAGINITE_ORE,
-            RagiumItems.RawMaterials.CRUDE_RAGINITE,
-            HTSpotlightBookPage(
-                RagiumBlocks.Ores.CRUDE_RAGINITE,
-                RagiumTranslationKeys.PATCHOULI_CRUDE_RAGINITE_ORE0,
-            ),
-            HTSpotlightBookPage(
-                RagiumItems.RawMaterials.CRUDE_RAGINITE,
-                RagiumTranslationKeys.PATCHOULI_CRUDE_RAGINITE_ORE1,
-            ),
-        )
-        registerPage(
-            consumer,
-            HTPatchouliCategory.TIER_1,
-            "ragi_alloy",
-            RagiumTranslationKeys.PATCHOULI_RAGI_ALLOY,
-            RagiumItems.Ingots.RAGI_ALLOY,
-            HTSpotlightBookPage(
-                RagiumItems.Ingots.RAGI_ALLOY,
-                RagiumTranslationKeys.PATCHOULI_RAGI_ALLOY0,
-            ),
-            HTRecipeBookPage(
-                RecipeType.CRAFTING,
-                RagiumAPI.id("shaped/ragi_alloy_compound"),
-                RagiumAPI.id("shaped/ragi_alloy_compound_1"),
-            ),
-            HTRecipeBookPage(
-                RecipeType.SMELTING,
-                RagiumAPI.id("smelting/ragi_alloy_ingot"),
-            ),
-            HTRecipeBookPage(
-                RecipeType.BLASTING,
-                RagiumAPI.id("blasting/ragi_alloy_ingot"),
-            ),
-        )
-    }
-
     private fun registerPage(
         consumer: BiConsumer<Identifier, HTBookEntry>,
         category: HTPatchouliCategory,
         path: String,
         name: String,
         icon: ItemConvertible,
+        advancementId: Identifier?,
         vararg pages: HTBookPage<*, *>,
     ) {
         val entry: HTBookEntry = HTBookEntry.of(
@@ -85,7 +42,97 @@ class RIPatchouliPageProvider(output: FabricDataOutput, registriesFuture: Comple
             Registries.ITEM.getEntry(icon.asItem()),
             category.id,
             pages.toList(),
+            advancementId,
         ) ?: return
         consumer.accept(RagiumAPI.id(path).withPrefixedPath("${category.asString()}/"), entry)
     }
+
+    override fun configure(consumer: BiConsumer<Identifier, HTBookEntry>, wrapperLookup: RegistryWrapper.WrapperLookup) {
+        registerMaterials(consumer, wrapperLookup)
+    }
+
+    //    Food    //
+
+    //    Machine    //
+
+    //    Material    //
+
+    private fun registerMaterials(consumer: BiConsumer<Identifier, HTBookEntry>, wrapperLookup: RegistryWrapper.WrapperLookup) {
+        // tier 1
+        registerMaterialPage(
+            consumer,
+            RagiumMaterialKeys.CRUDE_RAGINITE,
+            RagiumItems.Dusts.CRUDE_RAGINITE,
+            RagiumAPI.id("progress/root"),
+            HTSpotlightBookPage(
+                RagiumItems.Dusts.CRUDE_RAGINITE,
+                "Crude Raginite is the most fundamental material in Ragium",
+            ),
+        )
+        // tier 2
+        registerMaterialPage(
+            consumer,
+            RagiumMaterialKeys.RAGINITE,
+            RagiumItems.Dusts.RAGINITE,
+            RagiumAPI.id("progress/ragi_steel"),
+            HTSpotlightBookPage(
+                RagiumItems.Dusts.RAGINITE,
+                "Raginite is common material",
+            ),
+        )
+        // tier 3
+        registerMaterialPage(
+            consumer,
+            RagiumMaterialKeys.RAGI_CRYSTAL,
+            RagiumItems.Gems.RAGI_CRYSTAL,
+            RagiumAPI.id("progress/ragi_crystal"),
+            HTSpotlightBookPage(
+                RagiumItems.Gems.RAGI_CRYSTAL,
+                "Ragi-Crystal is crystallized form of Raginite",
+            ),
+        )
+        registerMaterialPage(
+            consumer,
+            RagiumMaterialKeys.REFINED_RAGI_STEEL,
+            RagiumItems.Ingots.REFINED_RAGI_STEEL,
+            RagiumAPI.id("progress/refined_ragi_steel"),
+            HTSpotlightBookPage(
+                RagiumItems.Ingots.REFINED_RAGI_STEEL,
+                "Refined Ragi-Steel is steel material for Tier 3",
+            ),
+        )
+        // tier 4
+        registerMaterialPage(
+            consumer,
+            RagiumMaterialKeys.RAGIUM,
+            RagiumItems.Gems.RAGIUM,
+            RagiumAPI.id("progress/ragium"),
+            HTSpotlightBookPage(
+                RagiumItems.Gems.RAGIUM,
+                "Ragium is perfectly purified material",
+            ),
+        )
+    }
+
+    private fun registerMaterialPage(
+        consumer: BiConsumer<Identifier, HTBookEntry>,
+        material: HTMaterialKey,
+        icon: ItemConvertible,
+        advancementId: Identifier?,
+        vararg pages: HTBookPage<*, *>,
+    ) {
+        registerPage(
+            consumer,
+            HTPatchouliCategory.MATERIAL,
+            material.name,
+            material.translationKey,
+            icon,
+            advancementId,
+            *pages,
+        )
+    }
+
+    //    Petrochemistry    //
+
+    //    Utility    //
 }

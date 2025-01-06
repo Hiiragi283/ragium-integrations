@@ -7,6 +7,7 @@ import hiiragi283.ragium.api.machine.HTMachineKey
 import hiiragi283.ragium.api.machine.HTMachineTier
 import hiiragi283.ragium.api.material.HTMaterialKey
 import hiiragi283.ragium.api.material.HTTagPrefix
+import hiiragi283.ragium.integration.patchouli.HTPatchouliCategory
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider
 import net.minecraft.block.Block
 import net.minecraft.enchantment.Enchantment
@@ -45,6 +46,11 @@ fun FabricLanguageProvider.TranslationBuilder.add(key: HTMaterialKey, value: Str
 
 fun FabricLanguageProvider.TranslationBuilder.add(prefix: HTTagPrefix, value: String) {
     add(prefix.translationKey, value)
+}
+
+fun FabricLanguageProvider.TranslationBuilder.add(category: HTPatchouliCategory, name: String, description: String) {
+    add(category.translationKey, name)
+    add(category.descKey, description)
 }
 
 fun FabricLanguageProvider.TranslationBuilder.addWorld(key: RegistryKey<World>, value: String) {

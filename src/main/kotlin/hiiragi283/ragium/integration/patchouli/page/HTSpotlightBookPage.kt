@@ -8,6 +8,7 @@ import vazkii.patchouli.client.book.page.PageSpotlight
 import java.util.*
 import kotlin.jvm.optionals.getOrNull
 
+@Suppress("DEPRECATION")
 class HTSpotlightBookPage private constructor(
     val items: List<RegistryEntry<Item>>,
     val linkRecipe: Boolean,
@@ -16,6 +17,13 @@ class HTSpotlightBookPage private constructor(
 ) : HTBookPage<PageSpotlight, HTSpotlightBookPage> {
     constructor(item: ItemConvertible, text: String? = null, title: String? = null) : this(
         listOf(Registries.ITEM.getEntry(item.asItem())),
+        true,
+        title,
+        text,
+    )
+
+    constructor(items: List<ItemConvertible>, text: String? = null, title: String? = null) : this(
+        items.map(ItemConvertible::asItem).map(Item::getRegistryEntry),
         true,
         title,
         text,

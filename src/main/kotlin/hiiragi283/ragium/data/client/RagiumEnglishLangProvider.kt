@@ -11,6 +11,7 @@ import hiiragi283.ragium.common.init.RagiumItems
 import hiiragi283.ragium.common.init.RagiumMachineKeys
 import hiiragi283.ragium.common.init.RagiumMaterialKeys
 import hiiragi283.ragium.common.init.RagiumTranslationKeys
+import hiiragi283.ragium.integration.patchouli.HTPatchouliCategory
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider
 import net.minecraft.registry.RegistryWrapper
@@ -492,14 +493,11 @@ class RagiumEnglishLangProvider(output: FabricDataOutput, registryLookup: Comple
 
         builder.add(RagiumTranslationKeys.PROVIDER_JADE_NETWORK_INTERFACE, "Stored Energy: %s E")
         // Patchouli
-        builder.add(RagiumTranslationKeys.PATCHOULI_CATEGORY_TIER1, "Tier 1")
-        builder.add(RagiumTranslationKeys.PATCHOULI_CATEGORY_TIER10, "The first stage")
-        builder.add(RagiumTranslationKeys.PATCHOULI_CATEGORY_TIER2, "Tier 2")
-        builder.add(RagiumTranslationKeys.PATCHOULI_CATEGORY_TIER20, "The second stage")
-        builder.add(RagiumTranslationKeys.PATCHOULI_CATEGORY_TIER3, "Tier 3")
-        builder.add(RagiumTranslationKeys.PATCHOULI_CATEGORY_TIER30, "The third stage")
-        builder.add(RagiumTranslationKeys.PATCHOULI_CATEGORY_TIER4, "Tier 4")
-        builder.add(RagiumTranslationKeys.PATCHOULI_CATEGORY_TIER40, "The final stage")
+        builder.add(HTPatchouliCategory.FOOD, "Food", "GregTech is waiting for you...")
+        builder.add(HTPatchouliCategory.MACHINE, "Machine", "")
+        builder.add(HTPatchouliCategory.MATERIAL, "Material", "Ragi-Materials")
+        builder.add(HTPatchouliCategory.PETROCHEMISTRY, "Petrochemistry", "Poetrotheum...?")
+        builder.add(HTPatchouliCategory.UTILITY, "Utility", "Extra...?")
 
         builder.add(RagiumTranslationKeys.PATCHOULI_CRUDE_RAGINITE_ORE, "Find Crude Raginite")
         builder.add(

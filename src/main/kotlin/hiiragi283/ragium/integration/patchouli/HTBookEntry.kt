@@ -7,12 +7,14 @@ import hiiragi283.ragium.integration.patchouli.page.HTBookPage
 import net.minecraft.item.Item
 import net.minecraft.registry.entry.RegistryEntry
 import net.minecraft.util.Identifier
+import java.util.*
 
 class HTBookEntry private constructor(
     val name: String,
     val icon: String,
     val category: Identifier,
     val pages: List<HTBookPage<*, *>>,
+    val advancement: Optional<Identifier>,
 ) {
     companion object {
         @JvmField
@@ -26,6 +28,7 @@ class HTBookEntry private constructor(
                         .listOf()
                         .fieldOf("pages")
                         .forGetter(HTBookEntry::pages),
+                    Identifier.CODEC.optionalFieldOf("advancement").forGetter(HTBookEntry::advancement),
                 ).apply(instance, ::HTBookEntry)
         }
 
@@ -35,9 +38,10 @@ class HTBookEntry private constructor(
             icon: RegistryEntry<Item>,
             category: Identifier,
             pages: List<HTBookPage<*, *>>,
+            advancementId: Identifier?,
         ): HTBookEntry? {
             val iconId: String = icon.id?.toString() ?: return null
-            return HTBookEntry(name, iconId, category, pages)
+            return HTBookEntry(name, iconId, category, pages, Optional.ofNullable(advancementId))
         }
     }
 }
