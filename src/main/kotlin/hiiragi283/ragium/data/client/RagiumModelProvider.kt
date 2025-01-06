@@ -243,6 +243,24 @@ class RagiumModelProvider(output: FabricDataOutput) : FabricModelProvider(output
                 RagiumAPI.id("block/crate_overlay"),
             )
         }
+
+        registerLayered(
+            RagiumBlocks.BACKPACK_CRATE,
+            Identifier.of("block/white_wool"),
+            RagiumAPI.id("block/crate_overlay"),
+        )
+
+        registerLayered(
+            RagiumBlocks.OPEN_CRATE,
+            Identifier.of("block/emerald_block"),
+            RagiumAPI.id("block/crate_overlay"),
+        )
+
+        registerLayered(
+            RagiumBlocks.VOID_CRATE,
+            Identifier.of("block/obsidian"),
+            RagiumAPI.id("block/crate_overlay"),
+        )
         // drum
         RagiumBlocks.Drums.entries.forEach { registerFactory(it, TexturedModel.CUBE_COLUMN) }
         // exporter
@@ -353,11 +371,9 @@ class RagiumModelProvider(output: FabricDataOutput) : FabricModelProvider(output
             add(RagiumBlocks.ITEM_DISPLAY)
             add(RagiumBlocks.MUTATED_SOIL)
             add(RagiumBlocks.NETWORK_INTERFACE)
-            add(RagiumBlocks.OPEN_CRATE)
             add(RagiumBlocks.POROUS_NETHERRACK)
             add(RagiumBlocks.SPONGE_CAKE)
             add(RagiumBlocks.TELEPORT_ANCHOR)
-            add(RagiumBlocks.TRASH_BOX)
         }.forEach(::registerSimple)
 
         // blockGenerator.excludeFromSimpleItemModelGeneration(RagiumBlocks.ROPE.get())
@@ -367,8 +383,6 @@ class RagiumModelProvider(output: FabricDataOutput) : FabricModelProvider(output
             // add(RagiumBlocks.ROPE)
             add(RagiumBlocks.SWEET_BERRIES_CAKE)
         }.forEach(::registerStaticModel)
-
-        registerFactory(RagiumBlocks.BACKPACK_INTERFACE, RagiumModels.ALL_TINTED, TextureMap::all)
 
         registerHorizontal(
             RagiumBlocks.EXTENDED_PROCESSOR,

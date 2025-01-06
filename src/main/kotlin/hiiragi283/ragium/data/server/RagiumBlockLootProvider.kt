@@ -70,9 +70,12 @@ class RagiumBlockLootProvider(dataOutput: FabricDataOutput, registryLookup: Comp
         RagiumBlocks.Ores.entries.forEach(::dropOre)
 
         buildList {
+            add(RagiumBlocks.BACKPACK_CRATE)
             add(RagiumBlocks.MUTATED_SOIL)
+            add(RagiumBlocks.OPEN_CRATE)
             add(RagiumBlocks.PLASTIC_BLOCK)
             add(RagiumBlocks.SPONGE_CAKE)
+            add(RagiumBlocks.VOID_CRATE)
             addAll(RagiumBlocks.Casings.entries)
             addAll(RagiumBlocks.Coils.entries)
             addAll(RagiumBlocks.Creatives.entries)

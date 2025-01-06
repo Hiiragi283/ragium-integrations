@@ -81,6 +81,10 @@ object RagiumTagProviders {
             RagiumBlocks.FOODS.forEach { add(BlockTags.HOE_MINEABLE, it) }
 
             buildList {
+                add(RagiumBlocks.BACKPACK_CRATE)
+                add(RagiumBlocks.OPEN_CRATE)
+                add(RagiumBlocks.VOID_CRATE)
+
                 addAll(RagiumBlocks.Ores.entries)
                 addAll(RagiumBlocks.StorageBlocks.entries)
                 addAll(RagiumBlocks.Grates.entries)

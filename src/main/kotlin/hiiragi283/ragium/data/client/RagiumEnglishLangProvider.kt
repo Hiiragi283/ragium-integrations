@@ -78,7 +78,7 @@ class RagiumEnglishLangProvider(output: FabricDataOutput, registryLookup: Comple
         builder.add(RagiumBlocks.SWEET_BERRIES_CAKE, "Sweet Berries Cake")
 
         builder.add(RagiumBlocks.AUTO_ILLUMINATOR, "Auto Illuminator")
-        builder.add(RagiumBlocks.BACKPACK_INTERFACE, "Backpack Interface")
+        builder.add(RagiumBlocks.BACKPACK_CRATE, "Backpack Crate")
         builder.add(RagiumBlocks.ITEM_DISPLAY, "Item Display")
         builder.add(RagiumBlocks.EXTENDED_PROCESSOR, "Extended Processor")
         builder.add(RagiumBlocks.MANUAL_FORGE, "Ragi-Anvil")
@@ -88,7 +88,7 @@ class RagiumEnglishLangProvider(output: FabricDataOutput, registryLookup: Comple
         builder.add(RagiumBlocks.OPEN_CRATE, "Open Crate")
         builder.add(RagiumBlocks.SHAFT, "Shaft")
         builder.add(RagiumBlocks.TELEPORT_ANCHOR, "Teleport Anchor")
-        builder.add(RagiumBlocks.TRASH_BOX, "Trash Box")
+        builder.add(RagiumBlocks.VOID_CRATE, "Void Crate")
 
         builder.add(RagiumBlocks.Pipes.STONE, "Stone Pipe")
         builder.add(RagiumBlocks.Pipes.WOODEN, "Wooden Pipe")

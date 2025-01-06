@@ -78,7 +78,7 @@ class RagiumJapaneseLangProvider(output: FabricDataOutput, registryLookup: Compl
         builder.add(RagiumBlocks.SWEET_BERRIES_CAKE, "スイートベリーケーキ")
 
         builder.add(RagiumBlocks.AUTO_ILLUMINATOR, "光源置き太郎")
-        builder.add(RagiumBlocks.BACKPACK_INTERFACE, "バックパックインターフェース")
+        builder.add(RagiumBlocks.BACKPACK_CRATE, "バックパックインタークレート")
         builder.add(RagiumBlocks.ITEM_DISPLAY, "アイテムティスプレイ")
         builder.add(RagiumBlocks.EXTENDED_PROCESSOR, "拡張処理装置")
         builder.add(RagiumBlocks.MANUAL_FORGE, "らぎ金床")
@@ -88,7 +88,7 @@ class RagiumJapaneseLangProvider(output: FabricDataOutput, registryLookup: Compl
         builder.add(RagiumBlocks.OPEN_CRATE, "オープンクレート")
         builder.add(RagiumBlocks.SHAFT, "シャフト")
         builder.add(RagiumBlocks.TELEPORT_ANCHOR, "テレポートアンカー")
-        builder.add(RagiumBlocks.TRASH_BOX, "ゴミ箱")
+        builder.add(RagiumBlocks.VOID_CRATE, "虚無クレート")
 
         builder.add(RagiumBlocks.Pipes.STONE, "石パイプ")
         builder.add(RagiumBlocks.Pipes.WOODEN, "木製パイプ")
