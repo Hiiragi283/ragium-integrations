@@ -40,26 +40,11 @@ object RagiumTechRebornPlugin : RagiumPlugin {
             }
         }
 
-        fun registerOre(key: HTMaterialKey, ore: TRContent.Ores, prefix: HTTagPrefix = HTTagPrefix.ORE) {
-            consumer.accept(prefix, key, ore)
-            ore.deepslate?.let {
-                consumer.accept(HTTagPrefix.ORE, key, ore)
-            }
-        }
-
-        registerOre(RagiumMaterialKeys.BAUXITE, TRContent.Ores.BAUXITE)
-        registerOre(RagiumMaterialKeys.CINNABAR, TRContent.Ores.CINNABAR)
-        registerOre(RagiumMaterialKeys.IRIDIUM, TRContent.Ores.IRIDIUM)
-        registerOre(RagiumMaterialKeys.LEAD, TRContent.Ores.LEAD)
-        registerOre(RagiumMaterialKeys.PYRITE, TRContent.Ores.PYRITE)
-        registerOre(RagiumMaterialKeys.SILVER, TRContent.Ores.SILVER)
-        registerOre(RagiumMaterialKeys.TIN, TRContent.Ores.TIN)
-        registerOre(RagiumMaterialKeys.TUNGSTEN, TRContent.Ores.TUNGSTEN)
-
         registerContents(HTTagPrefix.DUST, TRContent.Dusts.entries)
         registerContents(HTTagPrefix.GEM, TRContent.Gems.entries)
         registerContents(HTTagPrefix.INGOT, TRContent.Ingots.entries)
         registerContents(HTTagPrefix.NUGGET, TRContent.Nuggets.entries)
+        registerContents(HTTagPrefix.ORE, TRContent.Ores.entries)
         registerContents(HTTagPrefix.PLATE, TRContent.Plates.entries)
         registerContents(HTTagPrefix.RAW_MATERIAL, TRContent.RawMetals.entries)
         registerContents(HTTagPrefix.STORAGE_BLOCK, TRContent.StorageBlocks.entries)

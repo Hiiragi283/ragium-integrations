@@ -280,10 +280,6 @@ object RagiumTagProviders {
             add(RagiumItemTags.ALKALI, RagiumItems.Dusts.ALKALI)
             add(RagiumItemTags.ALKALI, RagiumItems.Dusts.ASH)
 
-            add(RagiumItemTags.FLUID_EXPORTER_FILTERS, RagiumItems.FLUID_FILTER)
-
-            add(RagiumItemTags.ITEM_EXPORTER_FILTERS, RagiumItems.ITEM_FILTER)
-
             add(RagiumItemTags.SILICON, RagiumItems.CRUDE_SILICON)
             add(RagiumItemTags.SILICON_PLATES, RagiumItems.SILICON)
             add(RagiumItemTags.REFINED_SILICON_PLATES, RagiumItems.REFINED_SILICON)

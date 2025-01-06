@@ -257,6 +257,7 @@ class RagiumChemicalRecipeProvider(output: FabricDataOutput, registriesFuture: C
             .create(RagiumMachineKeys.CHEMICAL_REACTOR)
             .itemInput(RagiumItems.POLYMER_RESIN)
             .fluidInput(RagiumFluids.OXYGEN)
+            .catalyst(RagiumItems.Plastics.PRIMITIVE)
             .itemOutput(RagiumItems.Plastics.PRIMITIVE, 2)
             .offerTo(exporter, RagiumItems.Plastics.PRIMITIVE, "_with_oxygen")
 
@@ -272,6 +273,7 @@ class RagiumChemicalRecipeProvider(output: FabricDataOutput, registriesFuture: C
             .itemInput(RagiumItems.POLYMER_RESIN)
             .fluidInput(RagiumFluids.HYDROCHLORIC_ACID)
             .fluidInput(RagiumFluids.OXYGEN)
+            .catalyst(RagiumItems.Plastics.BASIC)
             .itemOutput(RagiumItems.Plastics.BASIC, 2)
             .offerTo(exporter, RagiumItems.Plastics.BASIC, "_with_oxygen")
 
@@ -286,6 +288,8 @@ class RagiumChemicalRecipeProvider(output: FabricDataOutput, registriesFuture: C
             .create(RagiumMachineKeys.CHEMICAL_REACTOR)
             .itemInput(RagiumItems.POLYMER_RESIN, 2)
             .fluidInput(RagiumFluids.AROMATIC_COMPOUNDS, FluidConstants.INGOT)
+            .fluidInput(RagiumFluids.OXYGEN)
+            .catalyst(RagiumItems.Plastics.ADVANCED)
             .itemOutput(RagiumItems.Plastics.ADVANCED, 2)
             .offerTo(exporter, RagiumItems.Plastics.ADVANCED, "_with_oxygen")
         // oxidization

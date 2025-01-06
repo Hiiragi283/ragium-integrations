@@ -262,6 +262,12 @@ class RagiumMachineRecipeProvider(output: FabricDataOutput, registriesFuture: Co
             .catalyst(RagiumItems.PressMolds.ROD)
             .itemOutput(Items.BREEZE_ROD)
             .offerTo(exporter, Items.BREEZE_ROD)
+        // air
+        HTMachineRecipeJsonBuilder
+            .create(RagiumMachineKeys.COMPRESSOR)
+            .catalyst(Items.WIND_CHARGE)
+            .fluidOutput(RagiumFluids.AIR)
+            .offerTo(exporter, RagiumFluids.AIR)
         // snow, ice
         HTMachineRecipeJsonBuilder
             .create(RagiumMachineKeys.COMPRESSOR)
