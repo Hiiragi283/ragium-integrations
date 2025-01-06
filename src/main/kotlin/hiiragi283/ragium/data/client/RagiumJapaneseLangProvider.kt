@@ -247,7 +247,7 @@ class RagiumJapaneseLangProvider(output: FabricDataOutput, registryLookup: Compl
         builder.add(RagiumItems.RAGI_ALLOY_COMPOUND, "ラギ合金混合物")
         builder.add(RagiumItems.REFINED_SILICON, "精製シリコン")
         builder.add(RagiumItems.RESIDUAL_COKE, "残渣油コークス")
-        builder.add(RagiumItems.ROCK_WOOL, "ロックウール")
+        // builder.add(RagiumItems.ROCK_WOOL, "ロックウール")
         builder.add(RagiumItems.SILICON, "シリコン")
         builder.add(RagiumItems.SLAG, "スラグ")
         builder.add(RagiumItems.SOAP, "石鹸")

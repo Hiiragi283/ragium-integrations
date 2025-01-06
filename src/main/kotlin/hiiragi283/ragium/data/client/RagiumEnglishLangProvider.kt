@@ -247,7 +247,7 @@ class RagiumEnglishLangProvider(output: FabricDataOutput, registryLookup: Comple
         builder.add(RagiumItems.RAGI_ALLOY_COMPOUND, "Ragi-Alloy Compound")
         builder.add(RagiumItems.REFINED_SILICON, "Refined Silicon")
         builder.add(RagiumItems.RESIDUAL_COKE, "Residual Coke")
-        builder.add(RagiumItems.ROCK_WOOL, "Rock Wool")
+        // builder.add(RagiumItems.ROCK_WOOL, "Rock Wool")
         builder.add(RagiumItems.SILICON, "Silicon")
         builder.add(RagiumItems.SLAG, "Slag")
         builder.add(RagiumItems.SOAP, "Soap")

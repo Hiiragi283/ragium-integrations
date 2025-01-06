@@ -164,7 +164,14 @@ class RagiumChemicalRecipeProvider(output: FabricDataOutput, registriesFuture: C
         HTMachineRecipeJsonBuilder
             .create(RagiumMachineKeys.CHEMICAL_REACTOR, HTMachineTier.BASIC)
             .itemInput(RagiumItems.Dusts.SULFUR)
-            .fluidInput(RagiumFluids.OXYGEN, FluidConstants.BUCKET * 3)
+            .fluidInput(RagiumFluids.OXYGEN, FluidConstants.BUCKET * 2)
+            .fluidOutput(RagiumFluids.SULFUR_DIOXIDE)
+            .offerTo(exporter, RagiumFluids.SULFUR_DIOXIDE)
+
+        HTMachineRecipeJsonBuilder
+            .create(RagiumMachineKeys.CHEMICAL_REACTOR, HTMachineTier.BASIC)
+            .fluidInput(RagiumFluids.SULFUR_DIOXIDE)
+            .fluidInput(RagiumFluids.OXYGEN)
             .fluidOutput(RagiumFluids.SULFUR_TRIOXIDE)
             .offerTo(exporter, RagiumFluids.SULFUR_TRIOXIDE)
 
@@ -497,7 +504,7 @@ class RagiumChemicalRecipeProvider(output: FabricDataOutput, registriesFuture: C
             .fluidInput(Fluids.WATER)
             .fluidOutput(RagiumFluids.HYDROGEN, FluidConstants.BUCKET * 2)
             .fluidOutput(RagiumFluids.OXYGEN)
-            .offerTo(exporter, Fluids.WATER)
+            .offerTo(exporter, RagiumAPI.id("water"))
 
         HTMachineRecipeJsonBuilder
             .create(RagiumMachineKeys.ELECTROLYZER)
@@ -589,12 +596,6 @@ class RagiumChemicalRecipeProvider(output: FabricDataOutput, registriesFuture: C
             .itemOutput(RagiumItems.LUMINESCENCE_DUST)
             .itemOutput(Items.INK_SAC)
             .offerTo(exporter, RagiumItems.LUMINESCENCE_DUST)
-
-        HTMachineRecipeJsonBuilder
-            .create(RagiumMachineKeys.EXTRACTOR)
-            .itemInput(RagiumItems.Gems.CINNABAR)
-            .fluidOutput(RagiumFluids.MERCURY)
-            .offerTo(exporter, RagiumFluids.MERCURY)
 
         HTMachineRecipeJsonBuilder
             .create(RagiumMachineKeys.INFUSER)

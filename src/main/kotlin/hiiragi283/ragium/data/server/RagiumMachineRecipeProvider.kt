@@ -160,6 +160,14 @@ class RagiumMachineRecipeProvider(output: FabricDataOutput, registriesFuture: Co
             .itemOutput(RagiumItems.Ingots.REFINED_RAGI_STEEL)
             .itemOutput(RagiumItems.SLAG)
             .offerTo(exporter, RagiumItems.Ingots.REFINED_RAGI_STEEL)
+
+        // mercury
+        HTMachineRecipeJsonBuilder
+            .create(RagiumMachineKeys.BLAST_FURNACE)
+            .itemInput(RagiumItems.Gems.CINNABAR)
+            .fluidOutput(RagiumFluids.MERCURY)
+            .fluidOutput(RagiumFluids.SULFUR_DIOXIDE)
+            .offerTo(exporter, RagiumFluids.MERCURY)
         // silicon
         HTMachineRecipeJsonBuilder
             .create(RagiumMachineKeys.BLAST_FURNACE, HTMachineTier.BASIC)
@@ -397,7 +405,7 @@ class RagiumMachineRecipeProvider(output: FabricDataOutput, registriesFuture: Co
         registerGrinder(exporter, ItemTags.WOODEN_TRAPDOORS to 1, RagiumItems.PULP to 3, suffix = "_from_trap_door")
         registerGrinder(exporter, ItemTags.WOOL to 1, Items.STRING to 4)
         registerGrinder(exporter, RagiumItems.CINNAMON_STICK to 1, RagiumItems.CINNAMON_POWDER to 2)
-        registerGrinder(exporter, RagiumItems.SLAG to 1, RagiumItems.ROCK_WOOL to 1)
+        // registerGrinder(exporter, RagiumItems.SLAG to 1, RagiumItems.ROCK_WOOL to 1)
         registerGrinder(exporter, RagiumItemTags.PROTEIN_FOODS to 1, RagiumItems.MINCED_MEAT to 1)
 
         HTMachineRecipeJsonBuilder

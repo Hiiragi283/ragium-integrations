@@ -56,42 +56,42 @@ class RagiumIntegrationRecipeProvider(output: FabricDataOutput, completableFutur
             .itemInput(RagiumItemTags.SILICON)
             .itemInput(ConventionalItemTags.REDSTONE_DUSTS, 2)
             .itemOutput(EPItems.REDSTONE_ALLOY_INGOT)
-            .offerTo(exporter, EPItems.REDSTONE_ALLOY_INGOT)
+            .offerTo(exporter, EPItems.REDSTONE_ALLOY_INGOT, "_with_ep")
         HTMachineRecipeJsonBuilder
             .create(RagiumMachineKeys.BLAST_FURNACE)
             .itemInput(HTTagPrefix.INGOT, RagiumMaterialKeys.STEEL, 3)
             .itemInput(ConventionalItemTags.COPPER_INGOTS, 3)
             .itemInput(HTTagPrefix.INGOT, RagiumMaterialKeys.TIN, 3)
             .itemOutput(EPItems.ADVANCED_ALLOY_INGOT)
-            .offerTo(exporter, EPItems.ADVANCED_ALLOY_INGOT)
+            .offerTo(exporter, EPItems.ADVANCED_ALLOY_INGOT, "_with_ep")
         // cable insulator
         HTMachineRecipeJsonBuilder
             .create(RagiumMachineKeys.ASSEMBLER)
             .itemInput(ItemTags.WOOL)
             .itemInput(Items.SHEARS, consumeType = HTItemIngredient.ConsumeType.DAMAGE)
             .itemOutput(EPItems.CABLE_INSULATOR, 18)
-            .offerTo(exporter, EPItems.CABLE_INSULATOR)
+            .offerTo(exporter, EPItems.CABLE_INSULATOR, "_with_ep")
         // circuits
         HTMachineRecipeJsonBuilder
             .create(RagiumMachineKeys.ASSEMBLER)
             .itemInput(RagiumItems.Circuits.PRIMITIVE)
             .itemInput(HTTagPrefix.WIRE, RagiumMaterialKeys.COPPER, 4)
             .itemOutput(EPItems.BASIC_CIRCUIT)
-            .offerTo(exporter, EPItems.BASIC_CIRCUIT)
+            .offerTo(exporter, EPItems.BASIC_CIRCUIT, "_with_ep")
 
         HTMachineRecipeJsonBuilder
             .create(RagiumMachineKeys.ASSEMBLER, HTMachineTier.BASIC)
             .itemInput(RagiumItems.Circuits.BASIC)
             .itemInput(HTTagPrefix.WIRE, RagiumEPPlugin.ENERGIZED_COPPER, 4)
             .itemOutput(EPItems.ADVANCED_CIRCUIT)
-            .offerTo(exporter, EPItems.ADVANCED_CIRCUIT)
+            .offerTo(exporter, EPItems.ADVANCED_CIRCUIT, "_with_ep")
 
         HTMachineRecipeJsonBuilder
             .create(RagiumMachineKeys.ASSEMBLER, HTMachineTier.ADVANCED)
             .itemInput(RagiumItems.Circuits.ADVANCED)
             .itemInput(HTTagPrefix.WIRE, RagiumEPPlugin.ENERGIZED_GOLD, 4)
             .itemOutput(EPItems.PROCESSING_UNIT)
-            .offerTo(exporter, EPItems.PROCESSING_UNIT)
+            .offerTo(exporter, EPItems.PROCESSING_UNIT, "_with_ep")
     }
 
     //    Oritech    //
@@ -103,21 +103,21 @@ class RagiumIntegrationRecipeProvider(output: FabricDataOutput, completableFutur
             .itemInput(HTTagPrefix.INGOT, RagiumMaterialKeys.NICKEL)
             .itemInput(HTTagPrefix.GEM, RagiumMaterialKeys.DIAMOND)
             .itemOutput(ItemContent.ADAMANT_INGOT)
-            .offerTo(exporter, ItemContent.ADAMANT_INGOT)
+            .offerTo(exporter, ItemContent.ADAMANT_INGOT, "_with_oritech")
 
         HTMachineRecipeJsonBuilder
             .create(RagiumMachineKeys.BLAST_FURNACE, HTMachineTier.ADVANCED)
             .itemInput(HTTagPrefix.INGOT, RagiumMaterialKeys.PLATINUM)
             .itemInput(HTTagPrefix.INGOT, RagiumMaterialKeys.NETHERITE)
             .itemOutput(ItemContent.DURATIUM_INGOT)
-            .offerTo(exporter, ItemContent.DURATIUM_INGOT)
+            .offerTo(exporter, ItemContent.DURATIUM_INGOT, "_with_oritech")
 
         HTMachineRecipeJsonBuilder
             .create(RagiumMachineKeys.BLAST_FURNACE, HTMachineTier.ADVANCED)
             .itemInput(HTTagPrefix.INGOT, RagiumMaterialKeys.NICKEL)
             .itemInput(ItemContent.FLUXITE)
             .itemOutput(ItemContent.ENERGITE_INGOT)
-            .offerTo(exporter, ItemContent.ENERGITE_INGOT)
+            .offerTo(exporter, ItemContent.ENERGITE_INGOT, "_with_oritech")
         // reinforced plating
         mapOf(
             RagiumMaterialKeys.COPPER to BlockContent.MACHINE_PLATING_BLOCK,
@@ -130,7 +130,7 @@ class RagiumIntegrationRecipeProvider(output: FabricDataOutput, completableFutur
                 .itemInput(HTTagPrefix.INGOT, material)
                 .itemInput(RagiumItems.Plastics.PRIMITIVE.tagKey)
                 .itemOutput(block, 8)
-                .offerTo(exporter, block)
+                .offerTo(exporter, block, "_with_oritech")
         }
         // industrial glass
         HTMachineRecipeJsonBuilder
@@ -139,6 +139,6 @@ class RagiumIntegrationRecipeProvider(output: FabricDataOutput, completableFutur
             .itemInput(HTTagPrefix.INGOT, RagiumMaterialKeys.STEEL, 2)
             .itemInput(TagContent.MACHINE_PLATING)
             .itemOutput(BlockContent.INDUSTRIAL_GLASS_BLOCK, 4)
-            .offerTo(exporter, BlockContent.INDUSTRIAL_GLASS_BLOCK)
+            .offerTo(exporter, BlockContent.INDUSTRIAL_GLASS_BLOCK, "_with_oritech")
     }
 }
