@@ -46,7 +46,7 @@ import java.util.*
 object RagiumREIClient : REIClientPlugin {
     @JvmStatic
     private val logger: Logger by DelegatedLogger()
-    
+
     @JvmField
     val MATERIAL_INFO: CategoryIdentifier<HTMaterialInfoDisplay> = CategoryIdentifier.of(RagiumAPI.id("material_info"))
 
