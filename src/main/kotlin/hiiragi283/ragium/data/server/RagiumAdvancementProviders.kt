@@ -374,9 +374,9 @@ object RagiumAdvancementProviders {
             // tier 4
             val ragium: AdvancementEntry = createContentChild(
                 consumer,
-                "progress/ragium",
+                "progress/ragium_ingot",
                 laserTransformer,
-                RagiumItems.Gems.RAGIUM,
+                RagiumItems.Ingots.RAGIUM,
                 frame = AdvancementFrame.GOAL,
             )
             val ragiumSaber: AdvancementEntry = createChild(

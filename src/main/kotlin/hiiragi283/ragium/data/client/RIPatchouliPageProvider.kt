@@ -105,10 +105,10 @@ class RIPatchouliPageProvider(output: FabricDataOutput, registriesFuture: Comple
         registerMaterialPage(
             consumer,
             RagiumMaterialKeys.RAGIUM,
-            RagiumItems.Gems.RAGIUM,
+            RagiumItems.Ingots.RAGIUM,
             RagiumAPI.id("progress/ragium"),
             HTSpotlightBookPage(
-                RagiumItems.Gems.RAGIUM,
+                RagiumItems.Ingots.RAGIUM,
                 "Ragium is perfectly purified material",
             ),
         )

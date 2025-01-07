@@ -233,7 +233,7 @@ class RagiumVanillaRecipeProvider(output: FabricDataOutput, registriesFuture: Co
                 "ABA",
                 "A A",
             ).input('A', RagiumItems.STELLA_PLATE)
-            .input('B', RagiumItems.Gems.RAGIUM)
+            .input('B', RagiumItems.Plates.RAGIUM)
             .unlockedBy(RagiumItems.STELLA_PLATE)
             .offerTo(exporter)
 
@@ -244,7 +244,7 @@ class RagiumVanillaRecipeProvider(output: FabricDataOutput, registriesFuture: Co
                 "ABA",
                 "AAA",
             ).input('A', RagiumItems.STELLA_PLATE)
-            .input('B', RagiumItems.Gems.RAGIUM)
+            .input('B', RagiumItems.Plates.RAGIUM)
             .unlockedBy(RagiumItems.STELLA_PLATE)
             .offerTo(exporter)
 
@@ -255,7 +255,7 @@ class RagiumVanillaRecipeProvider(output: FabricDataOutput, registriesFuture: Co
                 "A A",
                 "A A",
             ).input('A', RagiumItems.STELLA_PLATE)
-            .input('B', RagiumItems.Gems.RAGIUM)
+            .input('B', RagiumItems.Plates.RAGIUM)
             .unlockedBy(RagiumItems.STELLA_PLATE)
             .offerTo(exporter)
 
@@ -265,7 +265,7 @@ class RagiumVanillaRecipeProvider(output: FabricDataOutput, registriesFuture: Co
                 "A A",
                 "ABA",
             ).input('A', RagiumItems.STELLA_PLATE)
-            .input('B', RagiumItems.Gems.RAGIUM)
+            .input('B', RagiumItems.Plates.RAGIUM)
             .unlockedBy(RagiumItems.STELLA_PLATE)
             .offerTo(exporter)
     }
@@ -473,9 +473,9 @@ class RagiumVanillaRecipeProvider(output: FabricDataOutput, registriesFuture: Co
                 "  A",
                 " A ",
                 "B  ",
-            ).input('A', RagiumItems.Gems.RAGIUM)
+            ).input('A', RagiumItems.Plates.RAGIUM)
             .input('B', RagiumItems.STELLA_SABER)
-            .unlockedBy(RagiumItems.Gems.RAGIUM)
+            .unlockedBy(RagiumItems.Plates.RAGIUM)
             .offerTo(exporter)
 
         HTShapedRecipeJsonBuilder
@@ -485,9 +485,9 @@ class RagiumVanillaRecipeProvider(output: FabricDataOutput, registriesFuture: Co
                 "AC ",
                 " C ",
             ).input('A', RagiumBlocks.StorageBlocks.DEEP_STEEL)
-            .input('B', RagiumItems.Gems.RAGIUM)
+            .input('B', RagiumItems.Plates.RAGIUM)
             .input('C', RagiumBlocks.SHAFT)
-            .unlockedBy(RagiumItems.Gems.RAGIUM)
+            .unlockedBy(RagiumItems.Plates.RAGIUM)
             .offerTo(exporter)
         // backpack
         HTShapedRecipeJsonBuilder

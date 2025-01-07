@@ -226,7 +226,7 @@ class RagiumMachineRecipeProvider(output: FabricDataOutput, registriesFuture: Co
 
         HTMachineRecipeJsonBuilder
             .create(RagiumMachineKeys.BLAST_FURNACE)
-            .itemInput(RagiumItems.Gems.RAGIUM)
+            .itemInput(RagiumItems.Ingots.RAGIUM)
             .itemInput(RagiumBlocks.Glasses.OBSIDIAN)
             .itemOutput(RagiumBlocks.Glasses.RAGIUM)
             .offerTo(exporter, RagiumBlocks.Glasses.RAGIUM)
@@ -595,8 +595,8 @@ class RagiumMachineRecipeProvider(output: FabricDataOutput, registriesFuture: Co
         HTMachineRecipeJsonBuilder
             .create(RagiumMachineKeys.LASER_TRANSFORMER, HTMachineTier.ADVANCED)
             .itemInput(RagiumItems.Gems.RAGI_CRYSTAL, 8)
-            .itemOutput(RagiumItems.Gems.RAGIUM)
-            .offerTo(exporter, RagiumItems.Gems.RAGIUM)
+            .itemOutput(RagiumItems.Ingots.RAGIUM)
+            .offerTo(exporter, RagiumItems.Ingots.RAGIUM)
 
         HTMachineRecipeJsonBuilder
             .create(RagiumMachineKeys.LASER_TRANSFORMER, HTMachineTier.ADVANCED)
