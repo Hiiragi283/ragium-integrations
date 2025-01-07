@@ -450,6 +450,9 @@ class RagiumJapaneseLangProvider(output: FabricDataOutput, registryLookup: Compl
 
         builder.add(RagiumTranslationKeys.PROVIDER_JADE_NETWORK_INTERFACE, "エネルギー量: %s E")
         // Patchouli
+        builder.add(RagiumTranslationKeys.PATCHOULI_NAME, "らぎウィキ")
+        builder.add(RagiumTranslationKeys.PATCHOULI_LANDING, "Ragiumの公式ガイドブック")
+
         builder.add(HTPatchouliCategory.FOOD, "食べ物", "GregTechがあなたを待っている…")
         builder.add(HTPatchouliCategory.MACHINE, "機械", "破壊！豪快！奇々怪々！")
         builder.add(HTPatchouliCategory.MATERIAL, "素材", "らぎマテリアル")
@@ -468,8 +471,5 @@ class RagiumJapaneseLangProvider(output: FabricDataOutput, registryLookup: Compl
         // REI
         builder.add(RagiumTranslationKeys.REI_ENTRY_NO_MATCHING, "次を満たす値がありません: %s")
         builder.add(RagiumTranslationKeys.REI_ENTRY_APPLY_DAMAGE, "実行時に%sだけ耐久値を減らす")
-
-        builder.add(RagiumTranslationKeys.REI_RECIPE_BIOME, "次のバイオームで見つかる: %s")
-        builder.add(RagiumTranslationKeys.REI_RECIPE_INFO, "レシピ情報")
     }
 }

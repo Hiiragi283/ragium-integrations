@@ -1,5 +1,6 @@
 package hiiragi283.ragium.integration.patchouli.page
 
+import hiiragi283.ragium.api.extension.registryEntry
 import net.minecraft.item.Item
 import net.minecraft.item.ItemConvertible
 import net.minecraft.registry.Registries
@@ -23,7 +24,7 @@ class HTSpotlightBookPage private constructor(
     )
 
     constructor(items: List<ItemConvertible>, text: String? = null, title: String? = null) : this(
-        items.map(ItemConvertible::asItem).map(Item::getRegistryEntry),
+        items.map(ItemConvertible::registryEntry),
         true,
         title,
         text,

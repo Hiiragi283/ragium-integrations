@@ -1,6 +1,7 @@
 package hiiragi283.ragium.data.client
 
 import hiiragi283.ragium.api.RagiumAPI
+import hiiragi283.ragium.api.extension.registryEntry
 import hiiragi283.ragium.api.material.HTMaterialKey
 import hiiragi283.ragium.common.init.RagiumItems
 import hiiragi283.ragium.common.init.RagiumMaterialKeys
@@ -12,7 +13,6 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricCodecDataProvider
 import net.minecraft.data.DataOutput
 import net.minecraft.item.ItemConvertible
-import net.minecraft.registry.Registries
 import net.minecraft.registry.RegistryWrapper
 import net.minecraft.util.Identifier
 import java.util.concurrent.CompletableFuture
@@ -39,7 +39,7 @@ class RIPatchouliPageProvider(output: FabricDataOutput, registriesFuture: Comple
     ) {
         val entry: HTBookEntry = HTBookEntry.of(
             name,
-            Registries.ITEM.getEntry(icon.asItem()),
+            icon.registryEntry,
             category.id,
             pages.toList(),
             advancementId,

@@ -493,6 +493,9 @@ class RagiumEnglishLangProvider(output: FabricDataOutput, registryLookup: Comple
 
         builder.add(RagiumTranslationKeys.PROVIDER_JADE_NETWORK_INTERFACE, "Stored Energy: %s E")
         // Patchouli
+        builder.add(RagiumTranslationKeys.PATCHOULI_NAME, "Ragi-Wiki")
+        builder.add(RagiumTranslationKeys.PATCHOULI_LANDING, "An official guidebook for Ragium")
+
         builder.add(HTPatchouliCategory.FOOD, "Food", "GregTech is waiting for you...")
         builder.add(HTPatchouliCategory.MACHINE, "Machine", "")
         builder.add(HTPatchouliCategory.MATERIAL, "Material", "Ragi-Materials")
@@ -511,8 +514,5 @@ class RagiumEnglishLangProvider(output: FabricDataOutput, registryLookup: Comple
         // REI
         builder.add(RagiumTranslationKeys.REI_ENTRY_NO_MATCHING, "No matching entry for %s")
         builder.add(RagiumTranslationKeys.REI_ENTRY_APPLY_DAMAGE, "Apply %s damage when processed")
-
-        builder.add(RagiumTranslationKeys.REI_RECIPE_BIOME, "Found in the biome: %s")
-        builder.add(RagiumTranslationKeys.REI_RECIPE_INFO, "Recipe Info")
     }
 }
