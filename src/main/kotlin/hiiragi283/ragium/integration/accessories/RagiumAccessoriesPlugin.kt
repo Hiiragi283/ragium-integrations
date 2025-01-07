@@ -6,6 +6,7 @@ import hiiragi283.ragium.api.accessory.HTAccessoryRegistry
 import hiiragi283.ragium.api.accessory.HTAccessorySlotTypes
 import hiiragi283.ragium.api.extension.isModLoaded
 import hiiragi283.ragium.api.extension.openBackpackScreen
+import hiiragi283.ragium.api.util.DelegatedLogger
 import hiiragi283.ragium.common.init.RagiumComponentTypes
 import hiiragi283.ragium.common.init.RagiumItems
 import io.wispforest.accessories.api.AccessoriesAPI
@@ -21,8 +22,12 @@ import net.minecraft.item.ItemConvertible
 import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.world.World
+import org.slf4j.Logger
 
 object RagiumAccessoriesPlugin : RagiumPlugin {
+    @JvmStatic
+    private val logger: Logger by DelegatedLogger()
+
     override val priority: Int = 0
 
     override fun shouldLoad(): Boolean = isModLoaded("accessories")
@@ -61,7 +66,7 @@ object RagiumAccessoriesPlugin : RagiumPlugin {
                 ?.let { stack: ItemStack -> openBackpackScreen(world, player, stack) }
         }
 
-        RagiumAPI.LOGGER.info("Accessories integration loaded!")
+        logger.info("Accessories integration loaded!")
     }
 
     @JvmStatic

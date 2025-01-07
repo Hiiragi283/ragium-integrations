@@ -9,6 +9,7 @@ import hiiragi283.ragium.api.machine.HTMachineKey
 import hiiragi283.ragium.api.machine.HTMachineRegistry
 import hiiragi283.ragium.api.machine.HTMachineTier
 import hiiragi283.ragium.api.tags.RagiumFluidTags
+import hiiragi283.ragium.api.util.DelegatedLogger
 import hiiragi283.ragium.common.init.*
 import hiiragi283.ragium.common.recipe.HTMachineRecipe
 import hiiragi283.ragium.integration.rei.category.HTMaterialInfoCategory
@@ -19,6 +20,8 @@ import me.shedaniel.rei.api.client.registry.category.CategoryRegistry
 import me.shedaniel.rei.api.client.registry.display.DisplayRegistry
 import me.shedaniel.rei.api.common.category.CategoryIdentifier
 import me.shedaniel.rei.api.common.entry.EntryStack
+import me.shedaniel.rei.api.common.plugins.PluginManager
+import me.shedaniel.rei.api.common.registry.ReloadStage
 import me.shedaniel.rei.api.common.util.EntryIngredients
 import me.shedaniel.rei.api.common.util.EntryStacks
 import me.shedaniel.rei.plugin.common.DefaultPlugin
@@ -35,19 +38,23 @@ import net.minecraft.item.Items
 import net.minecraft.registry.Registries
 import net.minecraft.registry.entry.RegistryEntry
 import net.minecraft.registry.tag.TagKey
+import org.slf4j.Logger
 import java.util.*
 
 @Suppress("UnstableApiUsage")
 @Environment(EnvType.CLIENT)
 object RagiumREIClient : REIClientPlugin {
-    init {
-        RagiumAPI.LOGGER.info("REI Integration enabled!")
-    }
-
+    @JvmStatic
+    private val logger: Logger by DelegatedLogger()
+    
     @JvmField
     val MATERIAL_INFO: CategoryIdentifier<HTMaterialInfoDisplay> = CategoryIdentifier.of(RagiumAPI.id("material_info"))
 
     //    REIClientPlugin    //
+
+    override fun preStage(manager: PluginManager<REIClientPlugin?>?, stage: ReloadStage?) {
+        logger.info("REI Integration enabled!")
+    }
 
     override fun registerCategories(registry: CategoryRegistry) {
         // vanilla

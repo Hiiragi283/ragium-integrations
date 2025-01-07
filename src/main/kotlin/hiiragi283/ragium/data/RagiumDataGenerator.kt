@@ -1,6 +1,7 @@
 package hiiragi283.ragium.data
 
 import hiiragi283.ragium.api.RagiumAPI
+import hiiragi283.ragium.api.util.DelegatedLogger
 import hiiragi283.ragium.data.client.*
 import hiiragi283.ragium.data.server.*
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint
@@ -9,8 +10,12 @@ import net.minecraft.registry.Registerable
 import net.minecraft.registry.RegistryBuilder
 import net.minecraft.registry.RegistryKeys
 import net.minecraft.world.gen.feature.ConfiguredFeature
+import org.slf4j.Logger
 
 object RagiumDataGenerator : DataGeneratorEntrypoint {
+    @JvmStatic
+    private val logger: Logger by DelegatedLogger()
+
     override fun onInitializeDataGenerator(fabricDataGenerator: FabricDataGenerator) {
         val pack: FabricDataGenerator.Pack = fabricDataGenerator.createPack()
         // server
@@ -29,7 +34,7 @@ object RagiumDataGenerator : DataGeneratorEntrypoint {
         pack.addProvider(::RIPatchouliCategoryProvider)
         pack.addProvider(::RIPatchouliPageProvider)
 
-        RagiumAPI.LOGGER.info("Ragium data generation is done!")
+        logger.info("Ragium data generation is done!")
     }
 
     override fun getEffectiveModId(): String = RagiumAPI.MOD_ID
