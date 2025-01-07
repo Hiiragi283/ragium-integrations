@@ -371,6 +371,11 @@ class RagiumEnglishLangProvider(output: FabricDataOutput, registryLookup: Comple
             "Thermal Generator",
             "Generate energy from hot fluids",
         )
+        builder.add(
+            RagiumMachineKeys.VIBRATION_GENERATOR,
+            "Vibration Generator",
+            "Augh! Pervert! Death penalty!",
+        )
 
         builder.add(RagiumMachineKeys.ASSEMBLER, "Assembler", "I am Dr.Doom")
         builder.add(RagiumMachineKeys.BLAST_FURNACE, "Large Blast Furnace", "Smelt multiple ingredients into one")
