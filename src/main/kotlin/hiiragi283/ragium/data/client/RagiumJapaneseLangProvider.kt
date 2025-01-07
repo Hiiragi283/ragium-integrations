@@ -173,6 +173,8 @@ class RagiumJapaneseLangProvider(output: FabricDataOutput, registryLookup: Compl
         builder.add(RagiumItems.StellaSuits.LEGGINGS, "S.T.E.L.L.A.レギンス")
         builder.add(RagiumItems.StellaSuits.BOOTS, "S.T.E.L.L.A.ブーツ")
 
+        builder.add(RagiumItems.DRAGONIC_ELYTRA, "ドラゴニックエリトラ")
+
         builder.add(RagiumItems.SteelTools.AXE, "スチールの斧")
         builder.add(RagiumItems.SteelTools.HOE, "スチールのクワ")
         builder.add(RagiumItems.SteelTools.PICKAXE, "スチールのツルハシ")
@@ -193,6 +195,7 @@ class RagiumJapaneseLangProvider(output: FabricDataOutput, registryLookup: Compl
         builder.add(RagiumItems.Dynamites.FROSTING, "凍えるダイナマイト")
 
         builder.add(RagiumItems.BACKPACK, "バックパック")
+        builder.add(RagiumItems.ECHO_BULLET, "エコー弾")
         builder.add(RagiumItems.EMPTY_FLUID_CUBE, "液体キューブ（なし）")
         builder.add(RagiumItems.FILLED_FLUID_CUBE, "液体キューブ（%s）")
         builder.add(RagiumItems.FLUID_FILTER, "液体フィルタ")
@@ -359,8 +362,11 @@ class RagiumJapaneseLangProvider(output: FabricDataOutput, registryLookup: Compl
         builder.add(RagiumMaterialKeys.CRYOLITE, "氷晶石")
         builder.add(RagiumMaterialKeys.DEEP_STEEL, "深層鋼")
         builder.add(RagiumMaterialKeys.DIAMOND, "ダイアモンド")
+        builder.add(RagiumMaterialKeys.DRAGONIUM, "ドラゴニウム")
+        builder.add(RagiumMaterialKeys.ECHORIUM, "エコリウム")
         builder.add(RagiumMaterialKeys.ELECTRUM, "琥珀金")
         builder.add(RagiumMaterialKeys.EMERALD, "エメラルド")
+        builder.add(RagiumMaterialKeys.FIERIUM, "ファイアリウム")
         builder.add(RagiumMaterialKeys.FLUORITE, "蛍石")
         builder.add(RagiumMaterialKeys.GALENA, "方鉛鉱")
         builder.add(RagiumMaterialKeys.GOLD, "金")

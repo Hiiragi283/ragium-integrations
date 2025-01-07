@@ -56,9 +56,13 @@ class RagiumMachineRecipeProvider(output: FabricDataOutput, registriesFuture: Co
         // LED
         // processor
         RagiumItems.Processors.entries.forEach { processor: RagiumItems.Processors ->
+            val prefix: HTTagPrefix = processor.material
+                .getEntryOrNull()
+                ?.type
+                ?.getMainPrefix() ?: return@forEach
             HTMachineRecipeJsonBuilder
                 .create(RagiumMachineKeys.ASSEMBLER, HTMachineTier.ADVANCED)
-                .itemInput(HTTagPrefix.GEM, processor.material)
+                .itemInput(prefix, processor.material)
                 .itemInput(RagiumItems.PROCESSOR_SOCKET)
                 .itemOutput(processor)
                 .offerTo(exporter, processor)
@@ -592,11 +596,18 @@ class RagiumMachineRecipeProvider(output: FabricDataOutput, registriesFuture: Co
             .itemOutput(Items.DIAMOND)
             .offerTo(exporter, Items.DIAMOND)
         // advanced
-        HTMachineRecipeJsonBuilder
-            .create(RagiumMachineKeys.LASER_TRANSFORMER, HTMachineTier.ADVANCED)
-            .itemInput(RagiumItems.Gems.RAGI_CRYSTAL, 8)
-            .itemOutput(RagiumItems.Ingots.RAGIUM)
-            .offerTo(exporter, RagiumItems.Ingots.RAGIUM)
+        mapOf(
+            RagiumItems.Ingots.RAGIUM to RagiumItems.Gems.RAGI_CRYSTAL,
+            RagiumItems.Ingots.ECHORIUM to Items.ECHO_SHARD,
+            RagiumItems.Ingots.FIERIUM to Items.ANCIENT_DEBRIS,
+            RagiumItems.Ingots.DRAGONIUM to Items.DRAGON_BREATH,
+        ).forEach { (ingot: RagiumItems.Ingots, input: ItemConvertible) ->
+            HTMachineRecipeJsonBuilder
+                .create(RagiumMachineKeys.LASER_TRANSFORMER, HTMachineTier.ADVANCED)
+                .itemInput(input, 16)
+                .itemOutput(ingot)
+                .offerTo(exporter, ingot)
+        }
 
         HTMachineRecipeJsonBuilder
             .create(RagiumMachineKeys.LASER_TRANSFORMER, HTMachineTier.ADVANCED)

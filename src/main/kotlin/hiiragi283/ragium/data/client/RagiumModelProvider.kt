@@ -495,6 +495,8 @@ class RagiumModelProvider(output: FabricDataOutput) : FabricModelProvider(output
             addAll(RagiumItems.DeepSteelArmors.entries)
             addAll(RagiumItems.StellaSuits.entries)
 
+            add(RagiumItems.DRAGONIC_ELYTRA)
+
             addAll(RagiumItems.SteelTools.entries)
             addAll(RagiumItems.DeepSteelTools.entries)
             addAll(RagiumItems.Dynamites.entries)

@@ -18,9 +18,11 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags
 import net.fabricmc.fabric.api.tag.convention.v2.TagUtil
 import net.minecraft.data.server.recipe.RecipeExporter
+import net.minecraft.data.server.recipe.SmithingTransformRecipeJsonBuilder
 import net.minecraft.item.Item
 import net.minecraft.item.ItemConvertible
 import net.minecraft.item.Items
+import net.minecraft.recipe.Ingredient
 import net.minecraft.recipe.book.RecipeCategory
 import net.minecraft.registry.RegistryKeys
 import net.minecraft.registry.RegistryWrapper
@@ -41,6 +43,7 @@ class RagiumVanillaRecipeProvider(output: FabricDataOutput, registriesFuture: Co
         craftingRecipes(exporter)
         cookingRecipes(exporter)
         cuttingRecipes(exporter)
+        smithingRecipe(exporter)
 
         exporter.accept(RagiumAPI.id("smithing/dynamite_upgrade"), HTDynamiteUpgradingRecipe, null)
     }
@@ -756,5 +759,19 @@ class RagiumVanillaRecipeProvider(output: FabricDataOutput, registriesFuture: Co
                 category = RecipeCategory.BUILDING_BLOCKS,
             )
         }
+    }
+
+    //    Smithing    //
+
+    private fun smithingRecipe(exporter: RecipeExporter) {
+        SmithingTransformRecipeJsonBuilder
+            .create(
+                Ingredient.ofItems(RagiumItems.Plates.DRAGONIUM),
+                Ingredient.ofItems(Items.ELYTRA),
+                Ingredient.EMPTY,
+                RecipeCategory.COMBAT,
+                RagiumItems.DRAGONIC_ELYTRA.get(),
+            ).criterion("has_item", conditionsFromItem(Items.ELYTRA))
+            .offerTo(exporter, RagiumAPI.id("smithing/dragonic_elytra"))
     }
 }

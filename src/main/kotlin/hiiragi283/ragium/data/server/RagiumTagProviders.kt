@@ -263,6 +263,7 @@ object RagiumTagProviders {
             RagiumItems.StellaSuits.entries.forEach {
                 add(it.armorType.armorTag, it)
             }
+            add(ItemTags.CHEST_ARMOR, RagiumItems.DRAGONIC_ELYTRA)
             RagiumItems.SteelTools.entries.forEach {
                 add(it.toolType.toolTag, it)
             }

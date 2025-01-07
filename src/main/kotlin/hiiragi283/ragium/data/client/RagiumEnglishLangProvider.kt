@@ -173,6 +173,8 @@ class RagiumEnglishLangProvider(output: FabricDataOutput, registryLookup: Comple
         builder.add(RagiumItems.StellaSuits.LEGGINGS, "S.T.E.L.L.A. Leggings")
         builder.add(RagiumItems.StellaSuits.BOOTS, "S.T.E.L.L.A. Boots")
 
+        builder.add(RagiumItems.DRAGONIC_ELYTRA, "Dragonic Elytra")
+
         builder.add(RagiumItems.SteelTools.AXE, "Steel Axe")
         builder.add(RagiumItems.SteelTools.HOE, "Steel Hoe")
         builder.add(RagiumItems.SteelTools.PICKAXE, "Steel Pickaxe")
@@ -193,6 +195,7 @@ class RagiumEnglishLangProvider(output: FabricDataOutput, registryLookup: Comple
         builder.add(RagiumItems.Dynamites.FROSTING, "Frosting Dynamite")
 
         builder.add(RagiumItems.BACKPACK, "Backpack")
+        builder.add(RagiumItems.ECHO_BULLET, "Echo Bullet")
         builder.add(RagiumItems.EMPTY_FLUID_CUBE, "Fluid Cube (Empty)")
         builder.add(RagiumItems.FILLED_FLUID_CUBE, "Fluid Cube (%s)")
         builder.add(RagiumItems.FLUID_FILTER, "Fluid Filter")
@@ -406,8 +409,11 @@ class RagiumEnglishLangProvider(output: FabricDataOutput, registryLookup: Comple
         builder.add(RagiumMaterialKeys.CRYOLITE, "Cryolite")
         builder.add(RagiumMaterialKeys.DEEP_STEEL, "Deep Steel")
         builder.add(RagiumMaterialKeys.DIAMOND, "Diamond")
+        builder.add(RagiumMaterialKeys.DRAGONIUM, "Dragonium")
+        builder.add(RagiumMaterialKeys.ECHORIUM, "Echorium")
         builder.add(RagiumMaterialKeys.ELECTRUM, "Electrum")
         builder.add(RagiumMaterialKeys.EMERALD, "Emerald")
+        builder.add(RagiumMaterialKeys.FIERIUM, "Fierium")
         builder.add(RagiumMaterialKeys.FLUORITE, "Fluorite")
         builder.add(RagiumMaterialKeys.GALENA, "Galena")
         builder.add(RagiumMaterialKeys.GOLD, "Gold")
